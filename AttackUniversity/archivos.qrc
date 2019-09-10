@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imagenes/agujero.png</file>
+    </qresource>
+</RCC>
