@@ -8,10 +8,10 @@ class personaje: public QGraphicsPixmapItem
 {    
 public:
     personaje(double px, double py, float w, float h,double _vx, double _vy);
-    void moverIzquierda();
-    void moverDerecha();
-    void moverArriba();
-    void moverAbajo();
+    void moverIzquierda(double dt);
+    void moverDerecha(double dt);
+    void moverArriba(double dt);
+    void moverAbajo(double dt);
 
     double getPosx() const;
     void setPosx(double value);
@@ -40,8 +40,7 @@ private:
     float width=0;
     float high=0;
     double vx=0;
-    double vy=0;
-    double dt=0.1;
+    double vy=0;    
     int vida=0;
 
 };

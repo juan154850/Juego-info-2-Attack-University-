@@ -5,6 +5,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <personaje.h>
+#include <QTimer>
+
 namespace Ui {
 class nivel1;
 }
@@ -18,11 +20,14 @@ public:
     ~nivel1();
     void keyPressEvent(QKeyEvent *ev);
 
+public slots:
+    void actualizar(void);
 
 private:
     personaje *jugador;
     Ui::nivel1 *ui;
     QGraphicsScene *scene;
+    QTimer *tiempo;
 };
 
 #endif // NIVEL1_H

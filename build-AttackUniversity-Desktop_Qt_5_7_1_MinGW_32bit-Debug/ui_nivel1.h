@@ -32,6 +32,7 @@ public:
         if (nivel1->objectName().isEmpty())
             nivel1->setObjectName(QStringLiteral("nivel1"));
         nivel1->resize(800, 600);
+        nivel1->setMaximumSize(QSize(800, 600));
         graphicsView = new QGraphicsView(nivel1);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
         graphicsView->setGeometry(QRect(0, 0, 256, 192));

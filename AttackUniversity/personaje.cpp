@@ -9,24 +9,27 @@ personaje::personaje(double px, double py, float w, float h,double _vx, double _
     vx=_vx;
     vy=_vy;
     setPos(posx,posy);
+    setPixmap(QPixmap(":/imagenes/personaje1.png"));
 }
 
-void personaje::moverIzquierda()
+void personaje::moverIzquierda(double dt)
 {
     posx=posx-(vx*dt);
+    setX(posx);
 }
 
-void personaje::moverDerecha()
+void personaje::moverDerecha(double dt)
 {
     posx=posx+(vx*dt);
+    setX(posx);
 }
 
-void personaje::moverArriba()
+void personaje::moverArriba(double dt)
 {
     posy=posy-(vy*dt);
 }
 
-void personaje::moverAbajo()
+void personaje::moverAbajo(double dt)
 {
     posy=posy+(vy*dt);
 }
@@ -39,6 +42,7 @@ double personaje::getPosx() const
 void personaje::setPosx(double value)
 {
     posx = value;
+    setX(posx);
 }
 
 double personaje::getPosy() const
@@ -49,6 +53,7 @@ double personaje::getPosy() const
 void personaje::setPosy(double value)
 {
     posy = value;
+    setY(posy);
 }
 
 float personaje::getWidth() const
