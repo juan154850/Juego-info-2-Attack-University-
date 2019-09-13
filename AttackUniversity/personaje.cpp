@@ -27,11 +27,13 @@ void personaje::moverDerecha(double dt)
 void personaje::moverArriba(double dt)
 {
     posy=posy-(vy*dt);
+    setY(posy);
 }
 
 void personaje::moverAbajo(double dt)
 {
     posy=posy+(vy*dt);
+    setY(posy);
 }
 
 double personaje::getPosx() const

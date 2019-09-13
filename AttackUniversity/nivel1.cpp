@@ -8,23 +8,32 @@ nivel1::nivel1(QWidget *parent) :
     ui->setupUi(this);
 
     //creamos la escena
+
     scene = new QGraphicsScene();    
-    scene->setSceneRect(0,0,800,600);
+    scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
+
+    //le asignamos al graphicsView el tamaño de nuestro juego
     //ponemos nuestra escena en el graphicsView
+
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setFixedSize(800,600);
+    scene->update();
+
+
+
     //bloqueamos el aumentar y disminuir tamaño de la ventana
+
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);    
-    //scene->addPixmap(QPixmap(":/imagenes/agujero.png"));
-    jugador = new personaje(0,0,50,55,100,100);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    //creamos un jugador, lo añadimos a la scena y lo ponemos como foco del juego.
+
+    jugador = new personaje(0,400,50,55,100,100);
     scene->addItem(jugador);
-    scene->setFocusItem(jugador);
-    qreal posx = 0;
-    qreal posy= 400;
-    jugador->setPosx(posx);
-    jugador->setPosy(posy);
-    jugador->setPos(posx,posy);
+    scene->setFocusItem(jugador);    
+
+    //creamos un timer que nos permite saber la posicion en x y en y del jugador en todo momento.
+
     tiempo = new QTimer(this);
     tiempo->start(100);
     connect(tiempo, &QTimer::timeout, this, &nivel1::actualizar);
@@ -39,42 +48,55 @@ nivel1::~nivel1()
 void nivel1::keyPressEvent(QKeyEvent *ev)
 {
     if (ev->key()==Qt::Key_A)
-    {        
-            ui->lcdNumber->display(jugador->getPosx());
-            ui->lcdNumber_2->display(jugador->getPosy());
+    {
+        if(jugador->getPosx()>=jugador->getWidth()-30)
+        {
             jugador->moverIzquierda(0.1);
-            //jugador->setPos(jugador->getPosx(),jugador->getPosy());
-            jugador->advance(10);
+       }
+        else
+        {
+            ev->ignore();
+        }
 
     }
     else if (ev->key()==Qt::Key_D)
-    {       
-            ui->lcdNumber->display(jugador->getPosx());
-            ui->lcdNumber_2->display(jugador->getPosy());
-            jugador->moverDerecha(0.1);
-            jugador->advance(10);
-          //  jugador->setPos(jugador->getPosx(),jugador->getPosy());
-
+    {       if(jugador->getPosx()<=800-jugador->getWidth()-15)
+        {
+            jugador->moverDerecha(0.1);            
+        }
+        else
+        {
+            ev->ignore();
+        }
     }
     else if(ev->key()==Qt::Key_W)
-    {
-        ev->ignore();/*
-        ui->lcdNumber->display(jugador->getPosx());
-        ui->lcdNumber_2->display(jugador->getPosy());
-        jugador->moverArriba();
-        jugador->setPos(jugador->getPosx(),jugador->getPosy());*/
+    {        
+        if(jugador->getPosy()>=10)
+        {
+            jugador->moverArriba(0.1);
+        }
+        else
+        {
+            ev->ignore();
+        }
+
     }
     else if (ev->key()==Qt::Key_S)
     {
-        ev->ignore();/*
-        ui->lcdNumber->display(jugador->getPosx());
-        ui->lcdNumber_2->display(jugador->getPosy());
-        jugador->moverAbajo();
-        jugador->setPos(jugador->getPosx(),jugador->getPosy());*/
+        if(jugador->getPosy()<=540)
+        {
+            jugador->moverAbajo(0.1);
+        }
+        else
+        {
+            ev->ignore();
+        }
+
     }
 }
 
 void nivel1::actualizar()
 {
-    jugador->moverDerecha(0.1);
+    ui->lcdNumber->display(jugador->getPosx());
+    ui->lcdNumber_2->display(jugador->getPosy());
 }
