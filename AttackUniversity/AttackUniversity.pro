@@ -36,8 +36,8 @@ HEADERS += \
     menu.h
 
 FORMS += \
-        mainwindow.ui \
-    nivel1.ui
+    nivel1.ui \
+    menu.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

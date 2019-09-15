@@ -1,25 +1,29 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MENU_H
+#define MENU_H
 
-#include <QMainWindow>
-#include "nivel1.h"
+#include <QDialog>
+
 namespace Ui {
-class MainWindow;
+class menu;
 }
 
-class MainWindow : public QMainWindow
+class menu : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit menu(QWidget *parent = nullptr);
+    ~menu();
 
 private slots:
-    void on_pushButton_clicked();
+
+
+    void on_iniciar_clicked();
+
+    void on_registro_clicked();
 
 private:
-    Ui::MainWindow *ui;    
+    Ui::menu *ui;
 };
 
-#endif // MAINWINDOW_H
+#endif // MENU_H
