@@ -15,7 +15,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,8 +23,6 @@ class Ui_nivel1
 {
 public:
     QGraphicsView *graphicsView;
-    QLCDNumber *lcdNumber;
-    QLCDNumber *lcdNumber_2;
 
     void setupUi(QWidget *nivel1)
     {
@@ -36,13 +33,7 @@ public:
         graphicsView = new QGraphicsView(nivel1);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
         graphicsView->setGeometry(QRect(0, 0, 256, 192));
-        graphicsView->setStyleSheet(QStringLiteral("border-image: url(:/imagenes/fondo.png);"));
-        lcdNumber = new QLCDNumber(nivel1);
-        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
-        lcdNumber->setGeometry(QRect(310, 10, 64, 23));
-        lcdNumber_2 = new QLCDNumber(nivel1);
-        lcdNumber_2->setObjectName(QStringLiteral("lcdNumber_2"));
-        lcdNumber_2->setGeometry(QRect(390, 10, 64, 23));
+        graphicsView->setStyleSheet(QStringLiteral(""));
 
         retranslateUi(nivel1);
 
