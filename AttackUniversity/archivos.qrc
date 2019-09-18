@@ -14,5 +14,9 @@
         <file>imagenes/avt3_rt1.png</file>
         <file>imagenes/avt3_rt2.png</file>
         <file>imagenes/avt4_bk2.png</file>
+        <file>imagenes/bullet.png</file>
+        <file>imagenes/bulletAb.png</file>
+        <file>imagenes/bulletAr.png</file>
+        <file>imagenes/bulletDr.png</file>
     </qresource>
 </RCC>

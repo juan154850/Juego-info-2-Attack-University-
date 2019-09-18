@@ -6,7 +6,8 @@
 #include <QGraphicsItem>
 #include <personaje.h>
 #include <QTimer>
-
+#include "bala.h"
+#include <QList>
 namespace Ui {
 class nivel1;
 }
@@ -28,6 +29,10 @@ private:
     Ui::nivel1 *ui;
     QGraphicsScene *scene;
     QTimer *tiempo;    
+    QList<bala*>balas;
+    char dire;
+
+
     int animar;
 
 };

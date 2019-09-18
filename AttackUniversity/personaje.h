@@ -36,7 +36,10 @@ public:
     double getVy() const;
     void setVy(double value);
 
-private:    
+    int getAnimacion() const;
+    void setAnimacion(int value);
+
+private:
     int animacion=0;
     double posx=0;
     double posy=0;
@@ -45,6 +48,7 @@ private:
     double vx=0;
     double vy=0;    
     int vida=0;
+
 
 };
 

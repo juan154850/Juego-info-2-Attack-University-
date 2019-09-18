@@ -52,12 +52,12 @@ void personaje::animacionArriba()
 {
     switch (animacion)
     {
-        case (2):
+        case (4):
         {
             setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(30,30));
             break;
         }
-        case (4):
+        case (8):
         {
             setPixmap(QPixmap(":/imagenes/avt4_bk2.png").scaled(30,30));
             animacion=0;
@@ -72,12 +72,12 @@ void personaje::animacionAbajo()
 
     switch (animacion)
     {
-        case (2):
+        case (4):
         {
             setPixmap(QPixmap(":/imagenes/avt3_fr1.png").scaled(30,30));
             break;
         }
-        case (4):
+        case (8):
         {
             setPixmap(QPixmap(":/imagenes/avt3_fr2.png").scaled(30,30));
             animacion=0;
@@ -91,12 +91,12 @@ void personaje::animacionIzquierda()
 {
     switch (animacion)
     {
-        case (2):
+        case (4):
         {
             setPixmap(QPixmap(":/imagenes/avt3_rt1.png").scaled(30,30));
             break;
         }
-        case (4):
+        case (8):
         {
             setPixmap(QPixmap(":/imagenes/avt3_rt2.png").scaled(30,30));
             animacion=0;
@@ -108,14 +108,15 @@ void personaje::animacionIzquierda()
 
 void personaje::animacionDerecha()
 {
+
     switch (animacion)
     {
-        case (2):
+        case (4):
         {
             setPixmap(QPixmap(":/imagenes/avt3_lf1.png").scaled(30,30));
             break;
         }
-        case (4):
+        case (8):
         {
             setPixmap(QPixmap(":/imagenes/avt3_lf2.png").scaled(30,30));
             animacion=0;
@@ -184,4 +185,14 @@ double personaje::getVy() const
 void personaje::setVy(double value)
 {
     vy = value;
+}
+
+int personaje::getAnimacion() const
+{
+    return animacion;
+}
+
+void personaje::setAnimacion(int value)
+{
+    animacion = value;
 }

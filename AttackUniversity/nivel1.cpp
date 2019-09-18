@@ -7,46 +7,42 @@ nivel1::nivel1(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //creamos la escena
+    //-------------------zona de eventos-------------------
 
     scene = new QGraphicsScene();    
     scene->setBackgroundBrush(QBrush(QImage(":/imagenes/fond.png")));
     scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
 
-    //le asignamos al graphicsView el tamaño de nuestro juego y ponemos nuestra escena en el graphicsView
+    //-------------------graficador-------------------
 
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setFixedSize(800,600);
 
 
 
-    //bloqueamos el aumentar y disminuir tamaño de la ventana
+    //-------------------bloqueos-------------------
 
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    //creamos un jugador, lo añadimos a la scena y lo ponemos como foco del juego.
+    //-------------------player-------------------
 
     jugador = new personaje(50,525,50,55,100,100);
     //jugador->setFocus();
     scene->addItem(jugador);
     scene->setFocusItem(jugador);
 
-    //creamos un timer que nos permite saber la posicion en x y en y del jugador en todo momento.
+    //-------------------timers-------------------
 
     tiempo = new QTimer(this);
     tiempo->start(100);
     connect(tiempo, &QTimer::timeout, this, &nivel1::actualizar);
 
 
-    //añadimos una linea para detectarla como colision
-//    QGraphicsLineItem *linea;
-//    linea = new QGraphicsLineItem;
-//    linea->setLine(800,0,0,0);
-//    linea->setPen(QColor(Qt::red));
-//    linea->setPos(0,-670);
-//    scene->addItem(linea);
-    scene->setSceneRect(0,jugador->getPosy()-522,800,600);
+    //-------------------foco-------------------
+    scene->setSceneRect(0,jugador->getPosy()-522,800,600);      
+
+
 
 }
 
@@ -60,19 +56,22 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
     switch (ev->key())
     {
     case (Qt::Key_A):
-    {
+    {        
+        dire = 'A';
         jugador->animacionIzquierda();
         jugador->moverIzquierda(0.04);
         break;
     }
     case (Qt::Key_D):
-    {
+    {        
+        dire = 'D';
         jugador->animacionDerecha();
         jugador->moverDerecha(0.04);
         break;
     }
     case (Qt::Key_W):
-    {
+    {        
+        dire = 'W';
         jugador->animacionArriba();
         //bloqueo de la camara
         if(jugador->getPosy()>=-678 && jugador->getPosy()<=520)
@@ -88,7 +87,8 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         break;
     }
     case (Qt::Key_S):
-    {
+    {        
+        dire = 'S';
         jugador->animacionAbajo();
         //bloqueo de la camara
         if(jugador->getPosy()>=-678 && jugador->getPosy()<=520)
@@ -101,20 +101,33 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
             jugador->moverAbajo(0.04);
         }
         break;
-
-
+    }
+    case (Qt::Key_Space):
+    {
+        //-------------------creacion de balas-------------------
+        balas.append(new bala(jugador->getPosx(),jugador->getPosy()+30,20,20,dire));
+        scene->addItem(balas.last());
+        break;
     }
     }
 }
 
 void nivel1::actualizar()
 {
+
     ui->lcdNumber->display(jugador->pos().x());
     ui->lcdNumber_2->display(jugador->pos().y());
-
-     if ( jugador->collidingItems().size()>0)
-     {
-         //si el jugador colisiona con algun elemento...
-         ui->lcdNumber->display(666);         
-     }
+    for ( int i  = 0 ; i< balas.size();i++)
+    {
+        if ( balas.at(i)->getPosy()<=-678)
+        {
+            scene->removeItem(balas.at(i));
+            balas.removeAt(i);
+            //delete balas.at(i);
+        }
+        else
+        {
+            balas.at(i)->moverBala();
+        }
+    }
 }
