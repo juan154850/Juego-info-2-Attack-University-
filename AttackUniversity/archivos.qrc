@@ -3,6 +3,8 @@
         <file>imagenes/agujero.png</file>
         <file>imagenes/personaje1.png</file>
         <file>imagenes/fondo.png</file>
-        <file>imagenes/piso1.png</file>
+        <file>imagenes/plantilla lvel1.png</file>
+        <file>imagenes/Background_1_0.png</file>
+        <file>imagenes/fond.png</file>
     </qresource>
 </RCC>

@@ -7,7 +7,7 @@
 class personaje: public QGraphicsPixmapItem
 {    
 public:
-    personaje(double px, double py, float w, float h,double _vx, double _vy);
+    personaje(double px, double py, float w, float h,double _vx, double _vy);    
     void moverIzquierda(double dt);
     void moverDerecha(double dt);
     void moverArriba(double dt);

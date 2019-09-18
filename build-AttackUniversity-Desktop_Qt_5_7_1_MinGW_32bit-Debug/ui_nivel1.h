@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,17 +24,30 @@ class Ui_nivel1
 {
 public:
     QGraphicsView *graphicsView;
+    QLCDNumber *lcdNumber;
+    QLCDNumber *lcdNumber_2;
 
     void setupUi(QWidget *nivel1)
     {
         if (nivel1->objectName().isEmpty())
             nivel1->setObjectName(QStringLiteral("nivel1"));
         nivel1->resize(800, 600);
+        nivel1->setMinimumSize(QSize(800, 600));
         nivel1->setMaximumSize(QSize(800, 600));
         graphicsView = new QGraphicsView(nivel1);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
         graphicsView->setGeometry(QRect(0, 0, 256, 192));
         graphicsView->setStyleSheet(QStringLiteral(""));
+        lcdNumber = new QLCDNumber(nivel1);
+        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setGeometry(QRect(700, 0, 101, 41));
+        lcdNumber->setStyleSheet(QLatin1String("background-color: rgb(255, 255, 0);\n"
+"font: 28pt \"MS Shell Dlg 2\";"));
+        lcdNumber_2 = new QLCDNumber(nivel1);
+        lcdNumber_2->setObjectName(QStringLiteral("lcdNumber_2"));
+        lcdNumber_2->setGeometry(QRect(700, 40, 101, 41));
+        lcdNumber_2->setStyleSheet(QLatin1String("background-color: rgb(85, 255, 0);\n"
+"font: 36pt \"MS Shell Dlg 2\";"));
 
         retranslateUi(nivel1);
 

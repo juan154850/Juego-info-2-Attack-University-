@@ -9,7 +9,7 @@ personaje::personaje(double px, double py, float w, float h,double _vx, double _
     vx=_vx;
     vy=_vy;
     setPos(posx,posy);
-    setPixmap(QPixmap(":/imagenes/personaje1.png"));
+    setPixmap(QPixmap(":/imagenes/personaje1.png").scaled(30,30));
 }
 
 void personaje::moverIzquierda(double dt)

@@ -27,7 +27,8 @@ private:
     personaje *jugador;
     Ui::nivel1 *ui;
     QGraphicsScene *scene;
-    QTimer *tiempo;
+    QTimer *tiempo;    
+
 };
 
 #endif // NIVEL1_H
