@@ -11,11 +11,13 @@ public:
     void moverIzquierda(double dt);
     void moverDerecha(double dt);
     void moverArriba(double dt);
-    void moverAbajo(double dt);
-
+    void moverAbajo(double dt);    
     double getPosx() const;
     void setPosx(double value);
-
+    void animacionArriba(void);
+    void animacionAbajo(void);
+    void animacionIzquierda(void);
+    void animacionDerecha(void);
     double getPosy() const;
     void setPosy(double value);
 
@@ -34,7 +36,8 @@ public:
     double getVy() const;
     void setVy(double value);
 
-private:
+private:    
+    int animacion=0;
     double posx=0;
     double posy=0;
     float width=0;

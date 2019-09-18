@@ -9,7 +9,7 @@ personaje::personaje(double px, double py, float w, float h,double _vx, double _
     vx=_vx;
     vy=_vy;
     setPos(posx,posy);
-    setPixmap(QPixmap(":/imagenes/personaje1.png").scaled(30,30));
+    setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(30,30));
 }
 
 void personaje::moverIzquierda(double dt)
@@ -36,6 +36,7 @@ void personaje::moverAbajo(double dt)
     setY(posy);
 }
 
+
 double personaje::getPosx() const
 {
     return posx;
@@ -45,6 +46,83 @@ void personaje::setPosx(double value)
 {
     posx = value;
     setX(posx);
+}
+
+void personaje::animacionArriba()
+{
+    switch (animacion)
+    {
+        case (2):
+        {
+            setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(30,30));
+            break;
+        }
+        case (4):
+        {
+            setPixmap(QPixmap(":/imagenes/avt4_bk2.png").scaled(30,30));
+            animacion=0;
+            break;
+        }
+    }
+    animacion++;
+}
+
+void personaje::animacionAbajo()
+{
+
+    switch (animacion)
+    {
+        case (2):
+        {
+            setPixmap(QPixmap(":/imagenes/avt3_fr1.png").scaled(30,30));
+            break;
+        }
+        case (4):
+        {
+            setPixmap(QPixmap(":/imagenes/avt3_fr2.png").scaled(30,30));
+            animacion=0;
+            break;
+        }
+    }
+    animacion++;
+}
+
+void personaje::animacionIzquierda()
+{
+    switch (animacion)
+    {
+        case (2):
+        {
+            setPixmap(QPixmap(":/imagenes/avt3_rt1.png").scaled(30,30));
+            break;
+        }
+        case (4):
+        {
+            setPixmap(QPixmap(":/imagenes/avt3_rt2.png").scaled(30,30));
+            animacion=0;
+            break;
+        }
+    }
+    animacion++;
+}
+
+void personaje::animacionDerecha()
+{
+    switch (animacion)
+    {
+        case (2):
+        {
+            setPixmap(QPixmap(":/imagenes/avt3_lf1.png").scaled(30,30));
+            break;
+        }
+        case (4):
+        {
+            setPixmap(QPixmap(":/imagenes/avt3_lf2.png").scaled(30,30));
+            animacion=0;
+            break;
+        }
+    }
+    animacion++;
 }
 
 double personaje::getPosy() const

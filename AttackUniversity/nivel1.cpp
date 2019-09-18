@@ -61,16 +61,19 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
     {
     case (Qt::Key_A):
     {
+        jugador->animacionIzquierda();
         jugador->moverIzquierda(0.04);
         break;
     }
     case (Qt::Key_D):
     {
+        jugador->animacionDerecha();
         jugador->moverDerecha(0.04);
         break;
     }
     case (Qt::Key_W):
     {
+        jugador->animacionArriba();
         //bloqueo de la camara
         if(jugador->getPosy()>=-678 && jugador->getPosy()<=520)
         {
@@ -86,6 +89,7 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
     }
     case (Qt::Key_S):
     {
+        jugador->animacionAbajo();
         //bloqueo de la camara
         if(jugador->getPosy()>=-678 && jugador->getPosy()<=520)
         {

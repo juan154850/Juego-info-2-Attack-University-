@@ -28,6 +28,7 @@ private:
     Ui::nivel1 *ui;
     QGraphicsScene *scene;
     QTimer *tiempo;    
+    int animar;
 
 };
 

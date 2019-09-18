@@ -6,5 +6,13 @@
         <file>imagenes/plantilla lvel1.png</file>
         <file>imagenes/Background_1_0.png</file>
         <file>imagenes/fond.png</file>
+        <file>imagenes/avt4_bk1.png</file>
+        <file>imagenes/avt3_fr1.png</file>
+        <file>imagenes/avt3_fr2.png</file>
+        <file>imagenes/avt3_lf1.png</file>
+        <file>imagenes/avt3_lf2.png</file>
+        <file>imagenes/avt3_rt1.png</file>
+        <file>imagenes/avt3_rt2.png</file>
+        <file>imagenes/avt4_bk2.png</file>
     </qresource>
 </RCC>
