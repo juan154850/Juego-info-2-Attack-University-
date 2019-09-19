@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\personaje.o
+./release\nivel1.o
+./release\menu.o
+./release\bala.o
+./release\soldado.o
+./release\arabe.o
+./release\qrc_archivos.o
+./release\moc_nivel1.o
+./release\moc_menu.o
+);

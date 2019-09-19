@@ -32,18 +32,31 @@ nivel1::nivel1(QWidget *parent) :
     scene->addItem(jugador);
     scene->setFocusItem(jugador);
 
+
+
     //-------------------timers-------------------
 
-    tiempo = new QTimer(this);
-    tiempo->start(100);
+    tiempo = new QTimer();
     connect(tiempo, &QTimer::timeout, this, &nivel1::actualizar);
+    tiempo->start(20);
+
+    mover_Soldado = new QTimer();
+    connect(mover_Soldado,&QTimer::timeout,this,&nivel1::moverSoldado);
+    mover_Soldado->start(20);
+
+    generar_soldados = new QTimer();
+    connect(generar_soldados,&QTimer::timeout,this,&nivel1::generarSoldados);
+    generar_soldados->start(2000); //generamos soldados cada 5segundos
+
+
+    //-------------------adds-------------------
+    //generar arabes
+    arabes.append(new arabe(160,100,50,60));
+    scene->addItem(arabes.last());
 
 
     //-------------------foco-------------------
-    scene->setSceneRect(0,jugador->getPosy()-522,800,600);      
-
-
-
+    scene->setSceneRect(0,jugador->getPosy()-522,800,600);         
 }
 
 nivel1::~nivel1()
@@ -63,7 +76,7 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         break;
     }
     case (Qt::Key_D):
-    {        
+    {                
         dire = 'D';
         jugador->animacionDerecha();
         jugador->moverDerecha(0.04);
@@ -113,10 +126,9 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
 }
 
 void nivel1::actualizar()
-{
-
-    ui->lcdNumber->display(jugador->pos().x());
-    ui->lcdNumber_2->display(jugador->pos().y());
+{    
+    //ui->lcdNumber->display(soldados.at(0)->pos().x());
+    //ui->lcdNumber_2->display(soldados.at(0)->pos().y());
     for ( int i  = 0 ; i< balas.size();i++)
     {
         if ( balas.at(i)->getPosy()<=-678)
@@ -130,4 +142,57 @@ void nivel1::actualizar()
             balas.at(i)->moverBala();
         }
     }
+}
+
+void nivel1::moverSoldado()
+{
+   QList<soldado*>::iterator ms;
+   for ( ms = soldados.begin(); ms != soldados.end(); ms++)
+   {
+       ms.i->t()->setDistancia(abs(ms.i->t()->pos().y()-jugador->pos().y()));
+       ui->lcdNumber->display(ms.i->t()->getDistancia());
+       if (ms.i->t()->getDistancia()<=200)
+       {
+           balas.append(new bala(ms.i->t()->pos().x(),ms.i->t()->pos().y()+30,20,20,ms.i->t()->getDir()));
+           scene->addItem(balas.last());
+           moverse = false;
+       }
+       if (ms.i->t()->pos().x()<jugador->pos().x() && moverse == true)
+       {
+           ms.i->t()->moverDr(0.02);
+       }
+       if (ms.i->t()->pos().x()>jugador->pos().x()&& moverse == true )
+       {
+            ms.i->t()->moverIz(0.02);
+       }
+       if ( ms.i->t()->pos().y()<jugador->pos().y() && moverse == true)
+       {
+           ms.i->t()->moverAb(0.01);
+       }
+        if (ms.i->t()->pos().y()>jugador->pos().y() && moverse == true)
+        {
+            ms.i->t()->moverAr(0.01);
+        }        
+   }
+   moverse = true;
+
+}
+
+void nivel1::generarSoldados()
+{
+    adds++;
+    if ( adds <=1)
+    {
+        int px, py;
+        srand(time(NULL));
+        px = 20+rand()%700;
+        py = 20+rand()%500;
+        soldados.append(new soldado(px,py,50,55));
+        scene->addItem(soldados.last());
+    }
+    else
+    {
+        generar_soldados->stop();
+    }
+
 }

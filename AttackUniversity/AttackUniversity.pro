@@ -29,13 +29,17 @@ SOURCES += \
     personaje.cpp \
     nivel1.cpp \
     menu.cpp \
-    bala.cpp
+    bala.cpp \
+    soldado.cpp \
+    arabe.cpp
 
 HEADERS += \
     personaje.h \
     nivel1.h \
     menu.h \
-    bala.h
+    bala.h \
+    soldado.h \
+    arabe.h
 
 FORMS += \
         mainwindow.ui \

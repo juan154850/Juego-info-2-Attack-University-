@@ -43,25 +43,25 @@ void bala::moverBala()
     case ('A'):
     {
         //movemos la bala hacia la izquierda
-        moverIzquierda(0.04);
+        moverIzquierda(0.1);
         break;
     }
     case ('D'):
     {
         //movemos la bala hacia la derecha
-        moverDerecha(0.04);
+        moverDerecha(0.1);
         break;
     }
     case('W'):
     {
         //movemos la bala hacia arriba
-        moverArriba(0.04);
+        moverArriba(0.1);
         break;
     }
     case ('S'):
     {
         //movemos la bala hacia abajo
-        moverAbajo(0.04);
+        moverAbajo(0.1);
         break;
     }
     }
@@ -149,6 +149,16 @@ double bala::getVy() const
 void bala::setVy(double value)
 {
     vy = value;
+}
+
+char bala::getDireccion() const
+{
+    return direccion;
+}
+
+void bala::setDireccion(char value)
+{
+    direccion = value;
 }
 
 

@@ -33,6 +33,9 @@ public:
     void setVy(double value);
 
 
+    char getDireccion() const;
+    void setDireccion(char value);
+
 private:
     //-------------------atributos-------------------
     double posx;
@@ -41,7 +44,7 @@ private:
     double high; //alto
     double vx=200;
     double vy=200;
-    char direccion='R'; //esta variable indica la direccion en que se esta disparando.
+    char direccion='W'; //esta variable indica la direccion en que se esta disparando.
 };
 
 #endif // BALA_H

@@ -7,7 +7,8 @@
 class personaje: public QGraphicsPixmapItem
 {    
 public:
-    personaje(double px, double py, float w, float h,double _vx, double _vy);    
+    personaje(); //constructor por defecto.
+    personaje(double px, double py, float w, float h,double _vx, double _vy);     //sobrecarga
     void moverIzquierda(double dt);
     void moverDerecha(double dt);
     void moverArriba(double dt);
@@ -48,6 +49,7 @@ private:
     double vx=0;
     double vy=0;    
     int vida=0;
+    char dire;
 
 
 };
