@@ -91,6 +91,20 @@ void bala::moverAbajo(double dt)
     setY(posy);
 }
 
+void bala::moverDiagonalIzquierda(double dt)
+{
+    posx= posx-(vx*dt);
+    posy=posy+(vy*dt);
+    setPos(posx,posy);
+}
+
+void bala::moverDiagonalDerecha(double dt)
+{
+    posx= posx+(vx*dt);
+    posy=posy+(vy*dt);
+    setPos(posx,posy);
+}
+
 double bala::getPosx() const
 {
     return posx;

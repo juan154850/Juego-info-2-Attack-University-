@@ -12,7 +12,8 @@ public:
     void moverDerecha(double dt);
     void moverArriba(double dt);
     void moverAbajo(double dt);
-
+    void moverDiagonalIzquierda(double dt);
+    void moverDiagonalDerecha(double dt);
     //-------------------metodos get y set-------------------
     double getPosx() const;
     void setPosx(double value);

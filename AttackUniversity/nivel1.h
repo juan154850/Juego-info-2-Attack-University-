@@ -12,6 +12,7 @@
 #include "arabe.h"
 #include <math.h>
 #include <time.h>
+#include <QDebug>
 namespace Ui {
 class nivel1;
 }
@@ -23,12 +24,16 @@ class nivel1 : public QWidget
 public:
     explicit nivel1(QWidget *parent = nullptr);
     ~nivel1();
-    void keyPressEvent(QKeyEvent *ev);
+    void keyPressEvent(QKeyEvent *ev);    
 
-public slots:
-    void actualizar(void);
+public slots:   
     void moverSoldado(void);
     void generarSoldados(void);
+    void moverArabe(void);
+    void generarArabe(void);    
+    void colisionArabe(void);
+    void moverBalasJugador(void);
+    void dispararSoldado(void);
 
 private:
     Ui::nivel1 *ui;
@@ -43,20 +48,27 @@ private:
     //timers
     QTimer *tiempo;    
     QTimer *mover_Soldado;
+    QTimer *mover_arabe;
     QTimer *generar_soldados;
+    QTimer *generar_arabes;
+    QTimer *colision_arabe;
+    QTimer *balas_soldado;
 
 
     //listas
     QList<bala*>balas;
+    QList<bala*>balasJugador;
     QList<soldado*>soldados;
     QList<arabe*>arabes;    
 
     //otros
-    char dire='W'; //controla la direccio en la que van las balas.
+    char dire='W'; //controla la direccio en la que van las balas.    
     double distancia; //calcula la distancia que hay entre un bicho y el personaje
     int adds=0;
+    int addsAra=0;
     int animar;
-    bool moverse = true;
+    bool moverse = true;    
+    int contadoBalas = 30;   
 
 };
 

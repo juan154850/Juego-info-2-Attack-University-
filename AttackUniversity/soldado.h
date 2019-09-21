@@ -1,8 +1,8 @@
 #ifndef SOLDADO_H
 #define SOLDADO_H
 #include <personaje.h>
-
-class soldado : public personaje
+#include <QGraphicsPixmapItem>
+class soldado : public QGraphicsPixmapItem
 {
 public:
     soldado();
@@ -10,13 +10,21 @@ public:
     void moverAb(double dt);
     void moverAr(double dt);
     void moverIz(double dt);
-    void moverDr(double dt);
-
+    void moverDr(double dt);    
     double getDistancia() const;
     void setDistancia(int value);
 
     char getDir() const;
     void setDir(char value);
+
+    int getDistanciaX() const;
+    void setDistanciaX(int value);
+
+    bool getMoverse() const;
+    void setMoverse(bool value);
+
+    int getContadorBalas() const;
+    void setContadorBalas(int value);
 
 private:
     double posx;
@@ -27,7 +35,10 @@ private:
     double vy = 100;
     int vida=100;
     int distancia= 0;
-    char dir='W';
+    int distanciaX=0;
+    char dir='S';
+    bool moverse=true;
+    int contadorBalas=60;
 
 };
 

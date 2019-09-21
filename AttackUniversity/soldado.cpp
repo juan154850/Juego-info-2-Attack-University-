@@ -37,6 +37,7 @@ void soldado::moverDr(double dt)
     dir = 'D';
 }
 
+
 double soldado::getDistancia() const
 {
     return distancia;
@@ -55,6 +56,36 @@ char soldado::getDir() const
 void soldado::setDir(char value)
 {
     dir = value;
+}
+
+int soldado::getDistanciaX() const
+{
+    return distanciaX;
+}
+
+void soldado::setDistanciaX(int value)
+{
+    distanciaX = value;
+}
+
+bool soldado::getMoverse() const
+{
+    return moverse;
+}
+
+void soldado::setMoverse(bool value)
+{
+    moverse = value;
+}
+
+int soldado::getContadorBalas() const
+{
+    return contadorBalas;
+}
+
+void soldado::setContadorBalas(int value)
+{
+    contadorBalas = value;
 }
 
 void soldado::moverAb(double dt)

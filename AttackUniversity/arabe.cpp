@@ -1,17 +1,28 @@
 #include "arabe.h"
 
-arabe::arabe()
+arabe::arabe() : personaje (0,0,0,0,100,100)
 {
 
-}
-
-arabe::arabe(double px, double py, double w, double h)
-{
-    posx  =px;
-    posy=py;
-    width=w;
-    high=h;
     setPixmap(QPixmap(":/imagenes/personaje1.png")); // se le asigna la imagen al add
     setPos(posx,posy);
+}
 
+int arabe::getDistancia() const
+{
+    return Distancia;
+}
+
+void arabe::setDistancia(int value)
+{
+    Distancia = value;
+}
+
+bool arabe::getExplotar() const
+{
+    return explotar;
+}
+
+void arabe::setExplotar(bool value)
+{
+    explotar = value;
 }

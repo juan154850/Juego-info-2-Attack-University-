@@ -18,5 +18,6 @@
         <file>imagenes/bulletAb.png</file>
         <file>imagenes/bulletAr.png</file>
         <file>imagenes/bulletDr.png</file>
+        <file>imagenes/arabeExplosion.png</file>
     </qresource>
 </RCC>

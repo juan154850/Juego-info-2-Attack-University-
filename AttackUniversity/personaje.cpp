@@ -1,9 +1,9 @@
 #include "personaje.h"
 
-personaje::personaje()
-{
+//personaje::personaje()
+//{
 
-}
+//}
 
 personaje::personaje(double px, double py, float w, float h,double _vx, double _vy)
 {

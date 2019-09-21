@@ -6,8 +6,7 @@
 #include <QPixmap>
 class personaje: public QGraphicsPixmapItem
 {    
-public:
-    personaje(); //constructor por defecto.
+public:    
     personaje(double px, double py, float w, float h,double _vx, double _vy);     //sobrecarga
     void moverIzquierda(double dt);
     void moverDerecha(double dt);
