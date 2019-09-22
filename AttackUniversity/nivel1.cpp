@@ -28,8 +28,7 @@ nivel1::nivel1(QWidget *parent) :
 
     //-------------------player-------------------
 
-    jugador = new personaje(50,525,50,55,100,100);
-    //jugador->setFocus();
+    jugador = new personaje(50,525,50,55,100,100);    
     scene->addItem(jugador);
     scene->setFocusItem(jugador);
 
@@ -62,12 +61,11 @@ nivel1::nivel1(QWidget *parent) :
     generar_arabes->start(4000); //generamos arabes cada 4 segundos
 
     colision_arabe =  new QTimer();
-    connect(colision_arabe, &QTimer::timeout,this,&nivel1::colisionArabe);
-
+    connect(colision_arabe, &QTimer::timeout,this,&nivel1::colisionArabe);    
 
 
     //-------------------foco-------------------
-    scene->setSceneRect(0,jugador->getPosy()-522,800,600);         
+    scene->setSceneRect(0,jugador->getPosy()-522,800,600);
 }
 
 nivel1::~nivel1()
@@ -77,12 +75,13 @@ nivel1::~nivel1()
 
 void nivel1::keyPressEvent(QKeyEvent *ev)
 {
+    ui->lcdNumber->display(jugador->getPosy());
     switch (ev->key())
     {
     case (Qt::Key_A):
-    {        
+    {
         dire = 'A';
-        jugador->animacionIzquierda();
+        jugador->animacionIzquierda();        
         jugador->moverIzquierda(0.04);
         break;
     }
@@ -99,8 +98,7 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         jugador->animacionArriba();
         //bloqueo de la camara
         if(jugador->getPosy()>=-678 && jugador->getPosy()<=520)
-        {
-
+        {                       
             jugador->moverArriba(0.04);
             scene->setSceneRect(0,jugador->getPosy()-522,800,600);
         }
@@ -115,7 +113,7 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         dire = 'S';
         jugador->animacionAbajo();
         //bloqueo de la camara
-        if(jugador->getPosy()>=-678 && jugador->getPosy()<=520)
+        if(jugador->getPosy()>=-678 && jugador->getPosy()<=520 )
         {
                 jugador->moverAbajo(0.04);
                 scene->setSceneRect(0,jugador->getPosy()-522,800,600);
@@ -135,7 +133,6 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
     }
     }
 }
-
 void nivel1::moverSoldado()
 {
    QList<soldado*>::iterator ms;
@@ -143,8 +140,8 @@ void nivel1::moverSoldado()
    {       
        ms.i->t()->setDistancia(abs(ms.i->t()->pos().y()-jugador->pos().y()));
        ms.i->t()->setDistanciaX(abs(ms.i->t()->pos().x()-jugador->pos().x()));
-       ui->lcdNumber->display(ms.i->t()->getDistancia());       
-       ui->lcdNumber_2->display(ms.i->t()->getDistanciaX());
+//       ui->lcdNumber->display(ms.i->t()->getDistancia());
+//       ui->lcdNumber_2->display(ms.i->t()->getDistanciaX());
        if (ms.i->t()->getDistancia()<=200)
        {
            ms.i->t()->setMoverse(false);
@@ -160,7 +157,7 @@ void nivel1::moverSoldado()
                {
                    ms.i->t()->moverAb(0.02);
                }
-               qDebug() <<ms.i->t()->getDir();
+//               qDebug() <<ms.i->t()->getDir();
            }
            if (ms.i->t()->pos().x()>jugador->pos().x())
            {
@@ -170,7 +167,7 @@ void nivel1::moverSoldado()
                {
                    ms.i->t()->moverAr(0.02);
                }
-               qDebug() <<ms.i->t()->getDir();
+//               qDebug() <<ms.i->t()->getDir();
            }
            if (ms.i->t()->getDistanciaX()<5)
            {
@@ -251,7 +248,7 @@ void nivel1::moverArabe()
     for ( ma = arabes.begin(); ma != arabes.end() ; ma++)
     {
         ma.i->t()->setDistancia(abs(ma.i->t()->pos().y()-jugador->pos().y()));
-        ui->lcdNumber->display(ma.i->t()->getDistancia());        
+        //ui->lcdNumber->display(ma.i->t()->getDistancia());
         if (ma.i->t()->pos().x()<jugador->pos().x() && (ma.i->t()->getExplotar() == false))
         {
             ma.i->t()->moverDerecha(0.02);

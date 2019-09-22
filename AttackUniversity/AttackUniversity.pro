@@ -31,7 +31,8 @@ SOURCES += \
     menu.cpp \
     bala.cpp \
     soldado.cpp \
-    arabe.cpp
+    arabe.cpp \
+    boss1.cpp
 
 HEADERS += \
     personaje.h \
@@ -39,7 +40,8 @@ HEADERS += \
     menu.h \
     bala.h \
     soldado.h \
-    arabe.h
+    arabe.h \
+    boss1.h
 
 FORMS += \
         mainwindow.ui \
