@@ -13,6 +13,7 @@
 #include <math.h>
 #include <time.h>
 #include <QDebug>
+#include <boss1.h>
 namespace Ui {
 class nivel1;
 }
@@ -34,12 +35,16 @@ public slots:
     void colisionArabe(void);
     void moverBalasJugador(void);
     void dispararSoldado(void);   
+    void dispararBoss(void);
+    void balasBoss(void);
+    void generarBalasBoss(void);
 
 private:
     Ui::nivel1 *ui;
     //jugador
     personaje *jugador;
-
+    //Boss
+    boss1 *sebastian;
 
     //escena
     QGraphicsScene *scene;
@@ -52,7 +57,9 @@ private:
     QTimer *generar_soldados;
     QTimer *generar_arabes;
     QTimer *colision_arabe;
-    QTimer *balas_soldado;    
+    QTimer *balas_soldado;
+    QTimer *balasB;
+    QTimer *timerGBB;
 
 
     //listas
@@ -60,6 +67,7 @@ private:
     QList<bala*>balasJugador;
     QList<soldado*>soldados;
     QList<arabe*>arabes;    
+    QList<bala*>L_balasBoss;
 
     //bloqueo de la camara
     bool sala1=true;
@@ -75,6 +83,7 @@ private:
     int animar;
     bool moverse = true;
     int contadoBalas = 30;   
+    int nBala=1;
 
 };
 

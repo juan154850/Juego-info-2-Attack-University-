@@ -10,7 +10,7 @@ nivel1::nivel1(QWidget *parent) :
     //-------------------zona de eventos-------------------
 
     scene = new QGraphicsScene();    
-    scene->setBackgroundBrush(QBrush(QImage(":/imagenes/fond.png")));
+    scene->setBackgroundBrush(QBrush(QImage(":/imagenes/piso1.png")));
     scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
 
 
@@ -28,10 +28,16 @@ nivel1::nivel1(QWidget *parent) :
 
     //-------------------player-------------------
 
-    jugador = new personaje(50,525,50,55,100,100);    
+    jugador = new personaje(394,-50,50,55,100,100);
     scene->addItem(jugador);
     scene->setFocusItem(jugador);
 
+    //-------------------boss-------------------
+
+    sebastian = new boss1();
+    sebastian->setPosx(374);
+    sebastian->setPosy(-1071);
+    scene->addItem(sebastian);
 
 
     //-------------------timers-------------------
@@ -63,9 +69,24 @@ nivel1::nivel1(QWidget *parent) :
     colision_arabe =  new QTimer();
     connect(colision_arabe, &QTimer::timeout,this,&nivel1::colisionArabe);    
 
+    balasB = new QTimer();
+    connect(balasB,&QTimer::timeout,this,&nivel1::dispararBoss);
+
+    timerGBB = new QTimer();
+    connect(timerGBB, &QTimer::timeout,this,&nivel1::generarBalasBoss);
+    timerGBB->start(20);
+
 
     //-------------------foco-------------------
     scene->setSceneRect(0,jugador->getPosy()-522,800,600);
+
+
+
+
+
+    //---------
+
+
 }
 
 nivel1::~nivel1()
@@ -76,6 +97,7 @@ nivel1::~nivel1()
 void nivel1::keyPressEvent(QKeyEvent *ev)
 {
     ui->lcdNumber->display(jugador->getPosy());
+    ui->lcdNumber_2->display(jugador->getPosx());
     switch (ev->key())
     {
     case (Qt::Key_A):
@@ -97,8 +119,8 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         dire = 'W';
         jugador->animacionArriba();
         //bloqueo de la camara
-        if(jugador->getPosy()>=-678 && jugador->getPosy()<=520)
-        {                       
+        if(jugador->getPosy()>=-2470)
+        {
             jugador->moverArriba(0.04);
             scene->setSceneRect(0,jugador->getPosy()-522,800,600);
         }
@@ -113,14 +135,23 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         dire = 'S';
         jugador->animacionAbajo();
         //bloqueo de la camara
-        if(jugador->getPosy()>=-678 && jugador->getPosy()<=520 )
+        if(jugador->getPosy()>=-46 )
         {
-                jugador->moverAbajo(0.04);
-                scene->setSceneRect(0,jugador->getPosy()-522,800,600);
+            ev->ignore();
+
         }
         else
         {
-            jugador->moverAbajo(0.04);
+            if(jugador->getPosy()>=-2470)
+            {
+                jugador->moverAbajo(0.04);
+                scene->setSceneRect(0,jugador->getPosy()-522,800,600);
+            }
+            else
+            {
+                    jugador->moverAbajo(0.04);
+            }
+
         }
         break;
     }
@@ -223,10 +254,66 @@ void nivel1::dispararSoldado()
     }
 }
 
+void nivel1::dispararBoss()
+{
+    //esta funcion hace que el boss dispare en forma circular
+    QList<bala*>::iterator bala;
+    for (bala = L_balasBoss.begin();bala!=L_balasBoss.end();bala++ )
+    {
+        if(nBala==1)
+        {
+            sebastian->dispararIzquierda(bala.i->t());
+            nBala++;
+
+        }
+        else if(nBala==2)
+        {
+            sebastian->dispararDerecha(*bala);
+            nBala++;
+        }
+        else if(nBala==3)
+        {
+            bala.i->t()->moverAbajo(0.04);
+            nBala++;
+        }
+        else if (nBala ==4)
+        {
+            sebastian->dispararIzquierda2(*bala);
+        }
+
+
+    }
+    nBala=1;
+
+
+
+}
+
+void nivel1::balasBoss()
+{
+
+}
+
+void nivel1::generarBalasBoss()
+{
+    if (L_balasBoss.size()<=4)
+    {
+        L_balasBoss.append(new bala(sebastian->pos().x(),sebastian->pos().y()+30,20,20,'S'));
+        scene->addItem(L_balasBoss.last());
+        balasB->start(20);
+    }
+    else
+    {
+        timerGBB->stop();
+    }
+
+}
+
+
 void nivel1::generarSoldados()
 {
     adds++;
-    if ( adds <=700)
+    if ( adds <=1)
     {
         int px, py;
         srand(time(NULL));
@@ -272,7 +359,7 @@ void nivel1::moverArabe()
 void nivel1::generarArabe()
 {
     addsAra++;
-    if ( addsAra <=2)
+    if ( addsAra <=1)
     {
         int px, py;
         srand(time(NULL));
