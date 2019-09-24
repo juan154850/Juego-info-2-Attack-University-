@@ -26,6 +26,9 @@ nivel1::nivel1(QWidget *parent) :
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    generarBordes();
+
+
     //-------------------player-------------------
 
     jugador = new personaje(394,-50,50,55,100,100);
@@ -36,7 +39,7 @@ nivel1::nivel1(QWidget *parent) :
 
     sebastian = new boss1();
     sebastian->setPosx(374);
-    sebastian->setPosy(-1071);
+    sebastian->setPosy(-500);
     scene->addItem(sebastian);
 
 
@@ -76,15 +79,14 @@ nivel1::nivel1(QWidget *parent) :
     connect(timerGBB, &QTimer::timeout,this,&nivel1::generarBalasBoss);
     timerGBB->start(20);
 
+    timerColisionBalasBoss = new QTimer();
+    connect(timerColisionBalasBoss, &QTimer::timeout,this,&nivel1::ColisionBalasBoss);
+    timerColisionBalasBoss->start(20);
+
 
     //-------------------foco-------------------
-    scene->setSceneRect(0,jugador->getPosy()-522,800,600);
+    scene->setSceneRect(0,jugador->getPosy()-515,800,600);
 
-
-
-
-
-    //---------
 
 
 }
@@ -96,74 +98,130 @@ nivel1::~nivel1()
 
 void nivel1::keyPressEvent(QKeyEvent *ev)
 {
-    ui->lcdNumber->display(jugador->getPosy());
-    ui->lcdNumber_2->display(jugador->getPosx());
+    ui->lcdNumber->display(jugador->getPosx());
+    ui->lcdNumber_2->display(jugador->getPosy());
     switch (ev->key())
     {
-    case (Qt::Key_A):
+
+        case(Qt::Key_W):
     {
-        dire = 'A';
-        jugador->animacionIzquierda();        
-        jugador->moverIzquierda(0.04);
-        break;
-    }
-    case (Qt::Key_D):
-    {                
-        dire = 'D';
-        jugador->animacionDerecha();
-        jugador->moverDerecha(0.04);
-        break;
-    }
-    case (Qt::Key_W):
-    {        
         dire = 'W';
         jugador->animacionArriba();
-        //bloqueo de la camara
-        if(jugador->getPosy()>=-2470)
+        if(!jugador->collidesWithItem(arrib1) && !jugador->collidesWithItem(arrib2) && !jugador->collidesWithItem(arrib3))
         {
-            jugador->moverArriba(0.04);
-            scene->setSceneRect(0,jugador->getPosy()-522,800,600);
-        }
-        else
-        {
-            jugador->moverArriba(0.04);
-        }
-        break;
-    }
-    case (Qt::Key_S):
-    {        
-        dire = 'S';
-        jugador->animacionAbajo();
-        //bloqueo de la camara
-        if(jugador->getPosy()>=-46 )
-        {
-            ev->ignore();
-
-        }
-        else
-        {
-            if(jugador->getPosy()>=-2470)
+            if((jugador->getPosy()<=-1266 && jugador->getPosy()<= -2482 && jugador->getPosy()>=-2978))
             {
-                jugador->moverAbajo(0.04);
-                scene->setSceneRect(0,jugador->getPosy()-522,800,600);
+                //para bloquear la camara en el ultimo nivel
+                jugador->moverArriba(0.04);
             }
             else
             {
-                    jugador->moverAbajo(0.04);
+                jugador->moverArriba(0.04);
+                scene->setSceneRect(0,jugador->getPosy()-515,800,600);
             }
 
         }
+
+
+        break;
+    }
+    case(Qt::Key_S):
+    {
+        dire = 'S';
+        jugador->animacionAbajo();
+        if(!jugador->collidesWithItem(abaj2) && !jugador->collidesWithItem(abaj1) && !jugador->collidesWithItem(abaj3))
+        {
+            if((jugador->getPosy()<=-1266 && jugador->getPosy()<= -2482 && jugador->getPosy()>=-2978))
+            {
+                jugador->moverAbajo(0.04);
+            }
+            else
+            {
+                jugador->moverAbajo(0.04);
+                scene->setSceneRect(0,jugador->getPosy()-515,800,600);
+            }
+
+        }
+        break;
+    }
+    case(Qt::Key_D):
+    {
+        dire = 'D';
+        jugador->animacionDerecha();
+        if(!jugador->collidesWithItem(drch1))
+        {
+            jugador->moverDerecha(0.04);
+
+        }
+        break;
+    }
+    case(Qt::Key_A):
+    {
+        dire = 'A';
+        jugador->animacionIzquierda();
+        if(!jugador->collidesWithItem(izq1) && !jugador->collidesWithItem(puenteIzq1) && !jugador->collidesWithItem(puenteIzq2))
+        {
+
+            jugador->moverIzquierda(0.04);            
+        }        
         break;
     }
     case (Qt::Key_Space):
     {
         //-------------------creacion de balas-------------------
-        balasJugador.append(new bala(jugador->getPosx(),jugador->getPosy()-10,20,20,dire));
+        balasJugador.append(new bala(jugador->getPosx()+8,jugador->getPosy()-10,20,20,dire));
         scene->addItem(balasJugador.last());
         break;
     }
     }
 }
+
+void nivel1::generarBordes()
+{
+    izq1 =new QGraphicsLineItem(0,3000,0,0);
+    izq1->setPos(40,-3000);
+    izq1->setPen(QPen(Qt::transparent));
+    scene->addItem(izq1);
+    drch1=(new QGraphicsLineItem(0,3000,0,0));
+    drch1->setPen(QPen(Qt::transparent));
+    drch1->setPos(760,-3000);
+    scene->addItem(drch1);
+    abaj1=(new QGraphicsLineItem(800,0,0,0));
+    abaj1->setPen(QPen(Qt::transparent));
+    abaj1->setPos(0,-20);
+    scene->addItem(abaj1);
+    abaj2=(new QGraphicsLineItem(650,0,0,0));
+    abaj2->setPen(QPen(Qt::transparent));
+    abaj2->setPos(0,-1236);
+    scene->addItem(abaj2);
+    abaj3=(new QGraphicsLineItem(650,0,0,0));
+    abaj3->setPen(QPen(Qt::transparent));
+    abaj3->setPos(0,-2420);
+    scene->addItem(abaj3);
+    arrib1=(new QGraphicsLineItem(650,0,0,0));
+    arrib1->setPen(QPen(Qt::transparent));
+    arrib1->setPos(0,-580);
+    scene->addItem(arrib1);
+    arrib2=(new QGraphicsLineItem(650,0,0,0));
+    arrib2->setPen(QPen(Qt::transparent));
+    arrib2->setPos(0,-1768);
+    scene->addItem(arrib2);
+    arrib3=(new QGraphicsLineItem(800,0,0,0));
+    arrib3->setPen(QPen(Qt::transparent));
+    arrib3->setPos(0,-2968);
+    scene->addItem(arrib3);
+    puenteIzq1=(new QGraphicsLineItem(0,634,0,0));
+    puenteIzq1->setPen(QPen(Qt::transparent));
+    puenteIzq1->setPos(632,-1215);
+    scene->addItem(puenteIzq1);
+    puenteIzq2=(new QGraphicsLineItem(0,634,0,0));
+    puenteIzq2->setPen(QPen(Qt::transparent));
+    puenteIzq2->setPos(632,-2415);
+    scene->addItem(puenteIzq2);
+
+}
+
+
 void nivel1::moverSoldado()
 {
    QList<soldado*>::iterator ms;
@@ -289,8 +347,24 @@ void nivel1::dispararBoss()
 
 }
 
-void nivel1::balasBoss()
+void nivel1::ColisionBalasBoss()
 {
+    for ( int i = 0 ; i< L_balasBoss.size() ; i++)
+    {
+        if(L_balasBoss.at(i)->collidingItems().size()>0)
+        {
+            scene->removeItem(L_balasBoss.at(i));
+            L_balasBoss.removeAt(i);
+        }
+    }
+    if(L_balasBoss.size()==0)
+    {
+        if(!timerGBB->isActive())
+        {
+            timerGBB->start(20);
+        }
+    }
+
 
 }
 
@@ -298,9 +372,13 @@ void nivel1::generarBalasBoss()
 {
     if (L_balasBoss.size()<=4)
     {
-        L_balasBoss.append(new bala(sebastian->pos().x(),sebastian->pos().y()+30,20,20,'S'));
+        L_balasBoss.append(new bala(sebastian->pos().x(),sebastian->pos().y()+60,20,20,'S'));
         scene->addItem(L_balasBoss.last());
-        balasB->start(20);
+        if(!balasB->isActive())
+        {
+            balasB->start(20);
+        }
+
     }
     else
     {
@@ -308,6 +386,9 @@ void nivel1::generarBalasBoss()
     }
 
 }
+
+
+
 
 
 void nivel1::generarSoldados()
@@ -321,6 +402,7 @@ void nivel1::generarSoldados()
         py = 50+rand()%500;
         soldados.append(new soldado(px,py,50,55));
         scene->addItem(soldados.last());
+
     }
     else
     {
@@ -399,11 +481,11 @@ void nivel1::moverBalasJugador()
 {
     for ( int i = 0 ; i < balasJugador.size(); i++)
     {
-        if ( balasJugador.at(i)->collidesWithItem(soldados.at(0)) && soldados.size()!=1)
-        {
-            scene->removeItem(soldados.at(0));
-            soldados.removeAt(0);
-        }
+//        if ( balasJugador.at(i)->collidesWithItem(soldados.at(0)) && soldados.size()!=1)
+//        {
+//            scene->removeItem(soldados.at(0));
+//            soldados.removeAt(0);
+//        }
         balasJugador.at(i)->moverBala();
     }
 }
