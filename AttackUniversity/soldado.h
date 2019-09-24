@@ -26,6 +26,21 @@ public:
     int getContadorBalas() const;
     void setContadorBalas(int value);
 
+    int getDistanciaEntreSoldados() const;
+    void setDistanciaEntreSoldados(int value);
+
+    double getPosx() const;
+    void setPosx(double value);
+
+    double getPosy() const;
+    void setPosy(double value);
+
+    int getDistanciaEntreSoldadosY() const;
+    void setDistanciaEntreSoldadosY(int value);
+
+    int getVida() const;
+    void setVida(int value);
+
 private:
     double posx;
     double posy;
@@ -39,6 +54,8 @@ private:
     char dir='S';
     bool moverse=true;
     int contadorBalas=60;
+    int distanciaEntreSoldados=0;
+    int distanciaEntreSoldadosY=0;
 
 };
 

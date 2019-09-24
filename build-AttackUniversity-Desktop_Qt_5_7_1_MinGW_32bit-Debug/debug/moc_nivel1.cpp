@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_nivel1_t {
     QByteArrayData data[12];
-    char stringdata0[157];
+    char stringdata0[147];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,22 +32,21 @@ static const qt_meta_stringdata_nivel1_t qt_meta_stringdata_nivel1 = {
 QT_MOC_LITERAL(0, 0, 6), // "nivel1"
 QT_MOC_LITERAL(1, 7, 12), // "moverSoldado"
 QT_MOC_LITERAL(2, 20, 0), // ""
-QT_MOC_LITERAL(3, 21, 15), // "generarSoldados"
-QT_MOC_LITERAL(4, 37, 10), // "moverArabe"
-QT_MOC_LITERAL(5, 48, 12), // "generarArabe"
-QT_MOC_LITERAL(6, 61, 13), // "colisionArabe"
-QT_MOC_LITERAL(7, 75, 17), // "moverBalasJugador"
-QT_MOC_LITERAL(8, 93, 15), // "dispararSoldado"
-QT_MOC_LITERAL(9, 109, 12), // "dispararBoss"
-QT_MOC_LITERAL(10, 122, 17), // "ColisionBalasBoss"
-QT_MOC_LITERAL(11, 140, 16) // "generarBalasBoss"
+QT_MOC_LITERAL(3, 21, 10), // "moverArabe"
+QT_MOC_LITERAL(4, 32, 12), // "generarArabe"
+QT_MOC_LITERAL(5, 45, 13), // "colisionArabe"
+QT_MOC_LITERAL(6, 59, 17), // "moverBalasJugador"
+QT_MOC_LITERAL(7, 77, 15), // "dispararSoldado"
+QT_MOC_LITERAL(8, 93, 12), // "dispararBoss"
+QT_MOC_LITERAL(9, 106, 17), // "ColisionBalasBoss"
+QT_MOC_LITERAL(10, 124, 5), // "CBJCS"
+QT_MOC_LITERAL(11, 130, 16) // "generarBalasBoss"
 
     },
-    "nivel1\0moverSoldado\0\0generarSoldados\0"
-    "moverArabe\0generarArabe\0colisionArabe\0"
-    "moverBalasJugador\0dispararSoldado\0"
-    "dispararBoss\0ColisionBalasBoss\0"
-    "generarBalasBoss"
+    "nivel1\0moverSoldado\0\0moverArabe\0"
+    "generarArabe\0colisionArabe\0moverBalasJugador\0"
+    "dispararSoldado\0dispararBoss\0"
+    "ColisionBalasBoss\0CBJCS\0generarBalasBoss"
 };
 #undef QT_MOC_LITERAL
 
@@ -98,14 +97,14 @@ void nivel1::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->moverSoldado(); break;
-        case 1: _t->generarSoldados(); break;
-        case 2: _t->moverArabe(); break;
-        case 3: _t->generarArabe(); break;
-        case 4: _t->colisionArabe(); break;
-        case 5: _t->moverBalasJugador(); break;
-        case 6: _t->dispararSoldado(); break;
-        case 7: _t->dispararBoss(); break;
-        case 8: _t->ColisionBalasBoss(); break;
+        case 1: _t->moverArabe(); break;
+        case 2: _t->generarArabe(); break;
+        case 3: _t->colisionArabe(); break;
+        case 4: _t->moverBalasJugador(); break;
+        case 5: _t->dispararSoldado(); break;
+        case 6: _t->dispararBoss(); break;
+        case 7: _t->ColisionBalasBoss(); break;
+        case 8: _t->CBJCS(); break;
         case 9: _t->generarBalasBoss(); break;
         default: ;
         }

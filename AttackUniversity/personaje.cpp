@@ -201,3 +201,13 @@ void personaje::setAnimacion(int value)
 {
     animacion = value;
 }
+
+int personaje::getDamage() const
+{
+    return damage;
+}
+
+void personaje::setDamage(int value)
+{
+    damage = value;
+}

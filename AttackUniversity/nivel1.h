@@ -15,6 +15,7 @@
 #include <QDebug>
 #include <boss1.h>
 #include <typeinfo>
+
 namespace Ui {
 class nivel1;
 }
@@ -28,11 +29,11 @@ public:
     ~nivel1();
     void keyPressEvent(QKeyEvent *ev);
     void generarBordes(void);
+    void generarSoldados(void);
 
 
 public slots:   
     void moverSoldado(void);
-    void generarSoldados(void);
     void moverArabe(void);
     void generarArabe(void);    
     void colisionArabe(void);
@@ -40,6 +41,7 @@ public slots:
     void dispararSoldado(void);   
     void dispararBoss(void);
     void ColisionBalasBoss(void);
+    void CBJCS(void);
     void generarBalasBoss(void);    
 
 
@@ -56,10 +58,10 @@ private:
 
 
     //timers
+    QTimer *t_CBJCS;
     QTimer *tiempo;    
     QTimer *mover_Soldado;
-    QTimer *mover_arabe;
-    QTimer *generar_soldados;
+    QTimer *mover_arabe;    
     QTimer *generar_arabes;
     QTimer *colision_arabe;
     QTimer *balas_soldado;
@@ -98,7 +100,7 @@ private:
     double distancia; //calcula la distancia que hay entre un bicho y el personaje
     int adds=0; //tiene el valor de la cantidad de adds que hay por sala
     int addsAra=0; // cantidad de arabes por sala
-    int nBala=1;    //para dar diferentes direcciones a las balas del primer boss
+    int nBala=1;    //para dar diferentes direcciones a las balas del primer boss    
 
 
 };

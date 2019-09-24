@@ -129,10 +129,12 @@ release/qrc_archivos.cpp: ../AttackUniversity/archivos.qrc \
 		../AttackUniversity/imagenes/avt3_rt2.png \
 		../AttackUniversity/imagenes/avt4_bk1.png \
 		../AttackUniversity/imagenes/avt3_fr1.png \
+		../AttackUniversity/imagenes/piso1.png \
 		../AttackUniversity/imagenes/avt4_bk2.png \
 		../AttackUniversity/imagenes/bulletAr.png \
 		../AttackUniversity/imagenes/avt3_fr2.png \
 		../AttackUniversity/imagenes/bullet.png \
+		../AttackUniversity/imagenes/balaBoss1.png \
 		../AttackUniversity/imagenes/fond.png \
 		../AttackUniversity/imagenes/agujero.png \
 		../AttackUniversity/imagenes/Background_1_0.png \
@@ -261,9 +263,10 @@ release/moc_nivel1.cpp: E:/qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		../AttackUniversity/soldado.h \
 		../AttackUniversity/arabe.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../AttackUniversity/boss1.h \
 		../AttackUniversity/nivel1.h \
 		E:/qt/5.7/mingw53_32/bin/moc.exe
-	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\nivel1.h -o release\moc_nivel1.cpp
+	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\nivel1.h -o release\moc_nivel1.cpp
 
 release/moc_menu.cpp: E:/qt/5.7/mingw53_32/include/QtWidgets/QMainWindow \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qmainwindow.h \
@@ -385,9 +388,10 @@ release/moc_menu.cpp: E:/qt/5.7/mingw53_32/include/QtWidgets/QMainWindow \
 		../AttackUniversity/soldado.h \
 		../AttackUniversity/arabe.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../AttackUniversity/boss1.h \
 		../AttackUniversity/menu.h \
 		E:/qt/5.7/mingw53_32/bin/moc.exe
-	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\menu.h -o release\moc_menu.cpp
+	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\menu.h -o release\moc_menu.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -535,6 +539,7 @@ release/main.o: ../AttackUniversity/main.cpp ../AttackUniversity/menu.h \
 		../AttackUniversity/soldado.h \
 		../AttackUniversity/arabe.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QDebug \
+		../AttackUniversity/boss1.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QApplication \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qapplication.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -747,46 +752,8 @@ release/nivel1.o: ../AttackUniversity/nivel1.cpp ../AttackUniversity/nivel1.h \
 		../AttackUniversity/soldado.h \
 		../AttackUniversity/arabe.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QDebug \
-		ui_nivel1.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/QVariant \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QAction \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qaction.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qicon.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qactiongroup.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QApplication \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qapplication.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qeventloop.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qguiapplication.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qinputmethod.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QButtonGroup \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qpainter.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QHeaderView \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qheaderview.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qstyleoption.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qvalidator.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qregularexpression.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qslider.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractslider.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qstyle.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qtabbar.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qtabwidget.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qrubberband.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QLCDNumber \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qlcdnumber.h
+		../AttackUniversity/boss1.h \
+		ui_nivel1.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\nivel1.o ..\AttackUniversity\nivel1.cpp
 
 release/menu.o: ../AttackUniversity/menu.cpp ../AttackUniversity/menu.h \
@@ -910,45 +877,8 @@ release/menu.o: ../AttackUniversity/menu.cpp ../AttackUniversity/menu.h \
 		../AttackUniversity/soldado.h \
 		../AttackUniversity/arabe.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QDebug \
-		ui_mainwindow.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/QVariant \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QAction \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qaction.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qactiongroup.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QApplication \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qapplication.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qeventloop.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qguiapplication.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qinputmethod.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QButtonGroup \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QHeaderView \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qheaderview.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qstyleoption.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/qvalidator.h \
-		E:/qt/5.7/mingw53_32/include/QtCore/qregularexpression.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qslider.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractslider.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qstyle.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qtabbar.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qrubberband.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QMenuBar \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qmenubar.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qmenu.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QPushButton \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qpushbutton.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractbutton.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QToolBar \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qtoolbar.h
+		../AttackUniversity/boss1.h \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\menu.o ..\AttackUniversity\menu.cpp
 
 release/bala.o: ../AttackUniversity/bala.cpp ../AttackUniversity/bala.h \
@@ -1300,7 +1230,9 @@ release/boss1.o: ../AttackUniversity/boss1.cpp ../AttackUniversity/boss1.h \
 		E:/qt/5.7/mingw53_32/include/QtGui/qimage.h \
 		E:/qt/5.7/mingw53_32/include/QtGui/qpixelformat.h \
 		E:/qt/5.7/mingw53_32/include/QtGui/qtransform.h \
-		E:/qt/5.7/mingw53_32/include/QtGui/QPixmap
+		E:/qt/5.7/mingw53_32/include/QtGui/QPixmap \
+		../AttackUniversity/bala.h \
+		E:/qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\boss1.o ..\AttackUniversity\boss1.cpp
 
 release/qrc_archivos.o: release/qrc_archivos.cpp 

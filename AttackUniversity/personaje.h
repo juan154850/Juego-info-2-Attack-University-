@@ -39,6 +39,9 @@ public:
     int getAnimacion() const;
     void setAnimacion(int value);
 
+    int getDamage() const;
+    void setDamage(int value);
+
 private:
     int animacion=0;
     double posx=0;
@@ -47,7 +50,8 @@ private:
     float high=0;
     double vx=0;
     double vy=0;    
-    int vida=0;
+    int vida=100;
+    int damage = 6;
     char dire;
 
 

@@ -88,9 +88,59 @@ void soldado::setContadorBalas(int value)
     contadorBalas = value;
 }
 
+int soldado::getDistanciaEntreSoldados() const
+{
+    return distanciaEntreSoldados;
+}
+
+void soldado::setDistanciaEntreSoldados(int value)
+{
+    distanciaEntreSoldados = value;
+}
+
+double soldado::getPosx() const
+{
+    return posx;
+}
+
+void soldado::setPosx(double value)
+{
+    posx = value;
+}
+
+double soldado::getPosy() const
+{
+    return posy;
+}
+
+void soldado::setPosy(double value)
+{
+    posy = value;
+}
+
+int soldado::getDistanciaEntreSoldadosY() const
+{
+    return distanciaEntreSoldadosY;
+}
+
+void soldado::setDistanciaEntreSoldadosY(int value)
+{
+    distanciaEntreSoldadosY = value;
+}
+
+int soldado::getVida() const
+{
+    return vida;
+}
+
+void soldado::setVida(int value)
+{
+    vida = value;
+}
+
 void soldado::moverAb(double dt)
 {
-
+    
     posy=posy+(vy*dt);
     setY(posy);
     dir='S';
