@@ -32,6 +32,7 @@ public:
     void generarSoldados(void);
 
 
+
 public slots:   
     void moverSoldado(void);
     void moverArabe(void);
@@ -43,6 +44,8 @@ public slots:
     void ColisionBalasBoss(void);
     void CBJCS(void);
     void generarBalasBoss(void);    
+    void moverBoss(void);
+
 
 
 
@@ -68,6 +71,8 @@ private:
     QTimer *balasB;
     QTimer *timerGBB;    
     QTimer *timerColisionBalasBoss;
+    QTimer *timerMoverBoss;
+
 
 
 
@@ -77,6 +82,7 @@ private:
     QList<soldado*>soldados;
     QList<arabe*>arabes;    
     QList<bala*>L_balasBoss;    
+    QList<QGraphicsLineItem*> obs;
 
     //muros
     QGraphicsLineItem *izq1;
@@ -101,6 +107,9 @@ private:
     int adds=0; //tiene el valor de la cantidad de adds que hay por sala
     int addsAra=0; // cantidad de arabes por sala
     int nBala=1;    //para dar diferentes direcciones a las balas del primer boss    
+    int movimientoSebastian;
+    int contador=0;
+    int margenError=0;
 
 
 };

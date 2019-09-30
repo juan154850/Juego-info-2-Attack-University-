@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_nivel1_t {
-    QByteArrayData data[12];
-    char stringdata0[147];
+    QByteArrayData data[13];
+    char stringdata0[157];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,13 +40,15 @@ QT_MOC_LITERAL(7, 77, 15), // "dispararSoldado"
 QT_MOC_LITERAL(8, 93, 12), // "dispararBoss"
 QT_MOC_LITERAL(9, 106, 17), // "ColisionBalasBoss"
 QT_MOC_LITERAL(10, 124, 5), // "CBJCS"
-QT_MOC_LITERAL(11, 130, 16) // "generarBalasBoss"
+QT_MOC_LITERAL(11, 130, 16), // "generarBalasBoss"
+QT_MOC_LITERAL(12, 147, 9) // "moverBoss"
 
     },
     "nivel1\0moverSoldado\0\0moverArabe\0"
     "generarArabe\0colisionArabe\0moverBalasJugador\0"
     "dispararSoldado\0dispararBoss\0"
-    "ColisionBalasBoss\0CBJCS\0generarBalasBoss"
+    "ColisionBalasBoss\0CBJCS\0generarBalasBoss\0"
+    "moverBoss"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,7 +58,7 @@ static const uint qt_meta_data_nivel1[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,18 +66,20 @@ static const uint qt_meta_data_nivel1[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   64,    2, 0x0a /* Public */,
-       3,    0,   65,    2, 0x0a /* Public */,
-       4,    0,   66,    2, 0x0a /* Public */,
-       5,    0,   67,    2, 0x0a /* Public */,
-       6,    0,   68,    2, 0x0a /* Public */,
-       7,    0,   69,    2, 0x0a /* Public */,
-       8,    0,   70,    2, 0x0a /* Public */,
-       9,    0,   71,    2, 0x0a /* Public */,
-      10,    0,   72,    2, 0x0a /* Public */,
-      11,    0,   73,    2, 0x0a /* Public */,
+       1,    0,   69,    2, 0x0a /* Public */,
+       3,    0,   70,    2, 0x0a /* Public */,
+       4,    0,   71,    2, 0x0a /* Public */,
+       5,    0,   72,    2, 0x0a /* Public */,
+       6,    0,   73,    2, 0x0a /* Public */,
+       7,    0,   74,    2, 0x0a /* Public */,
+       8,    0,   75,    2, 0x0a /* Public */,
+       9,    0,   76,    2, 0x0a /* Public */,
+      10,    0,   77,    2, 0x0a /* Public */,
+      11,    0,   78,    2, 0x0a /* Public */,
+      12,    0,   79,    2, 0x0a /* Public */,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -106,6 +110,7 @@ void nivel1::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 7: _t->ColisionBalasBoss(); break;
         case 8: _t->CBJCS(); break;
         case 9: _t->generarBalasBoss(); break;
+        case 10: _t->moverBoss(); break;
         default: ;
         }
     }
@@ -137,13 +142,13 @@ int nivel1::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }

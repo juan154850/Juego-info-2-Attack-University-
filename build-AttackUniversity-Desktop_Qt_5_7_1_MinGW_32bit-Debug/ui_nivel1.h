@@ -16,6 +16,7 @@
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +27,8 @@ public:
     QGraphicsView *graphicsView;
     QLCDNumber *lcdNumber;
     QLCDNumber *lcdNumber_2;
+    QProgressBar *progressBar;
+    QLCDNumber *lcdNumber_3;
 
     void setupUi(QWidget *nivel1)
     {
@@ -48,6 +51,13 @@ public:
         lcdNumber_2->setGeometry(QRect(700, 40, 101, 41));
         lcdNumber_2->setStyleSheet(QLatin1String("background-color: rgb(85, 255, 0);\n"
 "font: 36pt \"MS Shell Dlg 2\";"));
+        progressBar = new QProgressBar(nivel1);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setGeometry(QRect(350, 0, 118, 23));
+        progressBar->setValue(100);
+        lcdNumber_3 = new QLCDNumber(nivel1);
+        lcdNumber_3->setObjectName(QStringLiteral("lcdNumber_3"));
+        lcdNumber_3->setGeometry(QRect(500, 0, 64, 23));
 
         retranslateUi(nivel1);
 
