@@ -97,6 +97,9 @@ nivel1::nivel1(QWidget *parent) :
 
     //-------------------foco-------------------
     scene->setSceneRect(0,jugador->getPosy()-515,800,600);    
+    ui->lcdNumber->setVisible(false);
+    ui->lcdNumber_2->setVisible(false);
+    ui->lcdNumber_3->setVisible(false);
 
 
 
@@ -326,7 +329,7 @@ void nivel1::ColisionBalasBoss()
     {
         if( L_balasBoss.at(i)->collidesWithItem(jugador))
         {
-            qDebug () <<" choque jugador";
+            qDebug () <<L_balasBoss.size();
             scene->removeItem(L_balasBoss.at(i));
             L_balasBoss.removeOne(L_balasBoss.at(i));
             jugador->setVida(jugador->getVida()-1);
@@ -345,12 +348,13 @@ void nivel1::ColisionBalasBoss()
                  || L_balasBoss.at(i)->collidesWithItem(izq1)
                  || L_balasBoss.at(i)->collidesWithItem(drch1))
         {
-            qDebug() << "choque muro";
+            qDebug() << L_balasBoss.size();
             scene->removeItem(L_balasBoss.at(i));
             L_balasBoss.removeOne(L_balasBoss.at(i));
         }
 
     }
+    qDebug() <<L_balasBoss.size();
     if(L_balasBoss.size()==0)
     {
         if(!timerGBB->isActive())
@@ -427,7 +431,7 @@ void nivel1::moverBoss()
     }
     else
     {
-        qDebug ()  << "hora de deterse" ;
+        //qDebug ()  << "hora de deterse" ;
     }
     if( contador==200)
     {
