@@ -45,6 +45,7 @@ public slots:
     void CBJCS(void);
     void generarBalasBoss(void);    
     void moverBoss(void);
+    void CBJCB(void);
 
 
 
@@ -72,6 +73,7 @@ private:
     QTimer *timerGBB;    
     QTimer *timerColisionBalasBoss;
     QTimer *timerMoverBoss;
+    QTimer *timerCBJCB;
 
 
 

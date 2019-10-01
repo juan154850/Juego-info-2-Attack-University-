@@ -16,9 +16,16 @@ public:
     int getNumBalas() const;
     void setNumBalas(int value);
 
+    int getEscudo() const;
+    void setEscudo(int value);
+
+    int getVida() const;
+    void setVida(int value);
+
 private:
     //atributos especiales de un boss
     int escudo=500;
+    int vida=500;
     int delayDisparo=30;
     int numBalas=1;
 

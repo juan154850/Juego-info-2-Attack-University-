@@ -93,6 +93,9 @@ nivel1::nivel1(QWidget *parent) :
     connect(timerMoverBoss, &QTimer::timeout,this,&nivel1::moverBoss) ;
     timerMoverBoss->start(20);
 
+    timerCBJCB = new QTimer;
+    connect(timerCBJCB, &QTimer::timeout,this,&nivel1::CBJCB) ;
+
 
 
     //-------------------foco-------------------
@@ -186,7 +189,7 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         //-------------------creacion de balas-------------------
         balasJugador.append(new bala(jugador->getPosx()+8,jugador->getPosy()-10,20,20,dire));
         scene->addItem(balasJugador.last());
-
+        timerCBJCB->start(20);
         break;
     }
     }
@@ -328,8 +331,7 @@ void nivel1::ColisionBalasBoss()
     for ( int i = 0 ; i< L_balasBoss.size() ; i++)
     {
         if( L_balasBoss.at(i)->collidesWithItem(jugador))
-        {
-            qDebug () <<L_balasBoss.size();
+        {            
             scene->removeItem(L_balasBoss.at(i));
             L_balasBoss.removeOne(L_balasBoss.at(i));
             jugador->setVida(jugador->getVida()-1);
@@ -338,8 +340,7 @@ void nivel1::ColisionBalasBoss()
                 close();
             }
             else
-            {
-                ui->progressBar->setValue(jugador->getVida());
+            {                
             }
 
         }
@@ -347,8 +348,7 @@ void nivel1::ColisionBalasBoss()
                  || L_balasBoss.at(i)->collidesWithItem(abaj3)
                  || L_balasBoss.at(i)->collidesWithItem(izq1)
                  || L_balasBoss.at(i)->collidesWithItem(drch1))
-        {
-            qDebug() << L_balasBoss.size();
+        {            
             scene->removeItem(L_balasBoss.at(i));
             L_balasBoss.removeOne(L_balasBoss.at(i));
         }
@@ -394,16 +394,29 @@ void nivel1::CBJCS()
 
 void nivel1::generarBalasBoss()
 {
+
     if (L_balasBoss.size()<=4)
     {
-        L_balasBoss.append(new bala(sebastian->pos().x(),sebastian->pos().y()+60,20,20,'S'));
-        L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
-        scene->addItem(L_balasBoss.last());
-        if(!balasB->isActive())
+        if ( sebastian->getVida()<0)
         {
-            balasB->start(20);
+            timerGBB->stop();
+            for ( int i= 0; i<L_balasBoss.size();i++)
+            {
+                L_balasBoss.at(i)->~bala();
+            }
+            timerMoverBoss->stop();
+            balasB->stop();
         }
-
+        else
+        {
+            L_balasBoss.append(new bala(sebastian->pos().x(),sebastian->pos().y()+60,20,20,'S'));
+            L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
+            scene->addItem(L_balasBoss.last());
+            if(!balasB->isActive())
+            {
+                balasB->start(20);
+            }
+        }
     }
     else
     {
@@ -441,6 +454,44 @@ void nivel1::moverBoss()
     margenError = int((sebastian->getPosx() - movimientoSebastian));
     ui->lcdNumber_3->display(margenError);
     contador++;
+}
+
+void nivel1::CBJCB()
+{
+    for ( int i = 0 ; i<balasJugador.size(); i++)
+    {
+        if ( balasJugador.at(i)->collidesWithItem(sebastian))
+        {
+            if ( sebastian->getEscudo()>0)
+            {
+                qDebug() <<"escudo sebastian = "<<sebastian->getEscudo();
+                ui->progressBar->setValue(sebastian->getEscudo());
+                scene->removeItem(balasJugador.at(i));
+                balasJugador.removeOne(balasJugador.at(i));
+                sebastian->setEscudo(sebastian->getEscudo()-jugador->getDamage());
+            }
+            else
+            {
+                if ( sebastian->getVida()>0)
+                {
+                    ui->progressBar->setValue(sebastian->getVida());
+                    qDebug() <<"Vida sebastian = "<<sebastian->getVida();
+                    scene->removeItem(balasJugador.at(i));
+                    balasJugador.removeOne(balasJugador.at(i));
+                    sebastian->setVida(sebastian->getVida()-jugador->getDamage());
+                }
+                else
+                {
+                    qDebug() << "has ganado";
+                    timerCBJCB->stop();
+                    sebastian->setPixmap(QPixmap(":/imagenes/arabeExplosion.png"));
+                    timerMoverBoss->stop();
+                    timerGBB->stop();
+                    balasB->stop();
+                }
+            }
+        }
+    }
 }
 
 
@@ -534,7 +585,6 @@ void nivel1::moverBalasJugador()
 {
     for ( int i = 0 ; i < balasJugador.size(); i++)
     {        
-
             balasJugador.at(i)->moverBala();
     }
 }

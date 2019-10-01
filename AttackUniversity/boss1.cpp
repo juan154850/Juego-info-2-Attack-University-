@@ -46,3 +46,23 @@ void boss1::setNumBalas(int value)
 {
     numBalas = value;
 }
+
+int boss1::getEscudo() const
+{
+    return escudo;
+}
+
+void boss1::setEscudo(int value)
+{
+    escudo = value;
+}
+
+int boss1::getVida() const
+{
+    return vida;
+}
+
+void boss1::setVida(int value)
+{
+    vida = value;
+}
