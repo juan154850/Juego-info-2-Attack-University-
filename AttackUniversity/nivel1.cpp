@@ -32,7 +32,7 @@ nivel1::nivel1(QWidget *parent) :
 
     //-------------------player-------------------
 
-    jugador = new personaje(362,-2450,50,55,100,100);
+    jugador = new personaje(362,-100,50,55,100,100);
     scene->addItem(jugador);
     scene->setFocusItem(jugador);
 
@@ -62,7 +62,7 @@ nivel1::nivel1(QWidget *parent) :
 
     mover_Soldado = new QTimer();
     connect(mover_Soldado,&QTimer::timeout,this,&nivel1::moverSoldado);
-    mover_Soldado->start(500);
+    mover_Soldado->start(1000);
 
     mover_arabe = new QTimer();
     connect(mover_arabe,&QTimer::timeout,this,&nivel1::moverArabe);
@@ -95,6 +95,10 @@ nivel1::nivel1(QWidget *parent) :
 
     timerCBJCB = new QTimer;
     connect(timerCBJCB, &QTimer::timeout,this,&nivel1::CBJCB) ;
+
+    timerCBSCM =  new QTimer;
+    connect(timerCBSCM,&QTimer::timeout,this,&nivel1::CBSCM);
+    timerCBSCM->start(10);
 
 
 
@@ -206,11 +210,11 @@ void nivel1::generarBordes()
     drch1->setPos(760,-3000);
     scene->addItem(drch1);
     abaj1=(new QGraphicsLineItem(800,0,0,0));
-    abaj1->setPen(QPen(Qt::red));
+    abaj1->setPen(QPen(Qt::transparent));
     abaj1->setPos(0,-20);
     scene->addItem(abaj1);
     abaj2=(new QGraphicsLineItem(650,0,0,0));
-    abaj2->setPen(QPen(Qt::red));
+    abaj2->setPen(QPen(Qt::transparent));
     abaj2->setPos(0,-1236);
     scene->addItem(abaj2);
     abaj3=(new QGraphicsLineItem(650,0,0,0));
@@ -218,11 +222,11 @@ void nivel1::generarBordes()
     abaj3->setPos(0,-2420);
     scene->addItem(abaj3);
     arrib1=(new QGraphicsLineItem(650,0,0,0));
-    arrib1->setPen(QPen(Qt::red));
+    arrib1->setPen(QPen(Qt::transparent));
     arrib1->setPos(0,-580);
     scene->addItem(arrib1);
     arrib2=(new QGraphicsLineItem(650,0,0,0));
-    arrib2->setPen(QPen(Qt::red));
+    arrib2->setPen(QPen(Qt::transparent));
     arrib2->setPos(0,-1768);
     scene->addItem(arrib2);
     arrib3=(new QGraphicsLineItem(800,0,0,0));
@@ -230,11 +234,11 @@ void nivel1::generarBordes()
     arrib3->setPos(0,-2968);
     scene->addItem(arrib3);
     puenteIzq1=(new QGraphicsLineItem(0,634,0,0));
-    puenteIzq1->setPen(QPen(Qt::red));
+    puenteIzq1->setPen(QPen(Qt::transparent));
     puenteIzq1->setPos(632,-1215);
     scene->addItem(puenteIzq1);
     puenteIzq2=(new QGraphicsLineItem(0,634,0,0));
-    puenteIzq2->setPen(QPen(Qt::red));
+    puenteIzq2->setPen(QPen(Qt::transparent));
     puenteIzq2->setPos(632,-2415);
     scene->addItem(puenteIzq2);
 
@@ -265,8 +269,7 @@ void nivel1::moverSoldado()
            ms.i->t()->moverIz(0.02);
        }
        balas.append(new bala(ms.i->t()->pos().x(),ms.i->t()->pos().y()+30,20,20,ms.i->t()->getDir()));
-       scene->addItem(balas.last()); //con estas dos lineas creamos una bala.
-       dispararSoldado();
+       scene->addItem(balas.last()); //con estas dos lineas creamos una bala.       
    }
 
 
@@ -274,20 +277,10 @@ void nivel1::moverSoldado()
 }
 
 void nivel1::dispararSoldado()
-{
+{    
     for ( int i =0; i<balas.size() ;i++)
-    {
-        if(balas.at(i)->collidesWithItem(izq1)||balas.at(i)->collidesWithItem(drch1)||balas.at(i)->collidesWithItem(abaj1)||balas.at(i)->collidesWithItem(abaj2)
-                ||balas.at(i)->collidesWithItem(abaj3) || balas.at(i)->collidesWithItem(arrib1) || balas.at(i)->collidesWithItem(arrib2) || balas.at(i)->collidesWithItem(arrib3)
-                || balas.at(i)->collidesWithItem(puenteIzq1) || balas.at(i)->collidesWithItem(puenteIzq2))
-        {
-            scene->removeItem(balas.at(i));
-            balas.removeOne(balas.at(i));
-        }
-        else
-        {
-         balas.at(i)->moverBala();
-        }
+    {       
+        balas.at(i)->moverBala();
     }
 }
 
@@ -353,8 +346,7 @@ void nivel1::ColisionBalasBoss()
             L_balasBoss.removeOne(L_balasBoss.at(i));
         }
 
-    }
-    qDebug() <<L_balasBoss.size();
+    }    
     if(L_balasBoss.size()==0)
     {
         if(!timerGBB->isActive())
@@ -366,30 +358,7 @@ void nivel1::ColisionBalasBoss()
 
 void nivel1::CBJCS()
 {
-
-    for( int i   =  0   ; i<balasJugador.size();  i++)
-    {
-        for ( int j=0;j< soldados.size() ; j++)
-        {
-            if  (balasJugador.at(i)->collidesWithItem(soldados.at(j)))
-            {
-                soldados.at(j)->setVida(soldados.at(j)->getVida()-jugador->getDamage());
-                if(soldados.at(j)->getVida()<=0)
-                {
-                    scene->removeItem(soldados.at(j));
-                    soldados.removeOne(soldados.at(j));
-                }
-                else
-                {
-                    scene->removeItem(balasJugador.at(i));
-                    balas.removeOne(balasJugador.at(i));
-
-                }
-            }
-        }
-    }
-//    qDebug() <<soldados.size();
-//    qDebug()<<balas.size();
+    /*plantear solucion*/
 }
 
 void nivel1::generarBalasBoss()
@@ -443,8 +412,7 @@ void nivel1::moverBoss()
 
     }
     else
-    {
-        //qDebug ()  << "hora de deterse" ;
+    {     
     }
     if( contador==200)
     {
@@ -463,8 +431,7 @@ void nivel1::CBJCB()
         if ( balasJugador.at(i)->collidesWithItem(sebastian))
         {
             if ( sebastian->getEscudo()>0)
-            {
-                qDebug() <<"escudo sebastian = "<<sebastian->getEscudo();
+            {                
                 ui->progressBar->setValue(sebastian->getEscudo());
                 scene->removeItem(balasJugador.at(i));
                 balasJugador.removeOne(balasJugador.at(i));
@@ -474,15 +441,13 @@ void nivel1::CBJCB()
             {
                 if ( sebastian->getVida()>0)
                 {
-                    ui->progressBar->setValue(sebastian->getVida());
-                    qDebug() <<"Vida sebastian = "<<sebastian->getVida();
+                    ui->progressBar->setValue(sebastian->getVida());                    
                     scene->removeItem(balasJugador.at(i));
                     balasJugador.removeOne(balasJugador.at(i));
                     sebastian->setVida(sebastian->getVida()-jugador->getDamage());
                 }
                 else
-                {
-                    qDebug() << "has ganado";
+                {                    
                     timerCBJCB->stop();
                     sebastian->setPixmap(QPixmap(":/imagenes/arabeExplosion.png"));
                     timerMoverBoss->stop();
@@ -494,23 +459,42 @@ void nivel1::CBJCB()
     }
 }
 
+void nivel1::CBSCM()
+{
+    for ( int i = 0 ; i<balas.size(); i++)
+    {
+            /*plantear solucion*/
+//            if ( balas.at(i)->getPosx()<=0 || balas.at(i)->getPosx()>=800 || balas.at(i)->getPosy() >=-1 || balas.at(i)->getPosy()<=-590)
+//            {
+//                scene->removeItem(balas.at(i));
+//                balas.removeOne(balas.at(i));
+//            }
+//            else if ( balas.at(i)->collidesWithItem(jugador))
+//            {
+//                qDebug ()<< "choque jugador";
+//                scene->removeItem(balas.at(i));
+//                balas.removeOne(balas.at(i));
+//            }
+    }
+}
+
 
 void nivel1::generarSoldados()
 {
     soldados.append(new soldado(120,-200,55,60));
     scene->addItem(soldados.last());
-//    soldados.append(new soldado(500,-350,55,60));
-//    scene->addItem(soldados.last());
-//    soldados.append(new soldado(590,-158,55,60));
-//    scene->addItem(soldados.last());
-//    soldados.append(new soldado(200,-110,55,60));
-//    scene->addItem(soldados.last());
-//    soldados.append(new soldado(80,-298,55,60));
-//    scene->addItem(soldados.last());
-//    soldados.append(new soldado(420,-434,55,60));
-//    scene->addItem(soldados.last());
-//    soldados.append(new soldado(358,-238,55,60));
-//    scene->addItem(soldados.last());
+    soldados.append(new soldado(500,-350,55,60));
+    scene->addItem(soldados.last());
+    soldados.append(new soldado(590,-158,55,60));
+    scene->addItem(soldados.last());
+    soldados.append(new soldado(200,-110,55,60));
+    scene->addItem(soldados.last());
+    soldados.append(new soldado(80,-298,55,60));
+    scene->addItem(soldados.last());
+    soldados.append(new soldado(420,-434,55,60));
+    scene->addItem(soldados.last());
+    soldados.append(new soldado(358,-238,55,60));
+    scene->addItem(soldados.last());
 
 
 }
@@ -520,8 +504,7 @@ void nivel1::moverArabe()
     QList<arabe*>::iterator ma;
     for ( ma = arabes.begin(); ma != arabes.end() ; ma++)
     {
-        ma.i->t()->setDistancia(abs(ma.i->t()->pos().y()-jugador->pos().y()));
-        //ui->lcdNumber->display(ma.i->t()->getDistancia());
+        ma.i->t()->setDistancia(abs(ma.i->t()->pos().y()-jugador->pos().y()));        
         if (ma.i->t()->pos().x()<jugador->pos().x() && (ma.i->t()->getExplotar() == false))
         {
             ma.i->t()->moverDerecha(0.02);
