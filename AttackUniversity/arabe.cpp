@@ -26,3 +26,13 @@ void arabe::setExplotar(bool value)
 {
     explotar = value;
 }
+
+int arabe::getVida() const
+{
+    return vida;
+}
+
+void arabe::setVida(int value)
+{
+    vida = value;
+}

@@ -62,7 +62,7 @@ nivel1::nivel1(QWidget *parent) :
 
     mover_Soldado = new QTimer();
     connect(mover_Soldado,&QTimer::timeout,this,&nivel1::moverSoldado);
-    mover_Soldado->start(1000);
+    mover_Soldado->start(3000);
 
     mover_arabe = new QTimer();
     connect(mover_arabe,&QTimer::timeout,this,&nivel1::moverArabe);
@@ -85,10 +85,6 @@ nivel1::nivel1(QWidget *parent) :
     connect(timerColisionBalasBoss, &QTimer::timeout,this,&nivel1::ColisionBalasBoss);
     timerColisionBalasBoss->start(20);
 
-    t_CBJCS = new QTimer();
-    connect(t_CBJCS, &QTimer::timeout,this,&nivel1::CBJCS) ;
-    t_CBJCS->start(20);
-
     timerMoverBoss = new QTimer();
     connect(timerMoverBoss, &QTimer::timeout,this,&nivel1::moverBoss) ;
     timerMoverBoss->start(20);
@@ -96,9 +92,9 @@ nivel1::nivel1(QWidget *parent) :
     timerCBJCB = new QTimer;
     connect(timerCBJCB, &QTimer::timeout,this,&nivel1::CBJCB) ;
 
-    timerCBSCM =  new QTimer;
-    connect(timerCBSCM,&QTimer::timeout,this,&nivel1::CBSCM);
-    timerCBSCM->start(10);
+    timerColisionesJugador =  new QTimer;
+    connect(timerColisionesJugador,&QTimer::timeout,this,&nivel1::colisionesJugador);
+    timerColisionesJugador->start(20);
 
 
 
@@ -205,14 +201,17 @@ void nivel1::generarBordes()
     izq1->setPos(40,-3000);
     izq1->setPen(QPen(Qt::transparent));
     scene->addItem(izq1);
+    obs.push_back(izq1);
     drch1=(new QGraphicsLineItem(0,3000,0,0));
     drch1->setPen(QPen(Qt::transparent));
     drch1->setPos(760,-3000);
     scene->addItem(drch1);
+    obs.push_back(drch1);
     abaj1=(new QGraphicsLineItem(800,0,0,0));
     abaj1->setPen(QPen(Qt::transparent));
     abaj1->setPos(0,-20);
     scene->addItem(abaj1);
+    obs.push_back(abaj1);
     abaj2=(new QGraphicsLineItem(650,0,0,0));
     abaj2->setPen(QPen(Qt::transparent));
     abaj2->setPos(0,-1236);
@@ -225,6 +224,7 @@ void nivel1::generarBordes()
     arrib1->setPen(QPen(Qt::transparent));
     arrib1->setPos(0,-580);
     scene->addItem(arrib1);
+    obs.push_back(arrib1);
     arrib2=(new QGraphicsLineItem(650,0,0,0));
     arrib2->setPen(QPen(Qt::transparent));
     arrib2->setPos(0,-1768);
@@ -267,9 +267,11 @@ void nivel1::moverSoldado()
        else if(aleatorio==4)
        {
            ms.i->t()->moverIz(0.02);
-       }
+       }      
+       ColisionArabesYSoldados(ms.i->t());
        balas.append(new bala(ms.i->t()->pos().x(),ms.i->t()->pos().y()+30,20,20,ms.i->t()->getDir()));
-       scene->addItem(balas.last()); //con estas dos lineas creamos una bala.       
+       balas.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
+       scene->addItem(balas.last()); //con estas dos lineas creamos una bala.
    }
 
 
@@ -281,7 +283,24 @@ void nivel1::dispararSoldado()
     for ( int i =0; i<balas.size() ;i++)
     {       
         balas.at(i)->moverBala();
+        CBSCM(balas.at(i));
     }
+    QList<soldado*>::iterator ms;
+
+    for ( ms = soldados.begin(); ms != soldados.end(); ms++)
+    {
+        int aleatorio = 1+rand()%80;
+        qDebug() <<aleatorio;
+        if(aleatorio==25)
+        {
+            balas.append(new bala(ms.i->t()->pos().x(),ms.i->t()->pos().y()+30,20,20,ms.i->t()->getDir()));
+            balas.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
+            scene->addItem(balas.last()); //con estas dos lineas creamos una bala.
+        }
+
+    }
+
+
 }
 
 void nivel1::dispararBoss()
@@ -356,9 +375,55 @@ void nivel1::ColisionBalasBoss()
     }
 }
 
-void nivel1::CBJCS()
+void nivel1::CBJCS(bala * LaBala)
 {
-    /*plantear solucion*/
+    for ( int i = 0 ; i< soldados.size(); i++)
+    {
+        if (soldados.at(i)->collidesWithItem(LaBala))
+        {
+
+            scene->removeItem(LaBala);
+            balasJugador.removeOne(LaBala);
+
+            if( soldados.at(i)->getVida()<=0)
+            {
+                scene->removeItem(soldados.at(i));
+                soldados.removeOne(soldados.at(i));
+            }
+            else
+            {
+                soldados.at(i)->setVida(soldados.at(i)->getVida()-jugador->getDamage());
+            }
+        }
+    }
+    for ( int i = 0 ; i< arabes.size(); i++)
+    {
+        if (arabes.at(i)->collidesWithItem(LaBala) && arabes.at(i)->getExplotar() == false)
+        {
+
+            scene->removeItem(LaBala);
+            balasJugador.removeOne(LaBala);
+            if( arabes.at(i)->getVida()<=0)
+            {
+                arabes.at(i)->setPos(arabes.at(i)->getPosx()-20,arabes.at(i)->getPosy()-20);
+                arabes.at(i)->setPixmap(QPixmap(":/imagenes/arabeExplosion.png"));
+                arabes.at(i)->setExplotar(true);
+            }
+            else
+            {
+                qDebug() << arabes.at(i)->getVida();
+                arabes.at(i)->setVida(arabes.at(i)->getVida()-jugador->getDamage());
+            }
+        }
+    }
+    for ( int i  = 0 ;  i < obs.size(); i++)
+    {
+        if (LaBala->collidesWithItem(obs[i]))
+        {
+            scene->removeItem(LaBala);
+            balasJugador.removeOne(LaBala);
+        }
+    }
 }
 
 void nivel1::generarBalasBoss()
@@ -432,7 +497,7 @@ void nivel1::CBJCB()
         {
             if ( sebastian->getEscudo()>0)
             {                
-                ui->progressBar->setValue(sebastian->getEscudo());
+
                 scene->removeItem(balasJugador.at(i));
                 balasJugador.removeOne(balasJugador.at(i));
                 sebastian->setEscudo(sebastian->getEscudo()-jugador->getDamage());
@@ -441,7 +506,7 @@ void nivel1::CBJCB()
             {
                 if ( sebastian->getVida()>0)
                 {
-                    ui->progressBar->setValue(sebastian->getVida());                    
+
                     scene->removeItem(balasJugador.at(i));
                     balasJugador.removeOne(balasJugador.at(i));
                     sebastian->setVida(sebastian->getVida()-jugador->getDamage());
@@ -459,22 +524,76 @@ void nivel1::CBJCB()
     }
 }
 
-void nivel1::CBSCM()
+void nivel1::colisionesJugador()
 {
-    for ( int i = 0 ; i<balas.size(); i++)
+    qDebug() << balasJugador.size();
+    //este primer for es para detecta la colision del jugador con los arabes cuando estan muertos, generando friccion
+    for ( int i = 0 ; i < arabes.size(); i++)
     {
-            /*plantear solucion*/
-//            if ( balas.at(i)->getPosx()<=0 || balas.at(i)->getPosx()>=800 || balas.at(i)->getPosy() >=-1 || balas.at(i)->getPosy()<=-590)
-//            {
-//                scene->removeItem(balas.at(i));
-//                balas.removeOne(balas.at(i));
-//            }
-//            else if ( balas.at(i)->collidesWithItem(jugador))
-//            {
-//                qDebug ()<< "choque jugador";
-//                scene->removeItem(balas.at(i));
-//                balas.removeOne(balas.at(i));
-//            }
+        if ( jugador->collidesWithItem(arabes.at(i)) && arabes.at(i)->getExplotar()== true)
+        {
+            jugador->setVx(30);
+            jugador->setVy(30);
+            mermarVida++;
+        }
+        else
+        {
+            jugador->setVx(100);
+            jugador->setVy(100);
+        }
+        if ( mermarVida >= 100)
+        {
+            jugador->setVida(jugador->getVida()-10);
+            mermarVida=0;
+            ui->progressBar->setValue(jugador->getVida());
+            if (  jugador->getVida()<=0)
+            {
+                qDebug()<<"perdio papi";
+            }
+        }
+    }
+}
+
+
+void nivel1::CBSCM(bala *LaBalaDelSoldado)
+{
+
+    if ( LaBalaDelSoldado->collidesWithItem(jugador))
+    {
+        jugador->setVida(jugador->getVida()-3);
+        ui->progressBar->setValue(jugador->getVida());
+        scene->removeItem(LaBalaDelSoldado);
+        balas.removeOne(LaBalaDelSoldado);
+        if (  jugador->getVida()<=0)
+        {
+            qDebug()<<"perdio papi";
+        }
+
+    }
+    for ( int i = 0 ; i< obs.size(); i++)
+    {
+        if ( LaBalaDelSoldado->collidesWithItem(obs.at(i)))
+        {
+            scene->removeItem(LaBalaDelSoldado);
+            balas.removeOne(LaBalaDelSoldado);
+            //qDebug()<< balas.size();
+        }
+
+    }
+
+
+}
+
+void nivel1::ColisionArabesYSoldados(soldado *solda)
+{
+    for ( int i = 0 ; i < arabes.size() ; i++)
+    {
+        if ( arabes.at(i)->collidesWithItem(solda) && arabes.at(i)->getExplotar()== true)
+        {
+            //qDebug() <<"hola, estoy tapando un soldado jaja";
+            solda->moverAr(0.1);
+
+        }
     }
 }
 
@@ -569,5 +688,6 @@ void nivel1::moverBalasJugador()
     for ( int i = 0 ; i < balasJugador.size(); i++)
     {        
             balasJugador.at(i)->moverBala();
+            CBJCS(balasJugador.at(i));
     }
 }

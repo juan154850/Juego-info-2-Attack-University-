@@ -48,7 +48,7 @@ private:
     double high; //alto
     double vx =100;
     double vy = 100;
-    int vida=100;
+    int vida=50;
     int distancia= 0;
     int distanciaX=0;
     char dir='S';

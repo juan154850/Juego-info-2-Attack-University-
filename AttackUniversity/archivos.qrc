@@ -28,5 +28,9 @@
         <file>imagenes/CARGAR PARTIDA.png</file>
         <file>imagenes/MULTIJUGADOR.png</file>
         <file>imagenes/NUEVA PARTIDA.png</file>
+        <file>imagenes/fr1Sol.png</file>
+        <file>imagenes/dr1Sol.png</file>
+        <file>imagenes/bk1Sol.png</file>
+        <file>imagenes/izq1Sol.png</file>
     </qresource>
 </RCC>

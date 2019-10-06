@@ -36,6 +36,7 @@ bala::bala(double x, double y, double w, double h, char dir)
 
 }
 
+
 void bala::moverBala()
 {
     switch (direccion)
@@ -43,25 +44,25 @@ void bala::moverBala()
     case ('A'):
     {
         //movemos la bala hacia la izquierda
-        moverIzquierda(0.1);
+        moverIzquierda(0.06);
         break;
     }
     case ('D'):
     {
         //movemos la bala hacia la derecha
-        moverDerecha(0.1);
+        moverDerecha(0.06);
         break;
     }
     case('W'):
     {
         //movemos la bala hacia arriba
-        moverArriba(0.1);
+        moverArriba(0.06);
         break;
     }
     case ('S'):
     {
         //movemos la bala hacia abajo
-        moverAbajo(0.1);
+        moverAbajo(0.06);
         break;
     }
     }

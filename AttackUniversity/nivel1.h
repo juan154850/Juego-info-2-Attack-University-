@@ -30,7 +30,9 @@ public:
     void keyPressEvent(QKeyEvent *ev);
     void generarBordes(void);
     void generarSoldados(void);
-
+    void CBJCS(bala *LaBala);
+    void CBSCM(bala *LaBalaDelSoldado);
+    void ColisionArabesYSoldados(soldado *solda);
 
 
 public slots:   
@@ -41,12 +43,13 @@ public slots:
     void moverBalasJugador(void);
     void dispararSoldado(void);   
     void dispararBoss(void);
-    void ColisionBalasBoss(void);
-    void CBJCS(void);
+    void ColisionBalasBoss(void);    
     void generarBalasBoss(void);    
     void moverBoss(void);
     void CBJCB(void);
-    void CBSCM(void);
+    void colisionesJugador(void);
+
+
 
 
 
@@ -63,7 +66,7 @@ private:
 
 
     //timers
-    QTimer *t_CBJCS;
+
     QTimer *tiempo;    
     QTimer *mover_Soldado;
     QTimer *mover_arabe;    
@@ -75,7 +78,7 @@ private:
     QTimer *timerColisionBalasBoss;
     QTimer *timerMoverBoss;
     QTimer *timerCBJCB;
-    QTimer *timerCBSCM;
+    QTimer *timerColisionesJugador;
 
 
 
@@ -87,6 +90,7 @@ private:
     QList<arabe*>arabes;    
     QList<bala*>L_balasBoss;    
     QList<QGraphicsLineItem*> obs;
+
 
     //muros
     QGraphicsLineItem *izq1;
@@ -114,6 +118,7 @@ private:
     int movimientoSebastian;
     int contador=0;
     int margenError=0;
+    int mermarVida=100;
 
 
 };

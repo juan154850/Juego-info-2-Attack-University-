@@ -14,7 +14,7 @@ personaje::personaje(double px, double py, float w, float h,double _vx, double _
     vx=_vx;
     vy=_vy;
     setPos(posx,posy);
-    setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(30,30));
+    setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(42,42));
 }
 
 void personaje::moverIzquierda(double dt)
@@ -59,12 +59,12 @@ void personaje::animacionArriba()
     {
         case (4):
         {
-            setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(30,30));
+            setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(42,42));
             break;
         }
         case (8):
         {
-            setPixmap(QPixmap(":/imagenes/avt4_bk2.png").scaled(30,30));
+            setPixmap(QPixmap(":/imagenes/avt4_bk2.png").scaled(42,42));
             animacion=0;
             break;
         }
@@ -79,12 +79,12 @@ void personaje::animacionAbajo()
     {
         case (4):
         {
-            setPixmap(QPixmap(":/imagenes/avt3_fr1.png").scaled(30,30));
+            setPixmap(QPixmap(":/imagenes/avt3_fr1.png").scaled(42,42));
             break;
         }
         case (8):
         {
-            setPixmap(QPixmap(":/imagenes/avt3_fr2.png").scaled(30,30));
+            setPixmap(QPixmap(":/imagenes/avt3_fr2.png").scaled(42,42));
             animacion=0;
             break;
         }
@@ -98,12 +98,12 @@ void personaje::animacionIzquierda()
     {
         case (4):
         {
-            setPixmap(QPixmap(":/imagenes/avt3_rt1.png").scaled(30,30));
+            setPixmap(QPixmap(":/imagenes/avt3_rt1.png").scaled(42,42));
             break;
         }
         case (8):
         {
-            setPixmap(QPixmap(":/imagenes/avt3_rt2.png").scaled(30,30));
+            setPixmap(QPixmap(":/imagenes/avt3_rt2.png").scaled(42,40));
             animacion=0;
             break;
         }
@@ -118,12 +118,12 @@ void personaje::animacionDerecha()
     {
         case (4):
         {
-            setPixmap(QPixmap(":/imagenes/avt3_lf1.png").scaled(30,30));
+            setPixmap(QPixmap(":/imagenes/avt3_lf1.png").scaled(42,42));
             break;
         }
         case (8):
         {
-            setPixmap(QPixmap(":/imagenes/avt3_lf2.png").scaled(30,30));
+            setPixmap(QPixmap(":/imagenes/avt3_lf2.png").scaled(42,42));
             animacion=0;
             break;
         }

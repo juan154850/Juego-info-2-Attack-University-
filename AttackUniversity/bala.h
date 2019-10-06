@@ -5,7 +5,7 @@
 class bala : public QGraphicsPixmapItem
 {
 public:
-    bala(double x, double y, double w, double h,char dir);
+    bala(double x, double y, double w, double h,char dir);    
     //-------------------movimiento de la particula-------------------
     void moverBala();
     void moverIzquierda(double dt);

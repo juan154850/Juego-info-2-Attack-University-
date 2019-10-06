@@ -11,13 +11,14 @@ soldado::soldado(double px, double py, double w, double h)
     posy = py;
     width = w;
     high = h ;
-    setPixmap(QPixmap(":/imagenes/avt3_fr1.png")); // se le asigna la imagen al add
+    setPixmap(QPixmap(":/imagenes/fr1Sol.png"));
     setPos(posx,posy);
 
 }
 
 void soldado::moverAr(double dt)
 {
+    setPixmap(QPixmap(":/imagenes/bk1Sol.png"));
     posy=posy-(vy*dt);
     setY(posy);
     dir = 'W';
@@ -25,6 +26,7 @@ void soldado::moverAr(double dt)
 
 void soldado::moverIz(double dt)
 {
+    setPixmap(QPixmap(":/imagenes/izq1Sol.png"));
     posx=posx-(vx*dt);
     setX(posx);
     dir = 'A';
@@ -32,6 +34,7 @@ void soldado::moverIz(double dt)
 
 void soldado::moverDr(double dt)
 {
+    setPixmap(QPixmap(":/imagenes/dr1Sol.png"));
     posx=posx+(vx*dt);
     setX(posx);
     dir = 'D';
@@ -140,7 +143,7 @@ void soldado::setVida(int value)
 
 void soldado::moverAb(double dt)
 {
-    
+    setPixmap(QPixmap(":/imagenes/fr1Sol.png"));
     posy=posy+(vy*dt);
     setY(posy);
     dir='S';
