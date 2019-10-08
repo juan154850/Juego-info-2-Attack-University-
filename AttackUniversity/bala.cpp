@@ -106,6 +106,12 @@ void bala::moverDiagonalDerecha(double dt)
     setPos(posx,posy);
 }
 
+void bala::animar()
+{
+    setRotation(angulo);
+    angulo+=10;
+}
+
 double bala::getPosx() const
 {
     return posx;
@@ -174,6 +180,16 @@ char bala::getDireccion() const
 void bala::setDireccion(char value)
 {
     direccion = value;
+}
+
+int bala::getNumBala() const
+{
+    return numBala;
+}
+
+void bala::setNumBala(int value)
+{
+    numBala = value;
 }
 
 

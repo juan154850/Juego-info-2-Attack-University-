@@ -14,6 +14,7 @@ public:
     void moverAbajo(double dt);
     void moverDiagonalIzquierda(double dt);
     void moverDiagonalDerecha(double dt);
+    void animar();
     //-------------------metodos get y set-------------------
     double getPosx() const;
     void setPosx(double value);
@@ -37,6 +38,9 @@ public:
     char getDireccion() const;
     void setDireccion(char value);
 
+    int getNumBala() const;
+    void setNumBala(int value);
+
 private:
     //-------------------atributos-------------------
     double posx;
@@ -46,6 +50,8 @@ private:
     double vx=200;
     double vy=200;
     char direccion='W'; //esta variable indica la direccion en que se esta disparando.
+    int numBala=0;
+    int angulo=0;
 };
 
 #endif // BALA_H

@@ -103,6 +103,7 @@ private:
     QGraphicsLineItem *arrib3;
     QGraphicsLineItem *puenteIzq1;
     QGraphicsLineItem *puenteIzq2;
+    QGraphicsLineItem *puertaBoss;
 
 
 
@@ -115,6 +116,7 @@ private:
     int adds=0; //tiene el valor de la cantidad de adds que hay por sala
     int addsAra=0; // cantidad de arabes por sala
     int nBala=1;    //para dar diferentes direcciones a las balas del primer boss    
+    int dirBala=1;
     int movimientoSebastian;
     int contador=0;
     int margenError=0;
