@@ -33,7 +33,8 @@ SOURCES += \
     bala.cpp \
     soldado.cpp \
     arabe.cpp \
-    boss1.cpp
+    boss1.cpp \
+    obstaculos.cpp
 
 HEADERS += \
     personaje.h \
@@ -42,7 +43,8 @@ HEADERS += \
     bala.h \
     soldado.h \
     arabe.h \
-    boss1.h
+    boss1.h \
+    obstaculos.h
 
 FORMS += \
     nivel1.ui \

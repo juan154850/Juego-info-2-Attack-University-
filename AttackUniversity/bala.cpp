@@ -106,6 +106,12 @@ void bala::moverDiagonalDerecha(double dt)
     setPos(posx,posy);
 }
 
+void bala::caidaLibre(double dt)
+{
+    posy=posy+(vy*dt)+((0.5*9.8)*(dt*dt));
+    setPos(posx,posy);
+}
+
 void bala::animar()
 {
     setRotation(angulo);

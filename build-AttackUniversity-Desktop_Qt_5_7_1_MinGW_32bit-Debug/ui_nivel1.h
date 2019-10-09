@@ -17,6 +17,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QProgressBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,6 +30,9 @@ public:
     QLCDNumber *lcdNumber_2;
     QProgressBar *progressBar;
     QLCDNumber *lcdNumber_3;
+    QPushButton *GUARDAPARTIDA;
+    QPushButton *ARDUINO;
+    QPushButton *SALIR;
 
     void setupUi(QWidget *nivel1)
     {
@@ -59,6 +63,15 @@ public:
         lcdNumber_3 = new QLCDNumber(nivel1);
         lcdNumber_3->setObjectName(QStringLiteral("lcdNumber_3"));
         lcdNumber_3->setGeometry(QRect(500, 0, 64, 23));
+        GUARDAPARTIDA = new QPushButton(nivel1);
+        GUARDAPARTIDA->setObjectName(QStringLiteral("GUARDAPARTIDA"));
+        GUARDAPARTIDA->setGeometry(QRect(240, 270, 121, 41));
+        ARDUINO = new QPushButton(nivel1);
+        ARDUINO->setObjectName(QStringLiteral("ARDUINO"));
+        ARDUINO->setGeometry(QRect(240, 320, 121, 41));
+        SALIR = new QPushButton(nivel1);
+        SALIR->setObjectName(QStringLiteral("SALIR"));
+        SALIR->setGeometry(QRect(230, 370, 131, 41));
 
         retranslateUi(nivel1);
 
@@ -69,6 +82,9 @@ public:
     {
         nivel1->setWindowTitle(QApplication::translate("nivel1", "ATTACK UNIVERSITY", Q_NULLPTR));
         progressBar->setFormat(QApplication::translate("nivel1", "%p", Q_NULLPTR));
+        GUARDAPARTIDA->setText(QApplication::translate("nivel1", "GUARDAR PARTIDA", Q_NULLPTR));
+        ARDUINO->setText(QApplication::translate("nivel1", "CONECTAR ARDUINO", Q_NULLPTR));
+        SALIR->setText(QApplication::translate("nivel1", "SALIR", Q_NULLPTR));
     } // retranslateUi
 
 };

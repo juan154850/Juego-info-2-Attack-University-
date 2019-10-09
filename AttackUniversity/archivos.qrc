@@ -32,5 +32,13 @@
         <file>imagenes/dr1Sol.png</file>
         <file>imagenes/bk1Sol.png</file>
         <file>imagenes/izq1Sol.png</file>
+        <file>imagenes/vida.png</file>
+        <file>imagenes/5co juego.png</file>
+        <file>imagenes/F augusto.png</file>
+        <file>imagenes/mesa.png</file>
+        <file>musica/Completardoshoras.mp3</file>
+        <file>musica/llegaranecdota.mp3</file>
+        <file>musica/noseacochini.mp3</file>
+        <file>musica/vencerme cuestióncarpintería.mp3</file>
     </qresource>
 </RCC>

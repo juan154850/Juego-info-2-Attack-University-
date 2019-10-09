@@ -12,9 +12,14 @@
 #include "arabe.h"
 #include <math.h>
 #include <time.h>
+#include<stdlib.h>
 #include <QDebug>
 #include <boss1.h>
 #include <typeinfo>
+#include <obstaculos.h>
+#include <QMediaPlayer>
+#include <QString>
+#include <QFile>
 
 namespace Ui {
 class nivel1;
@@ -25,20 +30,26 @@ class nivel1 : public QWidget
     Q_OBJECT
 
 public:
-    explicit nivel1(QWidget *parent = nullptr);
+    explicit nivel1(QString fileName,QString PassName,QWidget *parent = nullptr);
+
     ~nivel1();
     void keyPressEvent(QKeyEvent *ev);
     void generarBordes(void);
     void generarSoldados(void);
     void CBJCS(bala *LaBala);
     void CBSCM(bala *LaBalaDelSoldado);
-    void ColisionArabesYSoldados(soldado *solda);
+    void ColisionArabesYSoldados(soldado *solda);    
+    void generarObstaculos(void);
+    bool colisionConMesa();
+    void jefeFinal();
+    void generarArabe(void);
+    void pausa();
 
 
 public slots:   
     void moverSoldado(void);
     void moverArabe(void);
-    void generarArabe(void);    
+    void Puertas(void);
     void colisionArabe(void);
     void moverBalasJugador(void);
     void dispararSoldado(void);   
@@ -48,11 +59,21 @@ public slots:
     void moverBoss(void);
     void CBJCB(void);
     void colisionesJugador(void);
+    void dialogos(void);
+    void oleadas(void);
 
 
 
 
 
+
+
+private slots:
+    void on_SALIR_clicked();
+
+    void on_ARDUINO_clicked();
+
+    void on_GUARDAPARTIDA_clicked();
 
 private:
     Ui::nivel1 *ui;
@@ -70,7 +91,6 @@ private:
     QTimer *tiempo;    
     QTimer *mover_Soldado;
     QTimer *mover_arabe;    
-    QTimer *generar_arabes;
     QTimer *colision_arabe;
     QTimer *balas_soldado;
     QTimer *balasB;
@@ -79,6 +99,11 @@ private:
     QTimer *timerMoverBoss;
     QTimer *timerCBJCB;
     QTimer *timerColisionesJugador;
+    QTimer *lvl1;
+    QTimer *dialog;
+    QTimer *oleada;
+    QTimer *puertas;
+
 
 
 
@@ -89,7 +114,8 @@ private:
     QList<soldado*>soldados;
     QList<arabe*>arabes;    
     QList<bala*>L_balasBoss;    
-    QList<QGraphicsLineItem*> obs;
+    QList<QGraphicsLineItem*> obs;    
+    QList<obstaculos*> mesas;
 
 
     //muros
@@ -104,11 +130,17 @@ private:
     QGraphicsLineItem *puenteIzq1;
     QGraphicsLineItem *puenteIzq2;
     QGraphicsLineItem *puertaBoss;
+    QGraphicsLineItem *puertaSala1;
+    QGraphicsLineItem *puertaSala2;
+    QGraphicsLineItem *puertaSala3;
 
-
-
-
-
+    //mesas
+    obstaculos *mesa1;
+    obstaculos *mesa2;
+    obstaculos *mesa3;
+    obstaculos *mesa4;
+    //agujero negro
+    obstaculos *agujeroNegro;
 
     //otros
     char dire='W'; //controla la direccio en la que van las balas.    
@@ -121,6 +153,14 @@ private:
     int contador=0;
     int margenError=0;
     int mermarVida=100;
+    int poder=1;
+    QMediaPlayer *dialogosAgusto;
+    int numOleada=0;
+    int sala=1;
+    bool salaCompleta=false;
+    bool pausa_ = false;
+    QString uss;
+    QString pass;
 
 
 };

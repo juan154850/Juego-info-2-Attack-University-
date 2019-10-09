@@ -7,6 +7,7 @@ INPUT(
 ./release\soldado.o
 ./release\arabe.o
 ./release\boss1.o
+./release\obstaculos.o
 ./release\qrc_archivos.o
 ./release\moc_nivel1.o
 ./release\moc_menu.o

@@ -7,6 +7,7 @@ INPUT(
 ./debug\soldado.o
 ./debug\arabe.o
 ./debug\boss1.o
+./debug\obstaculos.o
 ./debug\qrc_archivos.o
 ./debug\moc_nivel1.o
 ./debug\moc_menu.o

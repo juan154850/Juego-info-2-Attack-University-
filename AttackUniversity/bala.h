@@ -14,6 +14,7 @@ public:
     void moverAbajo(double dt);
     void moverDiagonalIzquierda(double dt);
     void moverDiagonalDerecha(double dt);
+    void caidaLibre(double dt);
     void animar();
     //-------------------metodos get y set-------------------
     double getPosx() const;

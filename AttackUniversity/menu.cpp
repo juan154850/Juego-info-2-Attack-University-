@@ -15,7 +15,7 @@ menu::menu(QWidget *parent) :
     ui->registro_2->setVisible(false);
     music=new QMediaPlayer;
     music->setMedia(QUrl("qrc:/musica/Música Tema - Game of Thrones.mp3"));
-    music->setVolume(100);
+    music->setVolume(5);
     music->play();
 }
 
@@ -115,9 +115,12 @@ void menu::on_registro_2_clicked()
         ui->iniciar_2->~QPushButton();
         ui->uss->~QLineEdit();
         ui->pass->~QLineEdit();
+        ui->registro_2->setVisible(false);
         ui->cargarPartida->setVisible(true);
         ui->nuevaPartida->setVisible(true);
         ui->multijugador->setVisible(true);
+        user_ = ui->uss->text();
+        pass_ = ui->pass->text();
     }
 
 }
@@ -126,7 +129,7 @@ void menu::on_nuevaPartida_clicked()
 {
     qDebug ( ) <<"nueva partida";
     nivel1 * juego;
-    juego = new nivel1;
+    juego = new nivel1(user_,pass_);
     juego->show();
     music->stop();
     close();

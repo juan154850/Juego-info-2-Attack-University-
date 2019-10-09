@@ -95,6 +95,45 @@ font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="GUARDAPARTIDA">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>270</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GUARDAR PARTIDA</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ARDUINO">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>320</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CONECTAR ARDUINO</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="SALIR">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>370</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SALIR</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

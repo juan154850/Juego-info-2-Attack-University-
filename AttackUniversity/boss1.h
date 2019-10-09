@@ -12,6 +12,7 @@ public:
     int getDelayDisparo() const;
     void setDelayDisparo(int value);
     void dispararEnSol(QList<bala*>balas);
+    void lluviaNotas(QList<bala*>balas);
     void generarBalasEnSol(void);
 
     int getNumBalas() const;
@@ -26,6 +27,9 @@ public:
     bool getMoviendome() const;
     void setMoviendome(bool value);
 
+    bool getActivo() const;
+    void setActivo(bool value);
+
 private:
     QList<bala*>misBalas;
     //atributos especiales de un boss
@@ -34,6 +38,7 @@ private:
     int delayDisparo=30;
     int numBalas=1;
     bool moviendome=false;
+    bool activo = false;
 
 };
 
