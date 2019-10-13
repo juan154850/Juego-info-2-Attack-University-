@@ -1,125 +1,23 @@
 #include "nivel1.h"
 #include "ui_nivel1.h"
 
-nivel1::nivel1(QString fileName,QString PassName,QWidget *parent) :
+nivel1::nivel1(QString fileName,QString PassName,bool cargar,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::nivel1)
 {
     ui->setupUi(this);
-    uss = fileName;
+    uss= fileName;    
     pass = PassName;
-    //-------------------zona de eventos-------------------
-
-    scene = new QGraphicsScene();    
-    scene->setBackgroundBrush(QBrush(QImage(":/imagenes/piso1.png")));
-    scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
-
-
-    //-------------------graficador-------------------
-
-    ui->graphicsView->setScene(scene);
-    ui->graphicsView->setFixedSize(800,600);
-
-
-
-    //-------------------bloqueos-------------------
-
-    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    generarBordes();
-
-
-    //-------------------player-------------------
-
-    jugador = new personaje(382,-81,50,55,100,100);
-    scene->addItem(jugador);
-    scene->setFocusItem(jugador);
-
-    //-------------------boss-------------------
-
-    sebastian = new boss1();
-    agujeroNegro = new obstaculos(356,-2780,30,30);
-
-
-
-    //-------------------timers-------------------
-
-    puertas = new QTimer ;
-    connect(puertas, &QTimer::timeout, this, &nivel1::Puertas);
-    puertas->start(1);
-
-
-    oleada = new QTimer();
-    connect(oleada, &QTimer::timeout, this, &nivel1::oleadas);
-    oleada->start(5000);
-
-    tiempo = new QTimer();
-    connect(tiempo, &QTimer::timeout, this, &nivel1::moverBalasJugador);
-//    tiempo->start(20);
-
-    balas_soldado = new QTimer();
-    connect(balas_soldado,&QTimer::timeout,this,&nivel1::dispararSoldado);
-//    balas_soldado->start(20);
-
-    mover_Soldado = new QTimer();
-    connect(mover_Soldado,&QTimer::timeout,this,&nivel1::moverSoldado);
-//    mover_Soldado->start(3000);
-
-    mover_arabe = new QTimer();
-    connect(mover_arabe,&QTimer::timeout,this,&nivel1::moverArabe);  
-
-    colision_arabe =  new QTimer();    
-    connect(colision_arabe, &QTimer::timeout,this,&nivel1::colisionArabe);    
-
-    balasB = new QTimer();
-    connect(balasB,&QTimer::timeout,this,&nivel1::dispararBoss);
-
-    timerGBB = new QTimer();
-    connect(timerGBB, &QTimer::timeout,this,&nivel1::generarBalasBoss);
-//    timerGBB->start(20);
-
-    timerColisionBalasBoss = new QTimer();
-    connect(timerColisionBalasBoss, &QTimer::timeout,this,&nivel1::ColisionBalasBoss);
-//    timerColisionBalasBoss->start(1);
-
-    timerMoverBoss = new QTimer();
-    connect(timerMoverBoss, &QTimer::timeout,this,&nivel1::moverBoss) ;
-//    timerMoverBoss->start(20);
-
-    timerCBJCB = new QTimer;
-    connect(timerCBJCB, &QTimer::timeout,this,&nivel1::CBJCB) ;
-
-    timerColisionesJugador =  new QTimer;
-    connect(timerColisionesJugador,&QTimer::timeout,this,&nivel1::colisionesJugador);
-//    timerColisionesJugador->start(20);
-
-    lvl1 = new QTimer();
-    connect(lvl1, &QTimer::timeout,this,&nivel1::jefeFinal);
-    lvl1->start(20);
-
-    dialog = new QTimer();
-    connect(dialog, &QTimer::timeout,this,&nivel1::dialogos);
-    dialog->start(10000);
-
-    timerGBB->stop();
-    timerColisionBalasBoss->stop();
-    timerMoverBoss->stop();
-    tiempo->start(20);
-
-    //-------------------foco-------------------
-    scene->setSceneRect(0,jugador->getPosy()-515,800,600);    
-    ui->lcdNumber->setVisible(false);
-    ui->lcdNumber_2->setVisible(false);
-    ui->lcdNumber_3->setVisible(false);    
-    generarObstaculos();
-    dialogosAgusto=new QMediaPlayer;
-    dialogosAgusto->setMedia(QUrl("qrc:/musica/llegaranecdota.mp3"));
-    dialogosAgusto->setVolume(100);
-    dialogosAgusto->play();
-    ui->ARDUINO->setVisible(false);
-    ui->GUARDAPARTIDA->setVisible(false);
-    ui->SALIR->setVisible(false);
+    if ( cargar == false)
+    {
+        qDebug()<<"nueva partida";
+        nuevaPartida();
+    }
+    else
+    {
+          qDebug()<< "cargando partida";
+          cargarPartida();
+    }
 }
 
 nivel1::~nivel1()
@@ -221,8 +119,6 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
 
                 break;
             }
-
-
         }
         break;
     }
@@ -258,16 +154,13 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         {
             break;
         }
-        else
+        else if ( delayDisparar >= 20)
         {
             //-------------------creacion de balas-------------------
             balasJugador.append(new bala(jugador->getPosx()+8,jugador->getPosy()-10,20,20,dire));
             scene->addItem(balasJugador.last());
+            delayDisparar=0;
         }
-
-
-
-//        timerCBJCB->start(1);
         break;
     }
     case(Qt::Key_P):
@@ -423,8 +316,7 @@ void nivel1::dispararBoss()
     else if  ( poder == 5)
     {
         sebastian->lluviaNotas(L_balasBoss);
-    }
-    qDebug()<<jugador->getPosx() <<"     ::::   "<< jugador->getPosy();
+    }    
 
 }
 
@@ -807,12 +699,18 @@ void nivel1::oleadas()
     {
         generarSoldados();
         generarArabe();
+        balas_soldado->start(20);
+        mover_Soldado->start(3000);
+        timerColisionesJugador->start(20);
         numOleada++;
     }
     else if(numOleada==2 && soldados.size()==0)
     {
         generarSoldados();
         generarArabe();
+        balas_soldado->start(20);
+        mover_Soldado->start(3000);
+        timerColisionesJugador->start(20);
         numOleada=0;
         if ( sala ==2 )
         {
@@ -909,6 +807,10 @@ bool nivel1::colisionConMesa()
         jugador->setPos(jugador->getPosx(), jugador->getPosy());
         return true;
     }
+    else {
+        return false;
+    }
+
 }
 
 void nivel1::generarSoldados()
@@ -1050,6 +952,7 @@ if ( jugador->collidesWithItem(puertaSala2))
  {
      jugador->setPosy(jugador->getPosy()-10);
  }
+ MostrarTimers();
 }
 
 void nivel1::generarArabe()
@@ -1133,7 +1036,7 @@ void nivel1::pausa()
     {
         balasB->stop();
     }
-    if( timerGBB->isActive())
+    if( timerGBB->isActive() )
     {
         timerGBB->stop();
     }
@@ -1174,6 +1077,333 @@ void nivel1::pausa()
     ui->SALIR->setVisible(true);
 }
 
+void nivel1::cargarPartida()
+{    
+    QFile file(uss);
+    if(file.open(QFile::ReadOnly | QFile::Text))
+    {
+        QTextStream in(&file);
+        in.readLine();
+        in.readLine();
+        int px, py, oleada,sala;
+        in >>px;
+        in.readLine();
+        in >>py;
+        in.readLine();
+        in >>oleada;
+        in.readLine();
+        in >>sala;
+        qDebug()<<oleada << " :::: "<< sala;
+        nuevaPartida(px,py,oleada,sala);
+    }
+}
+
+void nivel1::nuevaPartida()
+{
+    //-------------------zona de eventos-------------------
+
+        scene = new QGraphicsScene();
+        scene->setBackgroundBrush(QBrush(QImage(":/imagenes/piso1.png")));
+        scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
+
+
+        //-------------------graficador-------------------
+
+        ui->graphicsView->setScene(scene);
+        ui->graphicsView->setFixedSize(800,600);
+
+
+
+        //-------------------bloqueos-------------------
+
+        ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+        generarBordes();
+
+
+        //-------------------player-------------------
+
+        jugador = new personaje(382,-81,50,55,100,100);
+        scene->addItem(jugador);
+        scene->setFocusItem(jugador);
+
+        //-------------------boss-------------------
+
+        sebastian = new boss1();
+        agujeroNegro = new obstaculos(356,-2780,30,30);
+
+
+
+        //-------------------timers-------------------
+
+        puertas = new QTimer ;
+        connect(puertas, &QTimer::timeout, this, &nivel1::Puertas);
+        puertas->start(1);
+
+
+        oleada = new QTimer();
+        connect(oleada, &QTimer::timeout, this, &nivel1::oleadas);
+        oleada->start(5000);
+
+        tiempo = new QTimer();
+        connect(tiempo, &QTimer::timeout, this, &nivel1::moverBalasJugador);
+    //    tiempo->start(20);
+
+        balas_soldado = new QTimer();
+        connect(balas_soldado,&QTimer::timeout,this,&nivel1::dispararSoldado);
+    //    balas_soldado->start(20);
+
+        mover_Soldado = new QTimer();
+        connect(mover_Soldado,&QTimer::timeout,this,&nivel1::moverSoldado);
+    //    mover_Soldado->start(3000);
+
+        mover_arabe = new QTimer();
+        connect(mover_arabe,&QTimer::timeout,this,&nivel1::moverArabe);
+
+        colision_arabe =  new QTimer();
+        connect(colision_arabe, &QTimer::timeout,this,&nivel1::colisionArabe);
+
+        balasB = new QTimer();
+        connect(balasB,&QTimer::timeout,this,&nivel1::dispararBoss);
+
+        timerGBB = new QTimer();
+        connect(timerGBB, &QTimer::timeout,this,&nivel1::generarBalasBoss);
+    //    timerGBB->start(20);
+
+        timerColisionBalasBoss = new QTimer();
+        connect(timerColisionBalasBoss, &QTimer::timeout,this,&nivel1::ColisionBalasBoss);
+    //    timerColisionBalasBoss->start(1);
+
+        timerMoverBoss = new QTimer();
+        connect(timerMoverBoss, &QTimer::timeout,this,&nivel1::moverBoss) ;
+    //    timerMoverBoss->start(20);
+
+        timerCBJCB = new QTimer;
+        connect(timerCBJCB, &QTimer::timeout,this,&nivel1::CBJCB) ;
+
+        timerColisionesJugador =  new QTimer;
+        connect(timerColisionesJugador,&QTimer::timeout,this,&nivel1::colisionesJugador);
+    //    timerColisionesJugador->start(20);
+
+        lvl1 = new QTimer();
+        connect(lvl1, &QTimer::timeout,this,&nivel1::jefeFinal);
+        lvl1->start(20);
+
+        dialog = new QTimer();
+        connect(dialog, &QTimer::timeout,this,&nivel1::dialogos);
+        dialog->start(10000);
+
+        timerGBB->stop();
+        timerColisionBalasBoss->stop();
+        timerMoverBoss->stop();
+        tiempo->start(20);
+
+        //-------------------foco-------------------
+        scene->setSceneRect(0,jugador->getPosy()-515,800,600);
+        ui->lcdNumber->setVisible(false);
+        ui->lcdNumber_2->setVisible(false);
+        ui->lcdNumber_3->setVisible(false);
+        generarObstaculos();
+        dialogosAgusto=new QMediaPlayer;
+        dialogosAgusto->setMedia(QUrl("qrc:/musica/llegaranecdota.mp3"));
+        dialogosAgusto->setVolume(100);
+        dialogosAgusto->play();
+        ui->ARDUINO->setVisible(false);
+        ui->GUARDAPARTIDA->setVisible(false);
+        ui->SALIR->setVisible(false);
+}
+
+void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala)
+{
+    //-------------------zona de eventos-------------------
+
+        scene = new QGraphicsScene();
+        scene->setBackgroundBrush(QBrush(QImage(":/imagenes/piso1.png")));
+        scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
+
+
+        //-------------------graficador-------------------
+
+        ui->graphicsView->setScene(scene);
+        ui->graphicsView->setFixedSize(800,600);
+
+
+
+        //-------------------bloqueos-------------------
+
+        ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+        generarBordes();
+
+
+        //-------------------player-------------------
+
+        jugador = new personaje(posx,posy,50,55,100,100);
+        scene->addItem(jugador);
+        scene->setFocusItem(jugador);
+
+        //-------------------boss-------------------
+
+        sebastian = new boss1();
+        agujeroNegro = new obstaculos(356,-2780,30,30);
+
+
+
+        //-------------------timers-------------------
+
+        puertas = new QTimer ;
+        connect(puertas, &QTimer::timeout, this, &nivel1::Puertas);
+        puertas->start(1);
+
+
+        oleada = new QTimer();
+        connect(oleada, &QTimer::timeout, this, &nivel1::oleadas);
+        oleada->start(5000);
+
+        tiempo = new QTimer();
+        connect(tiempo, &QTimer::timeout, this, &nivel1::moverBalasJugador);
+    //    tiempo->start(20);
+
+        balas_soldado = new QTimer();
+        connect(balas_soldado,&QTimer::timeout,this,&nivel1::dispararSoldado);
+    //    balas_soldado->start(20);
+
+        mover_Soldado = new QTimer();
+        connect(mover_Soldado,&QTimer::timeout,this,&nivel1::moverSoldado);
+    //    mover_Soldado->start(3000);
+
+        mover_arabe = new QTimer();
+        connect(mover_arabe,&QTimer::timeout,this,&nivel1::moverArabe);
+
+        colision_arabe =  new QTimer();
+        connect(colision_arabe, &QTimer::timeout,this,&nivel1::colisionArabe);
+
+        balasB = new QTimer();
+        connect(balasB,&QTimer::timeout,this,&nivel1::dispararBoss);
+
+        timerGBB = new QTimer();
+        connect(timerGBB, &QTimer::timeout,this,&nivel1::generarBalasBoss);
+    //    timerGBB->start(20);
+
+        timerColisionBalasBoss = new QTimer();
+        connect(timerColisionBalasBoss, &QTimer::timeout,this,&nivel1::ColisionBalasBoss);
+    //    timerColisionBalasBoss->start(1);
+
+        timerMoverBoss = new QTimer();
+        connect(timerMoverBoss, &QTimer::timeout,this,&nivel1::moverBoss) ;
+    //    timerMoverBoss->start(20);
+
+        timerCBJCB = new QTimer;
+        connect(timerCBJCB, &QTimer::timeout,this,&nivel1::CBJCB) ;
+
+        timerColisionesJugador =  new QTimer;
+        connect(timerColisionesJugador,&QTimer::timeout,this,&nivel1::colisionesJugador);
+    //    timerColisionesJugador->start(20);
+
+        lvl1 = new QTimer();
+        connect(lvl1, &QTimer::timeout,this,&nivel1::jefeFinal);
+        lvl1->start(20);
+
+        dialog = new QTimer();
+        connect(dialog, &QTimer::timeout,this,&nivel1::dialogos);
+        dialog->start(10000);
+
+        timerGBB->stop();
+        timerColisionBalasBoss->stop();
+        timerMoverBoss->stop();
+        tiempo->start(20);
+
+        //-------------------foco-------------------
+        scene->setSceneRect(0,jugador->getPosy()-515,800,600);
+        ui->lcdNumber->setVisible(false);
+        ui->lcdNumber_2->setVisible(false);
+        ui->lcdNumber_3->setVisible(false);
+        generarObstaculos();
+        dialogosAgusto=new QMediaPlayer;
+        dialogosAgusto->setMedia(QUrl("qrc:/musica/llegaranecdota.mp3"));
+        dialogosAgusto->setVolume(100);
+        dialogosAgusto->play();
+        ui->ARDUINO->setVisible(false);
+        ui->GUARDAPARTIDA->setVisible(false);
+        ui->SALIR->setVisible(false);
+        numOleada = numOleada_;
+        sala = numSala;
+
+}
+
+void nivel1::MostrarTimers()
+{
+    if(tiempo->isActive())
+    {
+        qDebug() << "el timer tiempo está activo";
+    }
+    if ( mover_Soldado->isActive())
+    {
+        qDebug() << "el timer mover soldado está activo";
+    }
+    if( mover_arabe->isActive())
+    {
+        qDebug() << "el timer mover arabe está activo";
+    }
+    if ( colision_arabe->isActive())
+    {
+        qDebug() << "el timer colision arabe está activo";
+    }
+    if (balas_soldado->isActive())
+    {
+        qDebug() << "el timer balas soldado está activo";
+    }
+    if ( balasB->isActive())
+    {
+        qDebug() << "el timer balasB está activo";
+    }
+    if( timerGBB->isActive())
+    {
+        qDebug() << "el timer GBB está activo";
+    }
+    if ( timerColisionBalasBoss->isActive())
+    {
+        qDebug() << "el timer colision balas boss está activo";
+    }
+    if ( timerMoverBoss->isActive())
+    {
+        qDebug() << "el timer mover boss está activo";
+    }
+    if( timerCBJCB->isActive())
+    {
+        qDebug() << "el timer CBJCB está activo";
+    }
+    if ( timerColisionesJugador->isActive())
+    {
+        qDebug() << "el timer colisiones jugador está activo";
+    }
+    if( lvl1->isActive())
+    {
+        qDebug() << "el timer lvl1 está activo";
+    }
+    if( dialog->isActive())
+    {
+        qDebug() << "el timer dialog está activo";
+    }
+    if( oleada->isActive())
+    {
+        qDebug() << "el timer oleada está activo";
+    }
+    if( puertas->isActive())
+    {
+        qDebug() << "el timer puertas está activo";
+    }
+    qDebug() << "----------------------------------------------------------------------------";
+    qDebug() << "----------------------------------------------------------------------------";
+    qDebug() << "----------------------------------------------------------------------------";
+    qDebug() << "----------------------------------------------------------------------------";
+    qDebug() << "----------------------------------------------------------------------------";
+    qDebug() << "----------------------------------------------------------------------------";
+    qDebug() << "----------------------------------------------------------------------------";
+}
+
 void nivel1::colisionArabe()
 {
     //esta funcion se encarga de detectar cuando un arabe colisiona con el jugador para explotarse y dejar el rastro.
@@ -1186,7 +1416,6 @@ void nivel1::colisionArabe()
            ca.i->t()->setPos(ca.i->t()->getPosx()-20,ca.i->t()->getPosy()-20);
            ca.i->t()->setPixmap(QPixmap(":/imagenes/arabeExplosion.png"));
            ca.i->t()->setExplotar(true);
-
         }
     }
 }
@@ -1198,7 +1427,11 @@ void nivel1::moverBalasJugador()
             balasJugador.at(i)->moverBala();
             CBJCS(balasJugador.at(i));
     }
-    qDebug()<< jugador->getPosx()<<"   ::::   "<<jugador->getPosy();
+    if ( delayDisparar<20)
+    {
+        delayDisparar++;
+    }
+
 }
 
 
@@ -1252,7 +1485,7 @@ void nivel1::on_SALIR_clicked()
     {
         mover_arabe->start(20) ;
     }
-    if ( colision_arabe->isActive())
+    if ( !colision_arabe->isActive())
     {
         colision_arabe->start(20);
     }
@@ -1260,23 +1493,23 @@ void nivel1::on_SALIR_clicked()
     {
         balas_soldado->start(20);
     }
-    if ( !balasB->isActive())
+    if ( !balasB->isActive() && agujeroNegro->getAgujero()==true)
     {
         balasB->start(10);
     }
-    if( !timerGBB->isActive())
+    if( !timerGBB->isActive() && agujeroNegro->getAgujero()==true)
     {
         timerGBB->start(20);
     }
-    if ( !timerColisionBalasBoss->isActive())
+    if ( !timerColisionBalasBoss->isActive() && agujeroNegro->getAgujero()==true)
     {
         timerColisionBalasBoss->start(1);
     }
-    if ( !timerMoverBoss->isActive())
+    if ( !timerMoverBoss->isActive() && agujeroNegro->getAgujero()==true)
     {
         timerMoverBoss->start(20);
     }
-    if(! timerCBJCB->isActive())
+    if(! timerCBJCB->isActive() && agujeroNegro->getAgujero()==true)
     {
         timerCBJCB->start(1);
     }
@@ -1312,19 +1545,22 @@ void nivel1::on_ARDUINO_clicked()
 
 void nivel1::on_GUARDAPARTIDA_clicked()
 {
-    QFile file(uss);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    QFile cuenta(uss);
+    if ( cuenta.open(QFile::WriteOnly | QFile::Text))
     {
-        qDebug() << "error abriendo la cuenta ";
+        QTextStream out(&cuenta);
+        out<<uss<<endl;
+        out<<pass<<endl;
+        out<<jugador->getPosx()<<endl;
+        out<<jugador->getPosy()<<endl;
+        out<<numOleada<<endl;
+        if ( numOleada>=1)
+        {
+            numOleada-=1;
+        }
+        qDebug() << numOleada;
+        out<<sala<<endl;
+        qDebug() << sala;
+    cuenta.close();
     }
-    else
-    {
-        QTextStream cuenta(&file);
-        cuenta<<uss<<endl<<pass<<endl;
-        //estando en la tercera linea empezamos a guardar datos
-        cuenta << jugador->getPosx()<<","<<jugador->getPosy()<<endl;
-        file.close();
-    }
-    //abrimos el archivo de texto modo escritura
-    //nos situamos en la linea 3
 }

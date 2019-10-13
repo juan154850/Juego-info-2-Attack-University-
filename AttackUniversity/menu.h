@@ -7,7 +7,8 @@
 #include <string>
 #include <QMessageBox>
 #include "nivel1.h"
-
+#include <string.h>
+#include <fstream>
 using namespace std;
 namespace Ui {
 class menu;
@@ -39,11 +40,12 @@ private slots:
     void on_multijugador_clicked();
 
 private:
-    Ui::menu *ui;
-    QString user_;
-    QString pass_;    
+    Ui::menu *ui;   
+    QString uss;
+    QString pass;
     string clave;
     QMediaPlayer *music;//musica de fondo
+    bool cargar=false;
 };
 
 #endif // MENU_H

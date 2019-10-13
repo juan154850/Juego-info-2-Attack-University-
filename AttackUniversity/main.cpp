@@ -5,7 +5,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    nivel1 w("admin","admin");
+//    nivel1 w("admin","admin",false);
+    menu w;
     w.show();
 
     return a.exec();

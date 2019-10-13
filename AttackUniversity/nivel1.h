@@ -20,7 +20,8 @@
 #include <QMediaPlayer>
 #include <QString>
 #include <QFile>
-
+#include <fstream>
+using namespace  std;
 namespace Ui {
 class nivel1;
 }
@@ -30,7 +31,7 @@ class nivel1 : public QWidget
     Q_OBJECT
 
 public:
-    explicit nivel1(QString fileName,QString PassName,QWidget *parent = nullptr);
+    explicit nivel1(QString fileName,QString PassName, bool cargar,QWidget *parent = nullptr);
 
     ~nivel1();
     void keyPressEvent(QKeyEvent *ev);
@@ -44,6 +45,10 @@ public:
     void jefeFinal();
     void generarArabe(void);
     void pausa();
+    void cargarPartida();
+    void nuevaPartida();
+    void nuevaPartida(int posx, int posy, int numOleada_, int numSala);
+    void MostrarTimers();
 
 
 public slots:   
@@ -161,6 +166,7 @@ private:
     bool pausa_ = false;
     QString uss;
     QString pass;
+    int delayDisparar=50;
 
 
 };

@@ -51,10 +51,24 @@ void menu::on_registro_clicked()
 
 void menu::on_iniciar_2_clicked()
 {
-    QFile Iniciando(ui->uss->text());
-    qDebug()<< "enntrando en iniciar 2";
-    if (!Iniciando.open(QIODevice::ReadOnly | QIODevice::Text))
-    {        
+    //verificamos si los datos que hay en los campos son equivalentes a algun archivo de texto
+     uss=ui->uss->text();
+     pass=ui->pass->text();
+    QFile archivo(uss);
+
+    if(archivo.open(QFile::ReadOnly | QFile::Text))
+    {
+        //cargamos de forma correcta el archivo por tanto vamos a habilitar la nueva ventana.
+        ui->uss->setVisible(false);
+        ui->pass->setVisible(false);
+        ui->multijugador->setVisible(true);
+        ui->cargarPartida->setVisible(true);
+        ui->nuevaPartida->setVisible(true);
+        ui->iniciar_2->setVisible(false);
+        archivo.close();
+    }
+    else
+    {
         QMessageBox::StandardButton reply;
         reply=QMessageBox::question(this,"Inicio","Cuenta inexistente, ¿Deseas crear una?",
                                     QMessageBox::Yes | QMessageBox::No);
@@ -68,81 +82,54 @@ void menu::on_iniciar_2_clicked()
         {
             return;
         }
-    }
-    else
-    {
-        QTextStream ini(&Iniciando);
-        user_=ini.readLine();
-        pass_=ini.readLine();
-        if (user_== ui->uss->text() && pass_== ui->pass->text())
-        {
-            //mostramos el menu de cargar partida, nueva partida, multijugador
 
-            ui->iniciar_2->setVisible(false);
-            ui->uss->setVisible(false);
-            ui->pass->setVisible(false);
-            ui->cargarPartida->setVisible(true);
-            ui->nuevaPartida->setVisible(true);
-            ui->multijugador->setVisible(true);
-        }
     }
+
 
 }
 
 void menu::on_registro_2_clicked()
 {
-    if(ui->uss->text()=="" || ui->pass->text()=="") //verifica que el usuario y la contraseña no esten vacios
+     uss=ui->uss->text();
+     pass = ui->pass->text();
+    QFile cuenta(uss);
+    if ( cuenta.open(QFile::WriteOnly | QFile::Text))
     {
-        QMessageBox::information(this,"Registro","Registro no exitoso, revise bien los campos.");
+        QMessageBox::information(this,"Menú","Cuenta Creada Con Éxito.");
+        QTextStream out(&cuenta);
+        out << uss<<endl;
+        out << pass << endl;
+        cuenta.close();
+        ui->uss->setVisible(false);
+        ui->pass->setVisible(false);
+        ui->multijugador->setVisible(true);
+        ui->cargarPartida->setVisible(true);
+        ui->nuevaPartida->setVisible(true);
+        ui->registro_2->setVisible(false);
     }
     else
     {
-        QFile creandoCuenta(ui->uss->text());
-        if ((!creandoCuenta.open((QIODevice::WriteOnly | QIODevice::Text )) //se abre en modo escritura
-             ))
-        {
-            qDebug () << "error abriendo el archivo de registro";
-            return;
-        }
-
-        QTextStream out(&creandoCuenta); //abre el archivo que se creo con la cuenta
-        out << ui->uss->text(); //escribe el nombre de usuario en el archivo
-        out <<endl<<  ui->pass->text()<<endl; // escribe la contraseña en el archivo de texto
-        creandoCuenta.close(); //cierra el archivo
-        QMessageBox::information(this,"Registro","Registro exitoso.");
-
-        //mostramos el menu de cargar partida, nueva partida, multijugador
-        ui->iniciar_2->~QPushButton();
-        ui->uss->~QLineEdit();
-        ui->pass->~QLineEdit();
-        ui->registro_2->setVisible(false);
-        ui->cargarPartida->setVisible(true);
-        ui->nuevaPartida->setVisible(true);
-        ui->multijugador->setVisible(true);
-        user_ = ui->uss->text();
-        pass_ = ui->pass->text();
+        QMessageBox::information(this,"Menú","Error, por favor vuelva a intentarlo.");
     }
-
 }
 
 void menu::on_nuevaPartida_clicked()
 {
-    qDebug ( ) <<"nueva partida";
-    nivel1 * juego;
-    juego = new nivel1(user_,pass_);
+    nivel1 *juego;
+    juego = new nivel1(uss,pass,false);
     juego->show();
-    music->stop();
     close();
 }
 
 void menu::on_cargarPartida_clicked()
 {
-    qDebug ( ) <<"cargar partida";
-    QMessageBox::information(this,"Menú","En desarrollo");
+    nivel1 *juego;
+    juego = new nivel1(uss,pass,true);
+    juego->show();
+    close();
 }
 
 void menu::on_multijugador_clicked()
-{
-    qDebug ( ) <<"multijugador";
+{    
     QMessageBox::information(this,"Menú","En desarrollo");
 }
