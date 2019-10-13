@@ -198,4 +198,14 @@ void bala::setNumBala(int value)
     numBala = value;
 }
 
+bool bala::getSumarVida() const
+{
+    return sumarVida;
+}
+
+void bala::setSumarVida(bool value)
+{
+    sumarVida = value;
+}
+
 

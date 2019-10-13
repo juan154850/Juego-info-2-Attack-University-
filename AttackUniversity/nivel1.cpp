@@ -1,6 +1,6 @@
 #include "nivel1.h"
 #include "ui_nivel1.h"
-
+#include <ganar.h>
 nivel1::nivel1(QString fileName,QString PassName,bool cargar,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::nivel1)
@@ -23,13 +23,12 @@ nivel1::nivel1(QString fileName,QString PassName,bool cargar,QWidget *parent) :
 nivel1::~nivel1()
 {
     delete ui;
+    delete jugador;
+    delete  sebastian;
 }
 
 void nivel1::keyPressEvent(QKeyEvent *ev)
 {    
-
-    ui->lcdNumber->display(jugador->getPosx());
-    ui->lcdNumber_2->display(jugador->getPosy());    
     switch (ev->key())
     {
 
@@ -154,7 +153,7 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
         {
             break;
         }
-        else if ( delayDisparar >= 20)
+        else if ( delayDisparar >= 10)
         {
             //-------------------creacion de balas-------------------
             balasJugador.append(new bala(jugador->getPosx()+8,jugador->getPosy()-10,20,20,dire));
@@ -166,7 +165,8 @@ void nivel1::keyPressEvent(QKeyEvent *ev)
     case(Qt::Key_P):
     {
         //parar todos los timers
-        pausa();
+
+        pausa();       
         break;
     }
     }
@@ -248,7 +248,6 @@ void nivel1::generarBordes()
 
 }
 
-
 void nivel1::moverSoldado()
 {
    QList<soldado*>::iterator ms;
@@ -325,13 +324,31 @@ void nivel1::ColisionBalasBoss()
     for ( int i = 0 ; i< L_balasBoss.size() ; i++)
     {
         if( L_balasBoss.at(i)->collidesWithItem(jugador))
-        {            
-            scene->removeItem(L_balasBoss.at(i));
-            L_balasBoss.removeOne(L_balasBoss.at(i));
-            jugador->setVida(jugador->getVida()-5);
+        {
+            if( L_balasBoss.at(i)->getSumarVida() == true)
+            {
+                //sumamos 5 unidades a la vida del jugador
+                scene->removeItem(L_balasBoss.at(i));
+                L_balasBoss.removeOne(L_balasBoss.at(i));
+                jugador->setVida(jugador->getVida()+5);
+                ui->vidaJugador->setValue(jugador->getVida());
+            }
+            else
+            {
+                scene->removeItem(L_balasBoss.at(i));
+                L_balasBoss.removeOne(L_balasBoss.at(i));
+                jugador->setVida(jugador->getVida()-5);
+                ui->vidaJugador->setValue(jugador->getVida());
+            }
+
             if ( jugador->getVida() <=0 )
             {
+                pausa();
+                Ganar * gano;
+                gano = new Ganar(uss,pass,false);
+                ui->~nivel1();
                 close();
+                gano->show();
             }
             else
             {                
@@ -422,7 +439,7 @@ void nivel1::CBJCS(bala * LaBala)
 
 void nivel1::generarBalasBoss()
 {       
-    if ( L_balasBoss.size()==0 && sebastian->getMoviendome()==false)
+    if ( L_balasBoss.size()==0 && sebastian->getMoviendome()==false && sebastian->getVida()>0)
     {
         poder = 1+rand()%3;
         if ( poder ==1)
@@ -529,9 +546,10 @@ void nivel1::generarBalasBoss()
             L_balasBoss.last()->setNumBala(0);
             scene->addItem(L_balasBoss.last());
             L_balasBoss.at(cinco)->setPixmap(QPixmap(":/imagenes/vida.png").scaled(30,30));
+            L_balasBoss.at(cinco)->setSumarVida(true);
             poder= 5;
         }
-        if ( !balasB->isActive())
+        if ( !balasB->isActive() )
         {
             balasB->start(10);
         }
@@ -545,13 +563,11 @@ void nivel1::moverBoss()
         sebastian->setMoviendome(true);
         if ( (margenError<0))
         {
-            sebastian->moverDerecha(0.04);
-            ui->lcdNumber->display(sebastian->getPosx());
+            sebastian->moverDerecha(0.04);            
         }
         else if ( margenError > 0 )
         {
-            sebastian->moverIzquierda(0.04);
-            ui->lcdNumber_2->display(sebastian->getPosx());
+            sebastian->moverIzquierda(0.04);            
         }
 
     }
@@ -581,6 +597,7 @@ void nivel1::CBJCB()
                 scene->removeItem(balasJugador.at(i));
                 balasJugador.removeOne(balasJugador.at(i));
                 sebastian->setEscudo(sebastian->getEscudo()-jugador->getDamage());
+                ui->vida_boss->setValue(sebastian->getEscudo());
             }
             else
             {
@@ -590,29 +607,29 @@ void nivel1::CBJCB()
                     scene->removeItem(balasJugador.at(i));
                     balasJugador.removeOne(balasJugador.at(i));
                     sebastian->setVida(sebastian->getVida()-jugador->getDamage());
+                    ui->vida_boss->setValue(sebastian->getVida());
+
                 }
                 else
                 {                    
                     timerCBJCB->stop();
                     sebastian->setPixmap(QPixmap(":/imagenes/arabeExplosion.png"));
                     timerMoverBoss->stop();
-                    timerGBB->stop();
-                    balasB->stop();
+                    timerGBB->stop();                    
+                    pausa();
+                    Ganar * gano;
+                    gano = new Ganar(uss,pass,true);
+                    ui->~nivel1();
+                    close();
+                    gano->show();
                 }
             }
-        }
-        else if ( balasJugador.at(i)->collidesWithItem(mesa1) || balasJugador.at(i)->collidesWithItem(mesa2)
-                    ||balasJugador.at(i)->collidesWithItem(mesa3) || balasJugador.at(i)->collidesWithItem(mesa4))
-        {
-            scene->removeItem(balasJugador.at(i));
-            balasJugador.removeOne(balasJugador.at(i));
         }
     }
 }
 
 void nivel1::colisionesJugador()
 {
-//    qDebug() << balasJugador.size()<<"balas jugador size";
     //este primer for es para detecta la colision del jugador con los arabes cuando estan muertos, generando friccion
     for ( int i = 0 ; i < arabes.size(); i++)
     {
@@ -631,13 +648,18 @@ void nivel1::colisionesJugador()
         {
             jugador->setVida(jugador->getVida()-10);
             mermarVida=0;
-            ui->progressBar->setValue(jugador->getVida());
+            ui->vidaJugador->setValue(jugador->getVida());
             if (  jugador->getVida()<=0)
             {
-//                qDebug()<<"perdio papi";
+                pausa();
+                Ganar * gano;
+                gano = new Ganar(uss,pass,false);
+                ui->~nivel1();
+                close();
+                gano->show();
             }
         }
-    }
+    }   
 }
 
 void nivel1::dialogos()
@@ -724,19 +746,6 @@ void nivel1::oleadas()
 
 void nivel1::CBSCM(bala *LaBalaDelSoldado)
 {
-
-    if ( LaBalaDelSoldado->collidesWithItem(jugador))
-    {
-        jugador->setVida(jugador->getVida()-3);
-        ui->progressBar->setValue(jugador->getVida());
-        scene->removeItem(LaBalaDelSoldado);
-        balas.removeOne(LaBalaDelSoldado);
-        if (  jugador->getVida()<=0)
-        {
-//            qDebug()<<"perdio papi";
-        }
-
-    }
     for ( int i = 0 ; i< obs.size(); i++)
     {
         if ( LaBalaDelSoldado->collidesWithItem(obs.at(i)))
@@ -747,8 +756,24 @@ void nivel1::CBSCM(bala *LaBalaDelSoldado)
         }
 
     }
+    if ( LaBalaDelSoldado->collidesWithItem(jugador))
+    {
+        jugador->setVida(jugador->getVida()-3);
+        ui->vidaJugador->setValue(jugador->getVida());
+        scene->removeItem(LaBalaDelSoldado);
+        balas.removeOne(LaBalaDelSoldado);
+        if (  jugador->getVida()<=0)
+        {
+//            qDebug()<<"perdio papi";
+            pausa();
+            Ganar * gano;
+            gano = new Ganar(uss,pass,false);
+            ui->~nivel1();
+            close();
+            gano->show();
+        }
 
-
+    }
 }
 
 void nivel1::ColisionArabesYSoldados(soldado *solda)
@@ -759,7 +784,6 @@ void nivel1::ColisionArabesYSoldados(soldado *solda)
         {
             //qDebug() <<"hola, estoy tapando un soldado jaja";
             solda->moverAr(0.1);
-
         }
     }
 }
@@ -767,14 +791,83 @@ void nivel1::ColisionArabesYSoldados(soldado *solda)
 void nivel1::generarObstaculos()
 {
     //esta funcion genera todos los obstaculos del primer nivel
-    mesa1=(new obstaculos( 226,-2512,30,30));
+    mesa1=(new obstaculos( 226,-2512,30,30));    
+    mesas.push_back(mesa1);
     scene->addItem(mesa1);
     mesa2=(new obstaculos( 118,-2744,30,30));
+    mesas.push_back(mesa2);
     scene->addItem(mesa2);
     mesa3=(new obstaculos( 344,-2696,30,30));
+    mesas.push_back(mesa3);
     scene->addItem(mesa3);
     mesa4=(new obstaculos( 650,-2796,30,30));
+    mesas.push_back(mesa4);
     scene->addItem(mesa4);
+    barril1=(new obstaculos( 70,-253,60,60));
+    mesas.push_back(barril1);
+    barril1->setPixmap(QPixmap(":/imagenes/barril.png").scaled(60,60));
+    scene->addItem(barril1);
+    barril2=(new obstaculos( 375,-178,60,60));
+    mesas.push_back(barril2);
+    barril2->setPixmap(QPixmap(":/imagenes/barril.png").scaled(60,60));
+    scene->addItem(barril2);
+    barril3=(new obstaculos( 603,-122,60,60));
+    mesas.push_back(barril3);
+    barril3->setPixmap(QPixmap(":/imagenes/barril.png").scaled(60,60));
+    scene->addItem(barril3);
+    barril4=(new obstaculos( 363,-394,60,60));
+    mesas.push_back(barril4);
+    barril4->setPixmap(QPixmap(":/imagenes/barril.png").scaled(60,60));
+    scene->addItem(barril4);
+    trincho1=(new obstaculos( 174,-434,30,30));
+    mesas.push_back(trincho1);
+    trincho1->setPixmap(QPixmap(":/imagenes/valla1.png"));
+    scene->addItem(trincho1);
+    trincho2=(new obstaculos( 195,-1374,30,30));
+    mesas.push_back(trincho2);
+    trincho2->setPixmap(QPixmap(":/imagenes/valla1.png"));
+    scene->addItem(trincho2);
+    trincho3=(new obstaculos( 527,-1506,30,30));
+    mesas.push_back(trincho3);
+    trincho3->setPixmap(QPixmap(":/imagenes/valla1.png"));
+    scene->addItem(trincho3);
+    trincho4=(new obstaculos( 343,-1690,30,30));
+    mesas.push_back(trincho4);
+    trincho4->setPixmap(QPixmap(":/imagenes/valla1.png"));
+    scene->addItem(trincho4);
+    caja1=(new obstaculos( 125,-434,60,60));
+    mesas.push_back(caja1);
+    caja1->setPixmap(QPixmap(":/imagenes/caja.png").scaled(60,60));
+    scene->addItem(caja1);
+    caja2=(new obstaculos( 405,-1300,60,60));
+    mesas.push_back(caja2);
+    caja2->setPixmap(QPixmap(":/imagenes/caja.png").scaled(60,60));
+    scene->addItem(caja2);
+    bolaDeFuego1 = new obstaculos(578,-482,30,30);
+    bolaDeFuego1->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego1);
+    bolaDeFuego2 = new obstaculos(700,-868,30,30);
+    bolaDeFuego2->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego2);
+    bolaDeFuego3 = new obstaculos(700,-1176,30,30);
+    bolaDeFuego3->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego3);
+    bolaDeFuego4 = new obstaculos(384,-1465,30,30);
+    bolaDeFuego4->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego4);
+    bolaDeFuego5 = new obstaculos(152,-1657,30,30);
+    bolaDeFuego5->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego5);
+    bolaDeFuego6 = new obstaculos(700,-2197,30,30);
+    bolaDeFuego6->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego6);
+    bolasDeFuego.push_back(bolaDeFuego1);
+    bolasDeFuego.push_back(bolaDeFuego2);
+    bolasDeFuego.push_back(bolaDeFuego3);
+    bolasDeFuego.push_back(bolaDeFuego4);
+    bolasDeFuego.push_back(bolaDeFuego5);
+    bolasDeFuego.push_back(bolaDeFuego6);
+
 }
 
 bool nivel1::colisionConMesa()
@@ -951,8 +1044,8 @@ if ( jugador->collidesWithItem(puertaSala2))
  else if (jugador->collidesWithItem(puertaSala2) &&  sala ==2  && soldados.size()!= 0 )
  {
      jugador->setPosy(jugador->getPosy()-10);
- }
- MostrarTimers();
+ } 
+ //MostrarTimers();
 }
 
 void nivel1::generarArabe()
@@ -1010,7 +1103,18 @@ void nivel1::generarArabe()
 }
 
 void nivel1::pausa()
-{
+{    
+    if( sebastian->getVida()<=0)
+    {
+        //no diga que le salio falda
+    }
+    else
+    {
+        dialogosAgusto->setMedia(QUrl("qrc:/musica/lesaliofaldita_1.mp3"));
+        dialogosAgusto->setVolume(100);
+        dialogosAgusto->play();
+    }
+
     pausa_=true ;
     if(tiempo->isActive())
     {
@@ -1072,6 +1176,14 @@ void nivel1::pausa()
     {
         puertas->stop();
     }
+    if ( timerColisionDeMesas->isActive())
+    {
+        timerColisionDeMesas->stop();
+    }
+    if( Timer_MoverYColisionBolasDeFuego->isActive())
+    {
+        Timer_MoverYColisionBolasDeFuego->stop();
+    }
     ui->ARDUINO->setVisible(true);
     ui->GUARDAPARTIDA->setVisible(true);
     ui->SALIR->setVisible(true);
@@ -1124,7 +1236,7 @@ void nivel1::nuevaPartida()
 
         //-------------------player-------------------
 
-        jugador = new personaje(382,-81,50,55,100,100);
+        jugador = new personaje(682,-2356,50,55,100,100);
         scene->addItem(jugador);
         scene->setFocusItem(jugador);
 
@@ -1141,6 +1253,9 @@ void nivel1::nuevaPartida()
         connect(puertas, &QTimer::timeout, this, &nivel1::Puertas);
         puertas->start(1);
 
+        Timer_MoverYColisionBolasDeFuego = new QTimer ;
+        connect(Timer_MoverYColisionBolasDeFuego, &QTimer::timeout, this, &nivel1::MoverYColisionBolasDeFuego);
+        Timer_MoverYColisionBolasDeFuego->start(20);
 
         oleada = new QTimer();
         connect(oleada, &QTimer::timeout, this, &nivel1::oleadas);
@@ -1148,15 +1263,12 @@ void nivel1::nuevaPartida()
 
         tiempo = new QTimer();
         connect(tiempo, &QTimer::timeout, this, &nivel1::moverBalasJugador);
-    //    tiempo->start(20);
 
         balas_soldado = new QTimer();
-        connect(balas_soldado,&QTimer::timeout,this,&nivel1::dispararSoldado);
-    //    balas_soldado->start(20);
+        connect(balas_soldado,&QTimer::timeout,this,&nivel1::dispararSoldado);  
 
         mover_Soldado = new QTimer();
         connect(mover_Soldado,&QTimer::timeout,this,&nivel1::moverSoldado);
-    //    mover_Soldado->start(3000);
 
         mover_arabe = new QTimer();
         connect(mover_arabe,&QTimer::timeout,this,&nivel1::moverArabe);
@@ -1168,23 +1280,19 @@ void nivel1::nuevaPartida()
         connect(balasB,&QTimer::timeout,this,&nivel1::dispararBoss);
 
         timerGBB = new QTimer();
-        connect(timerGBB, &QTimer::timeout,this,&nivel1::generarBalasBoss);
-    //    timerGBB->start(20);
+        connect(timerGBB, &QTimer::timeout,this,&nivel1::generarBalasBoss);    
 
         timerColisionBalasBoss = new QTimer();
-        connect(timerColisionBalasBoss, &QTimer::timeout,this,&nivel1::ColisionBalasBoss);
-    //    timerColisionBalasBoss->start(1);
+        connect(timerColisionBalasBoss, &QTimer::timeout,this,&nivel1::ColisionBalasBoss);    
 
         timerMoverBoss = new QTimer();
-        connect(timerMoverBoss, &QTimer::timeout,this,&nivel1::moverBoss) ;
-    //    timerMoverBoss->start(20);
+        connect(timerMoverBoss, &QTimer::timeout,this,&nivel1::moverBoss) ;    
 
         timerCBJCB = new QTimer;
         connect(timerCBJCB, &QTimer::timeout,this,&nivel1::CBJCB) ;
 
         timerColisionesJugador =  new QTimer;
-        connect(timerColisionesJugador,&QTimer::timeout,this,&nivel1::colisionesJugador);
-    //    timerColisionesJugador->start(20);
+        connect(timerColisionesJugador,&QTimer::timeout,this,&nivel1::colisionesJugador);    
 
         lvl1 = new QTimer();
         connect(lvl1, &QTimer::timeout,this,&nivel1::jefeFinal);
@@ -1194,6 +1302,10 @@ void nivel1::nuevaPartida()
         connect(dialog, &QTimer::timeout,this,&nivel1::dialogos);
         dialog->start(10000);
 
+        timerColisionDeMesas = new QTimer;
+        connect(timerColisionDeMesas, &QTimer::timeout,this,&nivel1::colisionConMesas);
+        timerColisionDeMesas->start(1);
+
         timerGBB->stop();
         timerColisionBalasBoss->stop();
         timerMoverBoss->stop();
@@ -1201,8 +1313,6 @@ void nivel1::nuevaPartida()
 
         //-------------------foco-------------------
         scene->setSceneRect(0,jugador->getPosy()-515,800,600);
-        ui->lcdNumber->setVisible(false);
-        ui->lcdNumber_2->setVisible(false);
         ui->lcdNumber_3->setVisible(false);
         generarObstaculos();
         dialogosAgusto=new QMediaPlayer;
@@ -1212,6 +1322,9 @@ void nivel1::nuevaPartida()
         ui->ARDUINO->setVisible(false);
         ui->GUARDAPARTIDA->setVisible(false);
         ui->SALIR->setVisible(false);
+        ui->vida_boss->setVisible(false);
+        ui->label_2->setVisible(false);
+
 }
 
 void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala)
@@ -1310,6 +1423,10 @@ void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala)
         connect(dialog, &QTimer::timeout,this,&nivel1::dialogos);
         dialog->start(10000);
 
+        timerColisionDeMesas = new QTimer;
+        connect(timerColisionDeMesas, &QTimer::timeout,this,&nivel1::colisionConMesas);
+        timerColisionDeMesas->start(1);
+
         timerGBB->stop();
         timerColisionBalasBoss->stop();
         timerMoverBoss->stop();
@@ -1317,8 +1434,6 @@ void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala)
 
         //-------------------foco-------------------
         scene->setSceneRect(0,jugador->getPosy()-515,800,600);
-        ui->lcdNumber->setVisible(false);
-        ui->lcdNumber_2->setVisible(false);
         ui->lcdNumber_3->setVisible(false);
         generarObstaculos();
         dialogosAgusto=new QMediaPlayer;
@@ -1328,6 +1443,7 @@ void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala)
         ui->ARDUINO->setVisible(false);
         ui->GUARDAPARTIDA->setVisible(false);
         ui->SALIR->setVisible(false);
+        ui->vida_boss->setVisible(false);
         numOleada = numOleada_;
         sala = numSala;
 
@@ -1395,13 +1511,56 @@ void nivel1::MostrarTimers()
     {
         qDebug() << "el timer puertas está activo";
     }
-    qDebug() << "----------------------------------------------------------------------------";
-    qDebug() << "----------------------------------------------------------------------------";
-    qDebug() << "----------------------------------------------------------------------------";
-    qDebug() << "----------------------------------------------------------------------------";
-    qDebug() << "----------------------------------------------------------------------------";
-    qDebug() << "----------------------------------------------------------------------------";
-    qDebug() << "----------------------------------------------------------------------------";
+
+}
+
+void nivel1::colisionConMesas()
+{
+    for ( int j = 0 ; j < mesas.size() ; j++)
+    {
+        for (int i = 0 ; i < balas.size(); i ++)
+        {
+            if ( balas.at(i)->collidesWithItem(mesas.at(j)))
+            {
+                scene->removeItem(balas.at(i));
+                balas.removeOne(balas.at(i));
+            }
+        }
+    }
+    for ( int j = 0 ; j < mesas.size() ; j++)
+    {
+        for (int i = 0 ; i < balasJugador.size(); i ++)
+        {
+            if ( balasJugador.at(i)->collidesWithItem(mesas.at(j)))
+            {
+                scene->removeItem(balasJugador.at(i));
+                balasJugador.removeOne(balasJugador.at(i));
+            }
+        }
+    }
+    qDebug() << jugador->getPosx() << " :: "<< jugador->getPosy();
+}
+
+void nivel1::MoverYColisionBolasDeFuego()
+{
+    for ( int i = 0 ; i< bolasDeFuego.size(); i++)
+    {
+        if( bolasDeFuego.at(i)->collidesWithItem(jugador))
+        {
+            jugador->setVida(jugador->getVida()-2);
+            ui->vidaJugador->setValue(jugador->getVida());
+            if( jugador->getVida()<=0)
+            {
+                pausa();
+                Ganar * gano;
+                gano = new Ganar(uss,pass,false);
+                ui->~nivel1();
+                close();
+                gano->show();
+            }
+        }
+        bolasDeFuego.at(i)->movimientoCircular();
+    }
 }
 
 void nivel1::colisionArabe()
@@ -1427,13 +1586,11 @@ void nivel1::moverBalasJugador()
             balasJugador.at(i)->moverBala();
             CBJCS(balasJugador.at(i));
     }
-    if ( delayDisparar<20)
+    if ( delayDisparar<10)
     {
         delayDisparar++;
-    }
-
+    }        
 }
-
 
 void nivel1::jefeFinal()
 {
@@ -1442,10 +1599,17 @@ void nivel1::jefeFinal()
         agujeroNegro->setPixmap(QPixmap(":/imagenes/agujero.png"));
         scene->addItem(agujeroNegro);
         agujeroNegro->setAgujero(true);
+
+    }
+    else if ( agujeroNegro->getAgujero() == true && !jugador->collidesWithItem(agujeroNegro))
+    {
+        agujeroNegro->atraccionGravitacional(jugador);
     }
     else if (agujeroNegro->getAgujero()==true && jugador->collidesWithItem(agujeroNegro))
     {
         //hay que sacar el boss
+        ui->label_2->setVisible(true);
+        ui->vida_boss->setVisible(true);
         timerCBJCB->start(1);
         sebastian->setActivo(true);
         sebastian->setPosx(374);
@@ -1460,8 +1624,7 @@ void nivel1::jefeFinal()
         timerColisionBalasBoss->start(1);
         timerMoverBoss->start(20);
         //hay que hacer que agusto empieze a decir cosas
-        scene->removeItem(agujeroNegro);
-        agujeroNegro->~obstaculos();
+        scene->removeItem(agujeroNegro);        
         dialogosAgusto->setMedia(QUrl("qrc:/musica/vencerme cuestióncarpintería.mp3"));
         dialogosAgusto->setVolume(100);
         dialogosAgusto->play();
@@ -1532,6 +1695,14 @@ void nivel1::on_SALIR_clicked()
     if(! puertas->isActive())
     {
         puertas->start(1);
+    }
+    if (  !timerColisionDeMesas->isActive())
+    {
+        timerColisionDeMesas->start(1);
+    }
+    if( !Timer_MoverYColisionBolasDeFuego->isActive())
+    {
+        Timer_MoverYColisionBolasDeFuego->start(20);
     }
     ui->ARDUINO->setVisible(false);
     ui->GUARDAPARTIDA->setVisible(false);

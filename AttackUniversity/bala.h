@@ -42,6 +42,9 @@ public:
     int getNumBala() const;
     void setNumBala(int value);
 
+    bool getSumarVida() const;
+    void setSumarVida(bool value);
+
 private:
     //-------------------atributos-------------------
     double posx;
@@ -53,6 +56,7 @@ private:
     char direccion='W'; //esta variable indica la direccion en que se esta disparando.
     int numBala=0;
     int angulo=0;
+    bool sumarVida=false;
 };
 
 #endif // BALA_H

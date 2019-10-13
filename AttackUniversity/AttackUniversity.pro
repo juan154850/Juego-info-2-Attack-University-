@@ -34,7 +34,8 @@ SOURCES += \
     soldado.cpp \
     arabe.cpp \
     boss1.cpp \
-    obstaculos.cpp
+    obstaculos.cpp \
+    ganar.cpp
 
 HEADERS += \
     personaje.h \
@@ -44,11 +45,13 @@ HEADERS += \
     soldado.h \
     arabe.h \
     boss1.h \
-    obstaculos.h
+    obstaculos.h \
+    ganar.h
 
 FORMS += \
     nivel1.ui \
-    menu.ui
+    menu.ui \
+    ganar.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

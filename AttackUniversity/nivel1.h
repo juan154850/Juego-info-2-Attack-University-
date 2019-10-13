@@ -21,6 +21,7 @@
 #include <QString>
 #include <QFile>
 #include <fstream>
+
 using namespace  std;
 namespace Ui {
 class nivel1;
@@ -48,8 +49,7 @@ public:
     void cargarPartida();
     void nuevaPartida();
     void nuevaPartida(int posx, int posy, int numOleada_, int numSala);
-    void MostrarTimers();
-
+    void MostrarTimers();   
 
 public slots:   
     void moverSoldado(void);
@@ -66,6 +66,8 @@ public slots:
     void colisionesJugador(void);
     void dialogos(void);
     void oleadas(void);
+    void colisionConMesas();
+    void MoverYColisionBolasDeFuego();
 
 
 
@@ -107,20 +109,23 @@ private:
     QTimer *lvl1;
     QTimer *dialog;
     QTimer *oleada;
-    QTimer *puertas;
+    QTimer *puertas;    
+    QTimer *timerColisionDeMesas;
+    QTimer *Timer_MoverYColisionBolasDeFuego;
 
 
 
 
 
     //listas
-    QList<bala*>balas;
+    QList<bala*>balas; //balas del soldado
     QList<bala*>balasJugador;
     QList<soldado*>soldados;
     QList<arabe*>arabes;    
     QList<bala*>L_balasBoss;    
     QList<QGraphicsLineItem*> obs;    
     QList<obstaculos*> mesas;
+    QList<obstaculos*>bolasDeFuego;
 
 
     //muros
@@ -144,8 +149,25 @@ private:
     obstaculos *mesa2;
     obstaculos *mesa3;
     obstaculos *mesa4;
+    obstaculos *barril1;
+    obstaculos *barril2;
+    obstaculos *barril3;
+    obstaculos *barril4;
+    obstaculos *trincho1;
+    obstaculos *trincho2;
+    obstaculos *trincho3;
+    obstaculos *trincho4;
+    obstaculos *caja1;
+    obstaculos *caja2;
     //agujero negro
     obstaculos *agujeroNegro;
+    //bolas de fuego con movimiento circular
+    obstaculos *bolaDeFuego1;
+    obstaculos *bolaDeFuego2;
+    obstaculos *bolaDeFuego3;
+    obstaculos *bolaDeFuego4;
+    obstaculos *bolaDeFuego5;
+    obstaculos *bolaDeFuego6;
 
     //otros
     char dire='W'; //controla la direccio en la que van las balas.    
@@ -157,7 +179,7 @@ private:
     int movimientoSebastian;
     int contador=0;
     int margenError=0;
-    int mermarVida=100;
+    int mermarVida=99;
     int poder=1;
     QMediaPlayer *dialogosAgusto;
     int numOleada=0;
@@ -166,7 +188,7 @@ private:
     bool pausa_ = false;
     QString uss;
     QString pass;
-    int delayDisparar=50;
+    int delayDisparar=10;    
 
 
 };

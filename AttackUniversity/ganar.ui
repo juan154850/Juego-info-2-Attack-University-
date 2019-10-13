@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Ganar</class>
+ <widget class="QDialog" name="Ganar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QGraphicsView" name="graphicsView">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSplitter" name="splitter">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>540</y>
+     <width>331</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <widget class="QPushButton" name="volver_a_jugar">
+    <property name="text">
+     <string>VOLVER A JUGAR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="siguiente_nivel">
+    <property name="styleSheet">
+     <string notr="true">image: url(:/imagenes/cooltext335629468732690.png);</string>
+    </property>
+    <property name="text">
+     <string>SIGUIENTE NIVEL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="salir_del_juego">
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>SALIR DEL JUEGO</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

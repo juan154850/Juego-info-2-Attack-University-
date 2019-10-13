@@ -40,5 +40,15 @@
         <file>musica/llegaranecdota.mp3</file>
         <file>musica/noseacochini.mp3</file>
         <file>musica/vencerme cuestióncarpintería.mp3</file>
+        <file>imagenes/barril.png</file>
+        <file>imagenes/caja.png</file>
+        <file>imagenes/valla1.png</file>
+        <file>imagenes/youwin.png</file>
+        <file>imagenes/gameOver.png</file>
+        <file>musica/cariñonomepidas.mp3</file>
+        <file>musica/esperaloqueseviene.mp3</file>
+        <file>musica/lesaliofaldita_1.mp3</file>
+        <file>musica/plazamercado.mp3</file>
+        <file>imagenes/bolaFuego.png</file>
     </qresource>
 </RCC>
