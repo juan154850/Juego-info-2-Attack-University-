@@ -41,15 +41,15 @@ public:
     void CBJCS(bala *LaBala);
     void CBSCM(bala *LaBalaDelSoldado);
     void ColisionArabesYSoldados(soldado *solda);    
-    void generarObstaculos(void);
-    bool colisionConMesa();
+    void generarObstaculos(void);    
     void jefeFinal();
     void generarArabe(void);
     void pausa();
     void cargarPartida();
     void nuevaPartida();
-    void nuevaPartida(int posx, int posy, int numOleada_, int numSala);
-    void MostrarTimers();   
+    void nuevaPartida(int posx, int posy, int numOleada_, int numSala, int VidaJugador);
+//    void MostrarTimers();
+    void colisionConMesasETC();
 
 public slots:   
     void moverSoldado(void);
@@ -66,8 +66,9 @@ public slots:
     void colisionesJugador(void);
     void dialogos(void);
     void oleadas(void);
-    void colisionConMesas();
+    void colisionBalasConMesasETC();
     void MoverYColisionBolasDeFuego();
+
 
 
 
@@ -81,6 +82,8 @@ private slots:
     void on_ARDUINO_clicked();
 
     void on_GUARDAPARTIDA_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::nivel1 *ui;
@@ -182,6 +185,8 @@ private:
     int mermarVida=99;
     int poder=1;
     QMediaPlayer *dialogosAgusto;
+    QMediaPlayer *musica;
+    QMediaPlayer *efectos;
     int numOleada=0;
     int sala=1;
     bool salaCompleta=false;
@@ -189,6 +194,7 @@ private:
     QString uss;
     QString pass;
     int delayDisparar=10;    
+    bool colision=false;
 
 
 };

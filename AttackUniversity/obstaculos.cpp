@@ -55,3 +55,13 @@ void obstaculos::atraccionGravitacional(personaje *elJugador)
         elJugador->moverAbajo(0.05);
     }
 }
+
+bool obstaculos::getTragadoxD() const
+{
+    return tragadoxD;
+}
+
+void obstaculos::setTragadoxD(bool value)
+{
+    tragadoxD = value;
+}

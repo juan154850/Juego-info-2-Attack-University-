@@ -50,5 +50,21 @@
         <file>musica/lesaliofaldita_1.mp3</file>
         <file>musica/plazamercado.mp3</file>
         <file>imagenes/bolaFuego.png</file>
+        <file>imagenes/jugadorAdelantePieDerecho.png</file>
+        <file>imagenes/jugadorAdelantePieIzquierdo.png</file>
+        <file>imagenes/jugadorAdelanteQuieto.png</file>
+        <file>imagenes/jugadorAtrasDerecho.png</file>
+        <file>imagenes/jugadorAtrasIzquierdo.png</file>
+        <file>imagenes/jugadorAtrasQuieto.png</file>
+        <file>imagenes/jugadorDerecha1.png</file>
+        <file>imagenes/jugadorDerecha2.png</file>
+        <file>imagenes/jugadorIzquierda1.png</file>
+        <file>imagenes/jugadorIzquierda2.png</file>
+        <file>imagenes/jugadorParadoDerecha.png</file>
+        <file>imagenes/jugadorParadoIzquierda.png</file>
+        <file>musica/disparar1.mp3</file>
+        <file>musica/cogerVida.mp3</file>
+        <file>musica/musicaFondo.mp3</file>
+        <file>musica/golpeAugusto.mp3</file>
     </qresource>
 </RCC>

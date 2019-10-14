@@ -12,6 +12,9 @@ public:
     void movimientoCircular();
     void atraccionGravitacional(personaje *elJugador);
 
+    bool getTragadoxD() const;
+    void setTragadoxD(bool value);
+
 private:
     double px;
     double py;
@@ -21,6 +24,7 @@ private:
     double anguloRad=0;
     double angulo=0;
     double radio =5;
+    bool tragadoxD=false;
 
 
 

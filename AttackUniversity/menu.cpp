@@ -15,7 +15,7 @@ menu::menu(QWidget *parent) :
     ui->registro_2->setVisible(false);
     music=new QMediaPlayer;
     music->setMedia(QUrl("qrc:/musica/Música Tema - Game of Thrones.mp3"));
-    music->setVolume(5);
+    music->setVolume(50);
     music->play();
 }
 
@@ -66,6 +66,7 @@ void menu::on_iniciar_2_clicked()
         ui->nuevaPartida->setVisible(true);
         ui->iniciar_2->setVisible(false);
         archivo.close();
+        music->stop();
     }
     else
     {

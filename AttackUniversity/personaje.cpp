@@ -14,7 +14,7 @@ personaje::personaje(double px, double py, float w, float h,double _vx, double _
     vx=_vx;
     vy=_vy;
     setPos(posx,posy);
-    setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(42,42));
+    setPixmap(QPixmap(":/imagenes/jugadorAtrasDerecho.png").scaled(45,50));
 }
 
 void personaje::moverIzquierda(double dt)
@@ -54,81 +54,91 @@ void personaje::setPosx(double value)
 }
 
 void personaje::animacionArriba()
-{
-    switch (animacion)
-    {
-        case (4):
+{        
+        if (animacion<= 4)
         {
-            setPixmap(QPixmap(":/imagenes/avt4_bk1.png").scaled(42,42));
-            break;
+            setPixmap(QPixmap(":/imagenes/jugadorAtrasIzquierdo.png").scaled(45,50));
         }
-        case (8):
+        if (animacion>4 && animacion <=8)
         {
-            setPixmap(QPixmap(":/imagenes/avt4_bk2.png").scaled(42,42));
-            animacion=0;
-            break;
+            setPixmap(QPixmap(":/imagenes/jugadorAtrasDerecho.png").scaled(45,50));
         }
-    }
-    animacion++;
+        if (animacion>8 && animacion <=12)
+        {
+            setPixmap(QPixmap(":/imagenes/jugadorAtrasQuieto.png").scaled(45,50));
+        }
+        if( animacion >= 13)
+        {
+          setPixmap(QPixmap(":/imagenes/jugadorAtrasQuieto.png").scaled(45,50));
+          animacion=0;
+        }
+        animacion++;
 }
 
 void personaje::animacionAbajo()
 {
-
-    switch (animacion)
-    {
-        case (4):
+        if (animacion<= 4)
         {
-            setPixmap(QPixmap(":/imagenes/avt3_fr1.png").scaled(42,42));
-            break;
+            setPixmap(QPixmap(":/imagenes/jugadorAdelantePieIzquierdo.png").scaled(45,50));
         }
-        case (8):
+        if (animacion>4 && animacion <=8)
         {
-            setPixmap(QPixmap(":/imagenes/avt3_fr2.png").scaled(42,42));
-            animacion=0;
-            break;
+            setPixmap(QPixmap(":/imagenes/jugadorAdelantePieDerecho.png").scaled(45,50));
         }
-    }
-    animacion++;
+        if (animacion>8 && animacion <=12)
+        {
+            setPixmap(QPixmap(":/imagenes/jugadorAdelanteQuieto.png").scaled(45,50));
+        }
+        if( animacion >= 13)
+        {
+          setPixmap(QPixmap(":/imagenes/jugadorAdelanteQuieto.png").scaled(45,50));
+          animacion=0;
+        }
+        animacion++;
 }
 
 void personaje::animacionIzquierda()
 {
-    switch (animacion)
-    {
-        case (4):
+        if (animacion<= 4)
         {
-            setPixmap(QPixmap(":/imagenes/avt3_rt1.png").scaled(42,42));
-            break;
+            setPixmap(QPixmap(":/imagenes/jugadorIzquierda1.png").scaled(45,50));
         }
-        case (8):
+        if (animacion>4 && animacion <=8)
         {
-            setPixmap(QPixmap(":/imagenes/avt3_rt2.png").scaled(42,40));
-            animacion=0;
-            break;
+            setPixmap(QPixmap(":/imagenes/jugadorIzquierda2.png").scaled(45,50));
         }
-    }
-    animacion++;
+        if (animacion>8 && animacion <=12)
+        {
+            setPixmap(QPixmap(":/imagenes/jugadorParadoIzquierda.png").scaled(45,50));
+        }
+        if( animacion >= 13)
+        {
+          setPixmap(QPixmap(":/imagenes/jugadorParadoIzquierda.png").scaled(45,50));
+          animacion=0;
+        }
+         animacion++;
 }
 
 void personaje::animacionDerecha()
 {
-
-    switch (animacion)
-    {
-        case (4):
+        if (animacion<= 4)
         {
-            setPixmap(QPixmap(":/imagenes/avt3_lf1.png").scaled(42,42));
-            break;
+            setPixmap(QPixmap(":/imagenes/jugadorDerecha1.png").scaled(45,50));
         }
-        case (8):
+        if (animacion>4 && animacion <=8)
         {
-            setPixmap(QPixmap(":/imagenes/avt3_lf2.png").scaled(42,42));
-            animacion=0;
-            break;
+            setPixmap(QPixmap(":/imagenes/jugadorDerecha2.png").scaled(45,50));
         }
-    }
-    animacion++;
+        if (animacion>8 && animacion <=12)
+        {
+            setPixmap(QPixmap(":/imagenes/jugadorParadoDerecha.png").scaled(45,50));
+        }
+        if( animacion >= 13)
+        {
+          setPixmap(QPixmap(":/imagenes/jugadorParadoDerecha.png").scaled(45,50));
+          animacion=0;
+        }
+        animacion++;
 }
 
 double personaje::getPosy() const

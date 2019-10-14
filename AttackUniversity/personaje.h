@@ -51,7 +51,7 @@ private:
     double vx=0;
     double vy=0;    
     int vida=100;
-    int damage = 5000;
+    int damage = 5;
     char dire;
 
 

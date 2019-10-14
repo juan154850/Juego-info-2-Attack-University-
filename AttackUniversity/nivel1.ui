@@ -71,34 +71,6 @@ color: rgb(170, 0, 0);</string>
     </rect>
    </property>
   </widget>
-  <widget class="QSplitter" name="splitter">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>270</y>
-     <width>141</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-   <widget class="QPushButton" name="GUARDAPARTIDA">
-    <property name="text">
-     <string>GUARDAR PARTIDA</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ARDUINO">
-    <property name="text">
-     <string>CONECTAR ARDUINO</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="SALIR">
-    <property name="text">
-     <string>SALIR</string>
-    </property>
-   </widget>
-  </widget>
   <widget class="QProgressBar" name="vida_boss">
    <property name="geometry">
     <rect>
@@ -147,6 +119,39 @@ color: rgb(170, 0, 0);</string>
    <property name="text">
     <string>BOSS</string>
    </property>
+  </widget>
+  <widget class="QSplitter" name="splitter">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>270</y>
+     <width>151</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <widget class="QPushButton" name="GUARDAPARTIDA">
+    <property name="text">
+     <string>GUARDAR PARTIDA</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ARDUINO">
+    <property name="text">
+     <string>CONECTAR ARDUINO</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SALIR">
+    <property name="text">
+     <string>SALIR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="text">
+     <string>SALIR DEL JUEGO</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
