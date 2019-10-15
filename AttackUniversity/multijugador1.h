@@ -161,8 +161,8 @@ private:
     QMediaPlayer *dialogosAgusto;
     QMediaPlayer *musica;
     QMediaPlayer *efectos;
-    int numOleada=2;
-    int sala=2;
+    int numOleada=0;
+    int sala=1;
     bool salaCompleta=false;
     bool pausa_ = false;
     QString uss;
