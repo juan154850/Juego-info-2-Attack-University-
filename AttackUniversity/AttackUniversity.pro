@@ -35,7 +35,8 @@ SOURCES += \
     arabe.cpp \
     boss1.cpp \
     obstaculos.cpp \
-    ganar.cpp
+    ganar.cpp \
+    multijugador1.cpp
 
 HEADERS += \
     personaje.h \
@@ -46,12 +47,14 @@ HEADERS += \
     arabe.h \
     boss1.h \
     obstaculos.h \
-    ganar.h
+    ganar.h \
+    multijugador1.h
 
 FORMS += \
     nivel1.ui \
     menu.ui \
-    ganar.ui
+    ganar.ui \
+    multijugador1.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

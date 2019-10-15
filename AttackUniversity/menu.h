@@ -9,6 +9,7 @@
 #include "nivel1.h"
 #include <string.h>
 #include <fstream>
+#include <multijugador1.h>
 using namespace std;
 namespace Ui {
 class menu;

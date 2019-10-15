@@ -132,5 +132,8 @@ void menu::on_cargarPartida_clicked()
 
 void menu::on_multijugador_clicked()
 {    
-    QMessageBox::information(this,"Menú","En desarrollo");
+    multijugador1 *juego;
+    juego = new multijugador1;
+    juego->show();
+    close();
 }
