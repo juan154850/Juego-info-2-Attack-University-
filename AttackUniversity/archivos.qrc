@@ -66,5 +66,50 @@
         <file>musica/cogerVida.mp3</file>
         <file>musica/musicaFondo.mp3</file>
         <file>musica/golpeAugusto.mp3</file>
+        <file>imagenes/arabeEs1.png</file>
+        <file>imagenes/arabeEs2.png</file>
+        <file>imagenes/arabeEs3.png</file>
+        <file>imagenes/arabeFr1.png</file>
+        <file>imagenes/arabeFr2.png</file>
+        <file>imagenes/arabeFr3.png</file>
+        <file>imagenes/araDr1.png</file>
+        <file>imagenes/araDr2.png</file>
+        <file>imagenes/araDr3.png</file>
+        <file>imagenes/araIz1.png</file>
+        <file>imagenes/araIz2.png</file>
+        <file>imagenes/araIz3.png</file>
+        <file>imagenes/sdr1.png</file>
+        <file>imagenes/sdr2.png</file>
+        <file>imagenes/sdr3.png</file>
+        <file>imagenes/ses1.png</file>
+        <file>imagenes/ses2.png</file>
+        <file>imagenes/ses3.png</file>
+        <file>imagenes/sfr1.png</file>
+        <file>imagenes/sfr2.png</file>
+        <file>imagenes/sfr3.png</file>
+        <file>imagenes/siz1.png</file>
+        <file>imagenes/siz2.png</file>
+        <file>imagenes/siz3.png</file>
+        <file>imagenes/ddr1.png</file>
+        <file>imagenes/ddr2.png</file>
+        <file>imagenes/ddr3.png</file>
+        <file>imagenes/diz1.png</file>
+        <file>imagenes/diz2.png</file>
+        <file>imagenes/diz3.png</file>
+        <file>imagenes/afr1.png</file>
+        <file>imagenes/afr2.png</file>
+        <file>imagenes/afr3.png</file>
+        <file>imagenes/dr1.png</file>
+        <file>imagenes/dr2.png</file>
+        <file>imagenes/dr3.png</file>
+        <file>imagenes/es1.png</file>
+        <file>imagenes/es2.png</file>
+        <file>imagenes/es3.png</file>
+        <file>imagenes/fr1.png</file>
+        <file>imagenes/fr2.png</file>
+        <file>imagenes/fr3.png</file>
+        <file>imagenes/iz1.png</file>
+        <file>imagenes/iz2.png</file>
+        <file>imagenes/iz3.png</file>
     </qresource>
 </RCC>

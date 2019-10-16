@@ -221,3 +221,91 @@ void personaje::setDamage(int value)
 {
     damage = value;
 }
+
+void personaje::animacionArribaP2()
+{
+    if (animacionP2<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/es1.png").scaled(30,50));
+    }
+    if (animacionP2>4 && animacionP2 <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/es2.png").scaled(30,50));
+    }
+    if (animacionP2>8 && animacionP2 <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/es3.png").scaled(30,50));
+    }
+    if( animacionP2 >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/es1.png").scaled(30,50));
+      animacionP2=0;
+    }
+    animacionP2++;
+}
+
+void personaje::animacionAbajoP2()
+{
+    if (animacionP2<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/fr1.png").scaled(30,50));
+    }
+    if (animacionP2>4 && animacionP2 <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/fr2.png").scaled(30,50));
+    }
+    if (animacionP2>8 && animacionP2 <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/fr2.png").scaled(30,50));
+    }
+    if( animacionP2 >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/fr1.png").scaled(30,50));
+      animacionP2=0;
+    }
+    animacionP2++;
+}
+
+void personaje::animacionIzquierdaP2()
+{
+    if (animacionP2<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/iz1.png").scaled(45,50));
+    }
+    if (animacionP2>4 && animacionP2 <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/iz2.png").scaled(45,50));
+    }
+    if (animacionP2>8 && animacionP2 <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/iz3.png").scaled(45,50));
+    }
+    if( animacionP2 >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/iz1.png").scaled(45,50));
+      animacionP2=0;
+    }
+    animacionP2++;
+}
+
+void personaje::animacionDerechaP2()
+{
+    if (animacionP2<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/dr1.png").scaled(45,50));
+    }
+    if (animacionP2>4 && animacionP2 <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/dr2.png").scaled(45,50));
+    }
+    if (animacionP2>8 && animacionP2 <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/dr3.png").scaled(45,50));
+    }
+    if( animacionP2 >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/dr1.png").scaled(45,50));
+      animacionP2=0;
+    }
+    animacionP2++;
+}

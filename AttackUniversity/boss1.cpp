@@ -2,7 +2,7 @@
 
 boss1::boss1() : personaje (0,0,55,60,100,100)
 {
-    setPixmap(QPixmap(":/imagenes/personaje1.png"));
+    setPixmap(QPixmap(":/imagenes/afr1.png").scaled(100,100));
 }
 
 void boss1::dispararIzquierda(bala *bala)
@@ -151,4 +151,70 @@ bool boss1::getActivo() const
 void boss1::setActivo(bool value)
 {
     activo = value;
+}
+
+void boss1::animarIzquierda()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/diz1.png").scaled(100,100));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/diz2.png").scaled(100,100));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/diz3.png").scaled(100,100));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/diz1.png").scaled(100,100));
+      animacion=0;
+    }
+     animacion++;
+}
+
+void boss1::animarDerecha()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/ddr1.png").scaled(100,100));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/ddr2.png").scaled(100,100));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/ddr3.png").scaled(100,100));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/ddr1.png").scaled(100,100));
+      animacion=0;
+    }
+    animacion++;
+}
+
+void boss1::animarQuieto()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/afr1.png").scaled(100,100));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/afr2.png").scaled(100,100));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/afr3.png").scaled(100,100));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/afr1.png").scaled(100,100));
+      animacion=0;
+    }
+    animacion++;
 }

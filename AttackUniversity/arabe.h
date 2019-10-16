@@ -9,13 +9,19 @@ public:
     arabe();    
     int getDistancia() const;
     void setDistancia(int value);
-
+    void animarIzquierda();
+    void animarDerecha();
+    void animarArriba();
+    void animarAbajo();
 
     bool getExplotar() const;
     void setExplotar(bool value);
 
     int getVida() const;
     void setVida(int value);
+
+    char getDire() const;
+    void setDire(char value);
 
 private:
     double posx;
@@ -27,6 +33,8 @@ private:
     int vida=35;
     int Distancia;
     bool explotar = false;
+    char dire;
+    int animacion=0;
 
 };
 

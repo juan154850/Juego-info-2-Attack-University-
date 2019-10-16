@@ -42,6 +42,13 @@ public:
     int getDamage() const;
     void setDamage(int value);
 
+
+
+    void animacionArribaP2();
+    void animacionAbajoP2();
+    void animacionIzquierdaP2();
+    void animacionDerechaP2();
+
 private:
     int animacion=0;
     double posx=0;
@@ -51,8 +58,9 @@ private:
     double vx=0;
     double vy=0;    
     int vida=100;
-    int damage = 5;
+    int damage = 6;
     char dire;
+    int animacionP2=0;
 
 
 };

@@ -24,7 +24,7 @@ nivel1::~nivel1()
 {
     delete ui;
     delete jugador;
-    delete  sebastian;
+    delete  augusto;
     delete efectos;
     delete  musica;
     delete  dialogosAgusto;
@@ -262,51 +262,107 @@ void nivel1::generarBordes()
     scene->addItem(puenteIzq2);
     obs.push_back(puenteIzq2);
     puertaBoss = new QGraphicsLineItem(120,0,0,0);
-    puertaBoss->setPen(QPen(Qt::red));
+    puertaBoss->setPen(QPen(Qt::transparent));
     puertaBoss->setPos(650,-2400);
     obs.append(puertaBoss);
     scene->addItem(puertaBoss);
     puertaSala1 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala1->setPen(QPen(Qt::red));
+    puertaSala1->setPen(QPen(Qt::transparent));
     puertaSala1->setPos(635,-597);
     scene->addItem(puertaSala1);
     puertaSala2 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala2->setPen(QPen(Qt::red));
+    puertaSala2->setPen(QPen(Qt::transparent));
     puertaSala2->setPos(645,-1209);
     scene->addItem(puertaSala2);
     puertaSala3 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala3->setPen(QPen(Qt::red));
+    puertaSala3->setPen(QPen(Qt::transparent));
     puertaSala3->setPos(645,-1797);
     scene->addItem(puertaSala3);
     obs.append(puertaSala1);
     obs.append(puertaSala2);
     obs.append(puertaSala3);
-
-
 }
 
 void nivel1::moverSoldado()
 {
    QList<soldado*>::iterator ms;
+   for ( int i = 0 ; i < obs.size(); i++)
+   {
+       for ( int j = 0 ; j < soldados.size(); j++)
+       {
+           if ( soldados.at(j)->collidesWithItem(obs.at(i)))
+           {
+               mover_Soldado->start(100);
+               switch (soldados.at(j)->getDir())
+               {
+               case('W'):
+               {
+                   soldados.at(j)->AnimarAbajo();
+                   soldados.at(j)->moverAb(0.04);
+                   soldados.at(j)->setDir('W');
 
+
+                   break;
+               }
+               case('A'):
+               {
+                   soldados.at(j)->AnimarDerecha();
+                   soldados.at(j)->moverDr(0.04);
+                   soldados.at(j)->setDir('A');
+                   break;
+               }
+               case('S'):
+               {
+                   soldados.at(j)->AnimarArriba();
+                   soldados.at(j)->moverAr(0.04);
+                   soldados.at(j)->setDir('S');
+                   break;
+               }
+               case('D'):
+               {
+                   soldados.at(j)->AnimarIzquierda();;
+                   soldados.at(j)->moverIz(0.04);
+                   soldados.at(j)->setDir('D');
+
+                   break;
+               }
+               }
+               return;
+           }
+           else
+           {
+               mover_Soldado->start(1000);
+           }
+       }
+   }
    for ( ms = soldados.begin(); ms != soldados.end(); ms++)
-   {       
+   {
        int aleatorio = 1+rand()%4;
        if(aleatorio==1)
        {
-           ms.i->t()->moverAr(0.02);
+           ms.i->t()->AnimarArriba();
+           ms.i->t()->moverAr(0.04);
+
        }
        else if(aleatorio==2)
        {
-            ms.i->t()->moverAb(0.02);
+           ms.i->t()->AnimarAbajo();
+            ms.i->t()->moverAb(0.04);
+
+
        }
        else if(aleatorio==3)
        {
-           ms.i->t()->moverDr(0.02);
+                      ms.i->t()->AnimarDerecha();
+           ms.i->t()->moverDr(0.04);
+
+
        }
        else if(aleatorio==4)
        {
-           ms.i->t()->moverIz(0.02);
+           ms.i->t()->AnimarIzquierda();
+           ms.i->t()->moverIz(0.04);
+
        }      
        ColisionArabesYSoldados(ms.i->t());
        balas.append(new bala(ms.i->t()->pos().x(),ms.i->t()->pos().y()+30,20,20,ms.i->t()->getDir()));
@@ -344,11 +400,11 @@ void nivel1::dispararBoss()
 {
     if( poder ==4)
     {
-        sebastian->dispararEnSol(L_balasBoss);
+        augusto->dispararEnSol(L_balasBoss);
     }
     else if  ( poder == 5)
     {
-        sebastian->lluviaNotas(L_balasBoss);
+        augusto->lluviaNotas(L_balasBoss);
     }    
 
 }
@@ -478,44 +534,44 @@ void nivel1::CBJCS(bala * LaBala)
 
 void nivel1::generarBalasBoss()
 {       
-    if ( L_balasBoss.size()==0 && sebastian->getMoviendome()==false && sebastian->getVida()>0)
+    if ( L_balasBoss.size()==0 && augusto->getMoviendome()==false && augusto->getVida()>0)
     {
         poder = 1+rand()%3;
         if ( poder ==1)
         {
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(0);
             scene->addItem(L_balasBoss.last());
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(1);
             scene->addItem(L_balasBoss.last());
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(2);
             scene->addItem(L_balasBoss.last());
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(3);
             scene->addItem(L_balasBoss.last());
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(4);
             scene->addItem(L_balasBoss.last());
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(5);
             scene->addItem(L_balasBoss.last());
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(6);
             scene->addItem(L_balasBoss.last());
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(7);
             scene->addItem(L_balasBoss.last());
-            L_balasBoss.push_back(new bala(sebastian->getPosx(),sebastian->getPosy(),20,20,'A'));
+            L_balasBoss.push_back(new bala(augusto->getPosx(),augusto->getPosy(),20,20,'A'));
             L_balasBoss.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
             L_balasBoss.last()->setNumBala(8);
             scene->addItem(L_balasBoss.last());
@@ -599,27 +655,30 @@ void nivel1::moverBoss()
 {
     if  ((margenError>= 8  || margenError <=-8))
     {
-        sebastian->setMoviendome(true);
+        augusto->setMoviendome(true);
         if ( (margenError<0))
         {
-            sebastian->moverDerecha(0.04);            
+            augusto->moverDerecha(0.04);
+            augusto->animarDerecha();
         }
         else if ( margenError > 0 )
         {
-            sebastian->moverIzquierda(0.04);            
+            augusto->moverIzquierda(0.04);
+            augusto->animarIzquierda();
         }
 
     }
     else
     {     
-        sebastian->setMoviendome(false);
+        augusto->setMoviendome(false);
+        augusto->animarQuieto();
     }
     if( contador==200)
     {
-        movimientoSebastian=86+rand()%(678-86);
+        movimientoaugusto=86+rand()%(678-86);
         contador= 0;
     }
-    margenError = int((sebastian->getPosx() - movimientoSebastian));
+    margenError = int((augusto->getPosx() - movimientoaugusto));
     ui->lcdNumber_3->display(margenError);
     contador++;
 }
@@ -628,31 +687,31 @@ void nivel1::CBJCB()
 {
     for ( int i = 0 ; i<balasJugador.size(); i++)
     {
-        if ( balasJugador.at(i)->collidesWithItem(sebastian))
+        if ( balasJugador.at(i)->collidesWithItem(augusto))
         {
-            if ( sebastian->getEscudo()>0)
+            if ( augusto->getEscudo()>0)
             {                
 
                 scene->removeItem(balasJugador.at(i));
                 balasJugador.removeOne(balasJugador.at(i));
-                sebastian->setEscudo(sebastian->getEscudo()-jugador->getDamage());
-                ui->vida_boss->setValue(sebastian->getEscudo());
+                augusto->setEscudo(augusto->getEscudo()-jugador->getDamage());
+                ui->vida_boss->setValue(augusto->getEscudo());
             }
             else
             {
-                if ( sebastian->getVida()>0)
+                if ( augusto->getVida()>0)
                 {
 
                     scene->removeItem(balasJugador.at(i));
                     balasJugador.removeOne(balasJugador.at(i));
-                    sebastian->setVida(sebastian->getVida()-jugador->getDamage());
-                    ui->vida_boss->setValue(sebastian->getVida());
+                    augusto->setVida(augusto->getVida()-jugador->getDamage());
+                    ui->vida_boss->setValue(augusto->getVida());
 
                 }
                 else
                 {                    
                     timerCBJCB->stop();
-                    sebastian->setPixmap(QPixmap(":/imagenes/arabeExplosion.png"));
+                    augusto->setPixmap(QPixmap(":/imagenes/arabeExplosion.png"));
                     timerMoverBoss->stop();
                     timerGBB->stop();                    
                     pausa();
@@ -752,7 +811,7 @@ void nivel1::oleadas()
         generarSoldados();
         generarArabe();
          balas_soldado->start(20);
-         mover_Soldado->start(3000);
+         mover_Soldado->start(1000);
          timerColisionesJugador->start(20);
          numOleada++;
     }
@@ -761,7 +820,7 @@ void nivel1::oleadas()
         generarSoldados();
         generarArabe();
         balas_soldado->start(20);
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
         timerColisionesJugador->start(20);
         numOleada++;
     }
@@ -770,7 +829,7 @@ void nivel1::oleadas()
         generarSoldados();
         generarArabe();
         balas_soldado->start(20);
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
         timerColisionesJugador->start(20);
         numOleada=3;
         if ( sala ==2 )
@@ -1095,18 +1154,22 @@ void nivel1::moverArabe()
         if (ma.i->t()->pos().x()<jugador->pos().x() && (ma.i->t()->getExplotar() == false))
         {
             ma.i->t()->moverDerecha(0.02);
+            ma.i->t()->animarDerecha();
         }
         if (ma.i->t()->pos().x()>jugador->pos().x() && (ma.i->t()->getExplotar() == false) )
         {
              ma.i->t()->moverIzquierda(0.02);
+             ma.i->t()->animarIzquierda();
         }
         if ( ma.i->t()->pos().y()<jugador->pos().y() && (ma.i->t()->getExplotar() == false))
         {
             ma.i->t()->moverAbajo(0.01);
+            ma.i->t()->animarAbajo();
         }
          if (ma.i->t()->pos().y()>jugador->pos().y() && (ma.i->t()->getExplotar() == false))
          {
              ma.i->t()->moverArriba(0.01);
+             ma.i->t()->animarArriba();
          }
     }    
 
@@ -1198,7 +1261,7 @@ void nivel1::generarArabe()
 
 void nivel1::pausa()
 {    
-    if( sebastian->getVida()<=0)
+    if( augusto->getVida()<=0)
     {
         //no diga que le salio falda
     }
@@ -1338,7 +1401,7 @@ void nivel1::nuevaPartida()
 
         //-------------------boss-------------------
 
-        sebastian = new boss1();
+        augusto = new boss1();
         agujeroNegro = new obstaculos(356,-2780,30,30);
 
 
@@ -1417,10 +1480,10 @@ void nivel1::nuevaPartida()
         dialogosAgusto->play();
         musica=new QMediaPlayer;
         musica->setMedia(QUrl("qrc:/musica/musicaFondo.mp3"));
-        musica->setVolume(50 );
+        musica->setVolume(30 );
         musica->play();
         efectos=new QMediaPlayer;
-        efectos->setVolume(100);
+        efectos->setVolume(50);
         ui->ARDUINO->setVisible(false);
         ui->GUARDAPARTIDA->setVisible(false);
         ui->SALIR->setVisible(false);
@@ -1462,7 +1525,7 @@ void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int V
 
         //-------------------boss-------------------
 
-        sebastian = new boss1();
+        augusto = new boss1();
         agujeroNegro = new obstaculos(356,-2780,30,30);
 
 
@@ -1540,10 +1603,10 @@ void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int V
         dialogosAgusto->play();
         musica=new QMediaPlayer;
         musica->setMedia(QUrl("qrc:/musica/musicaFondo.mp3"));
-        musica->setVolume(50 );
+        musica->setVolume(30 );
         musica->play();
         efectos=new QMediaPlayer;
-        efectos->setVolume(100);
+        efectos->setVolume(50);
         ui->ARDUINO->setVisible(false);
         ui->GUARDAPARTIDA->setVisible(false);
         ui->SALIR->setVisible(false);
@@ -1575,70 +1638,6 @@ void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int V
 
 }
 
-//void nivel1::MostrarTimers()
-//{
-//    if(tiempo->isActive())
-//    {
-//        qDebug() << "el timer tiempo está activo";
-//    }
-//    if ( mover_Soldado->isActive())
-//    {
-//        qDebug() << "el timer mover soldado está activo";
-//    }
-//    if( mover_arabe->isActive())
-//    {
-//        qDebug() << "el timer mover arabe está activo";
-//    }
-//    if ( colision_arabe->isActive())
-//    {
-//        qDebug() << "el timer colision arabe está activo";
-//    }
-//    if (balas_soldado->isActive())
-//    {
-//        qDebug() << "el timer balas soldado está activo";
-//    }
-//    if ( balasB->isActive())
-//    {
-//        qDebug() << "el timer balasB está activo";
-//    }
-//    if( timerGBB->isActive())
-//    {
-//        qDebug() << "el timer GBB está activo";
-//    }
-//    if ( timerColisionBalasBoss->isActive())
-//    {
-//        qDebug() << "el timer colision balas boss está activo";
-//    }
-//    if ( timerMoverBoss->isActive())
-//    {
-//        qDebug() << "el timer mover boss está activo";
-//    }
-//    if( timerCBJCB->isActive())
-//    {
-//        qDebug() << "el timer CBJCB está activo";
-//    }
-//    if ( timerColisionesJugador->isActive())
-//    {
-//        qDebug() << "el timer colisiones jugador está activo";
-//    }
-//    if( lvl1->isActive())
-//    {
-//        qDebug() << "el timer lvl1 está activo";
-//    }
-//    if( dialog->isActive())
-//    {
-//        qDebug() << "el timer dialog está activo";
-//    }
-//    if( oleada->isActive())
-//    {
-//        qDebug() << "el timer oleada está activo";
-//    }
-//    if( puertas->isActive())
-//    {
-//        qDebug() << "el timer puertas está activo";
-//    }
-
-//}
 
 void nivel1::colisionBalasConMesasETC()
 {
@@ -1747,13 +1746,13 @@ void nivel1::jefeFinal()
         ui->label_2->setVisible(true);
         ui->vida_boss->setVisible(true);
         timerCBJCB->start(1);
-        sebastian->setActivo(true);
-        sebastian->setPosx(374);
-        sebastian->setPosy(-2900);
-        scene->addItem(sebastian);
+        augusto->setActivo(true);
+        augusto->setPosx(374);
+        augusto->setPosy(-2900);
+        scene->addItem(augusto);
         srand(time(NULL));
-        movimientoSebastian=86+rand()%(678-86);
-        margenError = int((sebastian->getPosx() - movimientoSebastian));
+        movimientoaugusto=86+rand()%(678-86);
+        margenError = int((augusto->getPosx() - movimientoaugusto));
         ui->lcdNumber_3->display(margenError);
         //hay que conectar todos los timers que activen cosas del boss
         timerGBB->start(10);
@@ -1778,7 +1777,7 @@ void nivel1::on_SALIR_clicked()
     }
     if ( !mover_Soldado->isActive())
     {
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
     }
     if( !mover_arabe->isActive())
     {

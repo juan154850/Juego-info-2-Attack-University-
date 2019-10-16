@@ -11,14 +11,14 @@ soldado::soldado(double px, double py, double w, double h)
     posy = py;
     width = w;
     high = h ;
-    setPixmap(QPixmap(":/imagenes/fr1Sol.png"));
+    setPixmap(QPixmap(":/imagenes/sfr2.png").scaled(45,68));
     setPos(posx,posy);
 
 }
 
 void soldado::moverAr(double dt)
 {
-    setPixmap(QPixmap(":/imagenes/bk1Sol.png"));
+
     posy=posy-(vy*dt);
     setY(posy);
     dir = 'W';
@@ -26,7 +26,7 @@ void soldado::moverAr(double dt)
 
 void soldado::moverIz(double dt)
 {
-    setPixmap(QPixmap(":/imagenes/izq1Sol.png"));
+
     posx=posx-(vx*dt);
     setX(posx);
     dir = 'A';
@@ -34,7 +34,7 @@ void soldado::moverIz(double dt)
 
 void soldado::moverDr(double dt)
 {
-    setPixmap(QPixmap(":/imagenes/dr1Sol.png"));
+
     posx=posx+(vx*dt);
     setX(posx);
     dir = 'D';
@@ -141,9 +141,107 @@ void soldado::setVida(int value)
     vida = value;
 }
 
+int soldado::getAnimacion() const
+{
+    return animacion;
+}
+
+void soldado::setAnimacion(int value)
+{
+    animacion = value;
+}
+
+void soldado::AnimarArriba()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/ses1.png").scaled(45,68));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/ses2.png").scaled(45,68));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/ses3.png").scaled(45,68));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/ses1.png").scaled(45,68));
+      animacion=0;
+    }
+    animacion++;
+}
+
+void soldado::AnimarAbajo()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/sfr1.png").scaled(45,68));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/sfr2.png").scaled(45,68));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/sfr3.png").scaled(45,68));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/sfr1.png").scaled(45,68));
+      animacion=0;
+    }
+    animacion++;
+}
+
+void soldado::AnimarIzquierda()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/siz1.png").scaled(45,68));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/siz2.png").scaled(45,68));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/siz3.png").scaled(45,68));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/siz1.png").scaled(45,68));
+      animacion=0;
+    }
+    animacion++;
+}
+
+void soldado::AnimarDerecha()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes/sdr1.png").scaled(45,68));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes/sdr2.png").scaled(45,68));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes/sdr3.png").scaled(45,68));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes/sdr1.png").scaled(45,68));
+      animacion=0;
+    }
+    animacion++;
+}
+
 void soldado::moverAb(double dt)
 {
-    setPixmap(QPixmap(":/imagenes/fr1Sol.png"));
+
     posy=posy+(vy*dt);
     setY(posy);
     dir='S';

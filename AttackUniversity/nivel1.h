@@ -90,7 +90,7 @@ private:
     //jugador
     personaje *jugador;
     //Boss
-    boss1 *sebastian;
+    boss1 *augusto;
 
     //escena
     QGraphicsScene *scene;
@@ -179,7 +179,7 @@ private:
     int addsAra=0; // cantidad de arabes por sala
     int nBala=1;    //para dar diferentes direcciones a las balas del primer boss    
     int dirBala=1;
-    int movimientoSebastian;
+    int movimientoaugusto;
     int contador=0;
     int margenError=0;
     int mermarVida=99;

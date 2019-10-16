@@ -181,7 +181,7 @@ void multijugador1::keyPressEvent(QKeyEvent *ev)
     case(Qt::Key_8):
     {
         direP2 = 'W';
-        jugador2->animacionArriba();
+        jugador2->animacionArribaP2();
         if(!jugador2->collidesWithItem(arrib1) && !jugador2->collidesWithItem(arrib2)
                 && !jugador2->collidesWithItem(arrib3))
         {
@@ -213,7 +213,7 @@ void multijugador1::keyPressEvent(QKeyEvent *ev)
     case(Qt::Key_5):
     {
         direP2 = 'S';
-        jugador2->animacionAbajo();
+        jugador2->animacionAbajoP2();
         if(!jugador2->collidesWithItem(abaj2) && !jugador2->collidesWithItem(abaj1) && !jugador2->collidesWithItem(abaj3))
         {
             if ( pausa_==true)
@@ -243,7 +243,7 @@ void multijugador1::keyPressEvent(QKeyEvent *ev)
     case(Qt::Key_6):
     {
     direP2 = 'D';
-    jugador2->animacionDerecha();
+    jugador2->animacionDerechaP2();
     if(!jugador2->collidesWithItem(drch1))
     {
         if( pausa_==true)
@@ -265,7 +265,7 @@ void multijugador1::keyPressEvent(QKeyEvent *ev)
     case(Qt::Key_4):
     {
         direP2 = 'A';
-        jugador2->animacionIzquierda();
+        jugador2->animacionIzquierdaP2();
         if(!jugador2->collidesWithItem(izq1) && !jugador2->collidesWithItem(puenteIzq1) && !jugador2->collidesWithItem(puenteIzq2))
         {
             if (pausa_==true)
@@ -411,24 +411,77 @@ void multijugador1::generarBordes()
 void multijugador1::moverSoldado()
 {
     QList<soldado*>::iterator ms;
+    for ( int i = 0 ; i < obs.size(); i++)
+    {
+        for ( int j = 0 ; j < soldados.size(); j++)
+        {
+            if ( soldados.at(j)->collidesWithItem(obs.at(i)))
+            {
+                mover_Soldado->start(100);
+                switch (soldados.at(j)->getDir())
+                {
+                case('W'):
+                {
+                    soldados.at(j)->AnimarAbajo();
+                    soldados.at(j)->moverAb(0.04);
+                    soldados.at(j)->setDir('W');
 
+
+                    break;
+                }
+                case('A'):
+                {
+                    soldados.at(j)->AnimarDerecha();
+                    soldados.at(j)->moverDr(0.04);
+                    soldados.at(j)->setDir('A');
+                    break;
+                }
+                case('S'):
+                {
+                    soldados.at(j)->AnimarArriba();
+                    soldados.at(j)->moverAr(0.04);
+                    soldados.at(j)->setDir('S');
+                    break;
+                }
+                case('D'):
+                {
+                    soldados.at(j)->AnimarIzquierda();;
+                    soldados.at(j)->moverIz(0.04);
+                    soldados.at(j)->setDir('D');
+
+                    break;
+                }
+                }
+                return;
+            }
+            else
+            {
+                mover_Soldado->start(1000);
+            }
+        }
+    }
     for ( ms = soldados.begin(); ms != soldados.end(); ms++)
     {
         int aleatorio = 1+rand()%4;
         if(aleatorio==1)
         {
+            ms.i->t()->AnimarArriba();
             ms.i->t()->moverAr(0.02);
+
         }
         else if(aleatorio==2)
         {
+            ms.i->t()->AnimarAbajo();
              ms.i->t()->moverAb(0.02);
         }
         else if(aleatorio==3)
         {
+            ms.i->t()->AnimarDerecha();
             ms.i->t()->moverDr(0.02);
         }
         else if(aleatorio==4)
         {
+            ms.i->t()->AnimarIzquierda();
             ms.i->t()->moverIz(0.02);
         }
         ColisionArabesYSoldados(ms.i->t());
@@ -742,16 +795,19 @@ void multijugador1::moverBoss()
         if ( (margenError<0))
         {
             sebastian->moverDerecha(0.04);
+            sebastian->animarDerecha();
         }
         else if ( margenError > 0 )
         {
             sebastian->moverIzquierda(0.04);
+            sebastian->animarIzquierda();
         }
 
     }
     else
     {
         sebastian->setMoviendome(false);
+        sebastian->animarQuieto();
     }
     if( contador==200)
     {
@@ -914,7 +970,7 @@ void multijugador1::oleadas()
         generarSoldados();
         generarArabe();
          balas_soldado->start(20);
-         mover_Soldado->start(3000);
+         mover_Soldado->start(1000);
          timerColisionesJugador->start(20);
          numOleada++;
     }
@@ -923,7 +979,7 @@ void multijugador1::oleadas()
         generarSoldados();
         generarArabe();
         balas_soldado->start(20);
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
         timerColisionesJugador->start(20);
         numOleada++;
     }
@@ -932,7 +988,7 @@ void multijugador1::oleadas()
         generarSoldados();
         generarArabe();
         balas_soldado->start(20);
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
         timerColisionesJugador->start(20);
         numOleada=3;
         if ( sala ==2 )
@@ -1302,18 +1358,22 @@ void multijugador1::moverArabe()
         if (ma.i->t()->pos().x()<jugador->pos().x() && (ma.i->t()->getExplotar() == false))
         {
             ma.i->t()->moverDerecha(0.02);
+            ma.i->t()->animarDerecha();
         }
         if (ma.i->t()->pos().x()>jugador->pos().x() && (ma.i->t()->getExplotar() == false) )
         {
              ma.i->t()->moverIzquierda(0.02);
+             ma.i->t()->animarIzquierda();
         }
         if ( ma.i->t()->pos().y()<jugador->pos().y() && (ma.i->t()->getExplotar() == false))
         {
             ma.i->t()->moverAbajo(0.01);
+            ma.i->t()->animarAbajo();
         }
          if (ma.i->t()->pos().y()>jugador->pos().y() && (ma.i->t()->getExplotar() == false))
          {
              ma.i->t()->moverArriba(0.01);
+             ma.i->t()->animarArriba();
          }
     }
 }
@@ -1552,6 +1612,7 @@ void multijugador1::nuevaPartida()
         scene->addItem(jugador);
         scene->setFocusItem(jugador);
         jugador2 = new personaje(320,-81,50,55,100,100);
+        jugador2->setPixmap(QPixmap(":/imagenes/es1.png").scaled(30,50));
         scene->addItem(jugador2);
         scene->setFocusItem(jugador2);
 
@@ -1635,10 +1696,10 @@ void multijugador1::nuevaPartida()
         dialogosAgusto->play();
         musica=new QMediaPlayer;
         musica->setMedia(QUrl("qrc:/musica/musicaFondo.mp3"));
-        musica->setVolume(50 );
+        musica->setVolume(30 );
         musica->play();
         efectos=new QMediaPlayer;
-        efectos->setVolume(100);
+        efectos->setVolume(50);
         ui->SALIR->setVisible(false);
         ui->vida_boss->setVisible(false);
         ui->pushButton->setVisible(false);
@@ -1797,7 +1858,7 @@ void multijugador1::on_SALIR_clicked()
     }
     if ( !mover_Soldado->isActive())
     {
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
     }
     if( !mover_arabe->isActive())
     {

@@ -10,7 +10,7 @@ public:
     void moverAb(double dt);
     void moverAr(double dt);
     void moverIz(double dt);
-    void moverDr(double dt);    
+    void moverDr(double dt);
     double getDistancia() const;
     void setDistancia(int value);
 
@@ -41,6 +41,14 @@ public:
     int getVida() const;
     void setVida(int value);
 
+    int getAnimacion() const;
+    void setAnimacion(int value);
+
+    void AnimarArriba();
+    void AnimarAbajo();
+    void AnimarIzquierda();
+    void AnimarDerecha();
+
 private:
     double posx;
     double posy;
@@ -56,6 +64,7 @@ private:
     int contadorBalas=60;
     int distanciaEntreSoldados=0;
     int distanciaEntreSoldadosY=0;
+    int animacion=0;
 
 };
 

@@ -30,6 +30,11 @@ public:
     bool getActivo() const;
     void setActivo(bool value);
 
+
+    void animarIzquierda();
+    void animarDerecha();
+    void animarQuieto();
+
 private:
     QList<bala*>misBalas;
     //atributos especiales de un boss
@@ -39,6 +44,7 @@ private:
     int numBalas=1;
     bool moviendome=false;
     bool activo = false;
+    int animacion=0;
 
 };
 

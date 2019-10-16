@@ -15,7 +15,7 @@ menu::menu(QWidget *parent) :
     ui->registro_2->setVisible(false);
     music=new QMediaPlayer;
     music->setMedia(QUrl("qrc:/musica/Música Tema - Game of Thrones.mp3"));
-    music->setVolume(50);
+    music->setVolume(30);
     music->play();
 }
 
@@ -35,7 +35,6 @@ void menu::on_iniciar_clicked()
     ui->iniciar_2->setVisible(true);
     ui->iniciar->setVisible(false);
     ui->registro->setVisible(false);
-
 }
 
 void menu::on_registro_clicked()
@@ -51,22 +50,32 @@ void menu::on_registro_clicked()
 
 void menu::on_iniciar_2_clicked()
 {
-    //verificamos si los datos que hay en los campos son equivalentes a algun archivo de texto
+    //verificamos si los datos que hay en los campos son equivalentes a algun archivo de texto    
      uss=ui->uss->text();
      pass=ui->pass->text();
     QFile archivo(uss);
-
     if(archivo.open(QFile::ReadOnly | QFile::Text))
     {
         //cargamos de forma correcta el archivo por tanto vamos a habilitar la nueva ventana.
-        ui->uss->setVisible(false);
-        ui->pass->setVisible(false);
-        ui->multijugador->setVisible(true);
-        ui->cargarPartida->setVisible(true);
-        ui->nuevaPartida->setVisible(true);
-        ui->iniciar_2->setVisible(false);
-        archivo.close();
-        music->stop();
+        QTextStream read(&archivo);
+        QString clave;
+        read.readLine();
+        clave = read.readLine();
+        if( clave == ui->pass->text())
+        {
+            ui->uss->setVisible(false);
+            ui->pass->setVisible(false);
+            ui->multijugador->setVisible(true);
+            ui->cargarPartida->setVisible(true);
+            ui->nuevaPartida->setVisible(true);
+            ui->iniciar_2->setVisible(false);
+            archivo.close();
+            music->stop();
+        }
+        else
+        {
+            QMessageBox::information(this,"Menú","Error, revise bien los campos.");
+        }
     }
     else
     {
@@ -83,10 +92,7 @@ void menu::on_iniciar_2_clicked()
         {
             return;
         }
-
     }
-
-
 }
 
 void menu::on_registro_2_clicked()
