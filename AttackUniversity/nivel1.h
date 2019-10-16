@@ -21,6 +21,8 @@
 #include <QString>
 #include <QFile>
 #include <fstream>
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
 
 using namespace  std;
 namespace Ui {
@@ -50,6 +52,12 @@ public:
     void nuevaPartida(int posx, int posy, int numOleada_, int numSala, int VidaJugador);
 //    void MostrarTimers();
     void colisionConMesasETC();
+    void keyW();
+    void keyS();
+    void keyA();
+    void keyD();
+    void keySpace();
+
 
 public slots:   
     void moverSoldado(void);
@@ -85,6 +93,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void Joy();
+
 private:
     Ui::nivel1 *ui;
     //jugador
@@ -115,6 +125,8 @@ private:
     QTimer *puertas;    
     QTimer *timerColisionDeMesas;
     QTimer *Timer_MoverYColisionBolasDeFuego;
+    QTimer *timer_control;
+    QSerialPort *control;
 
 
 

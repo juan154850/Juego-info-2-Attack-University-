@@ -11,13 +11,13 @@ MAKEFILE      = Makefile.Release
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -std=gnu++11 -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I..\AttackUniversity -I. -IE:\qt\5.7\mingw53_32\include -IE:\qt\5.7\mingw53_32\include\QtMultimedia -IE:\qt\5.7\mingw53_32\include\QtWidgets -IE:\qt\5.7\mingw53_32\include\QtGui -IE:\qt\5.7\mingw53_32\include\QtANGLE -IE:\qt\5.7\mingw53_32\include\QtNetwork -IE:\qt\5.7\mingw53_32\include\QtCore -Irelease -I. -IE:\qt\5.7\mingw53_32\mkspecs\win32-g++ 
+INCPATH       = -I..\AttackUniversity -I. -IE:\qt\5.7\mingw53_32\include -IE:\qt\5.7\mingw53_32\include\QtMultimedia -IE:\qt\5.7\mingw53_32\include\QtWidgets -IE:\qt\5.7\mingw53_32\include\QtGui -IE:\qt\5.7\mingw53_32\include\QtANGLE -IE:\qt\5.7\mingw53_32\include\QtSerialPort -IE:\qt\5.7\mingw53_32\include\QtNetwork -IE:\qt\5.7\mingw53_32\include\QtCore -Irelease -I. -IE:\qt\5.7\mingw53_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LE:\qt\5.7\mingw53_32\lib E:\qt\5.7\mingw53_32\lib\libqtmain.a -lshell32 -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib E:\qt\5.7\mingw53_32\lib\libQt5Multimedia.a E:\qt\5.7\mingw53_32\lib\libQt5Widgets.a E:\qt\5.7\mingw53_32\lib\libQt5Gui.a E:\qt\5.7\mingw53_32\lib\libQt5Network.a E:\qt\5.7\mingw53_32\lib\libQt5Core.a 
+LIBS        =        -lmingw32 -LE:\qt\5.7\mingw53_32\lib E:\qt\5.7\mingw53_32\lib\libqtmain.a -lshell32 -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib E:\qt\5.7\mingw53_32\lib\libQt5Multimedia.a E:\qt\5.7\mingw53_32\lib\libQt5Widgets.a E:\qt\5.7\mingw53_32\lib\libQt5Gui.a E:\qt\5.7\mingw53_32\lib\libQt5SerialPort.a E:\qt\5.7\mingw53_32\lib\libQt5Network.a E:\qt\5.7\mingw53_32\lib\libQt5Core.a 
 QMAKE         = E:\qt\5.7\mingw53_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -128,7 +128,7 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) AttackUniversity.zip $(SOURCES) $(DIST) ..\AttackUniversity\AttackUniversity.pro E:\qt\5.7\mingw53_32\mkspecs\features\spec_pre.prf E:\qt\5.7\mingw53_32\mkspecs\qdevice.pri E:\qt\5.7\mingw53_32\mkspecs\features\device_config.prf E:\qt\5.7\mingw53_32\mkspecs\common\angle.conf E:\qt\5.7\mingw53_32\mkspecs\qconfig.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3drender.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axbase.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axserver.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_charts.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_charts_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_clucene_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_core.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_core_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_datavisualization.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_datavisualization_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_dbus.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designer.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gui.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_help.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_help_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_location.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_location_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_network.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_network_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_nfc.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_opengl.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_platformsupport_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_positioning.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qml.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quick.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_script.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_script_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scxml.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sensors.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialport.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sql.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_svg.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_testlib.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uitools.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_websockets.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_widgets.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_winextras.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xml.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri E:\qt\5.7\mingw53_32\mkspecs\features\qt_functions.prf E:\qt\5.7\mingw53_32\mkspecs\features\qt_config.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\qt_config.prf E:\qt\5.7\mingw53_32\mkspecs\win32-g++\qmake.conf E:\qt\5.7\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash E:\qt\5.7\mingw53_32\mkspecs\features\exclusive_builds.prf E:\qt\5.7\mingw53_32\mkspecs\features\toolchain.prf E:\qt\5.7\mingw53_32\mkspecs\features\default_pre.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\default_pre.prf E:\qt\5.7\mingw53_32\mkspecs\features\resolve_config.prf E:\qt\5.7\mingw53_32\mkspecs\features\exclusive_builds_post.prf E:\qt\5.7\mingw53_32\mkspecs\features\default_post.prf E:\qt\5.7\mingw53_32\mkspecs\features\build_pass.prf E:\qt\5.7\mingw53_32\mkspecs\features\qml_debug.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\rtti.prf E:\qt\5.7\mingw53_32\mkspecs\features\precompile_header.prf E:\qt\5.7\mingw53_32\mkspecs\features\warn_on.prf E:\qt\5.7\mingw53_32\mkspecs\features\qt.prf E:\qt\5.7\mingw53_32\mkspecs\features\resources.prf E:\qt\5.7\mingw53_32\mkspecs\features\moc.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\opengl.prf E:\qt\5.7\mingw53_32\mkspecs\features\uic.prf E:\qt\5.7\mingw53_32\mkspecs\features\file_copies.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\windows.prf E:\qt\5.7\mingw53_32\mkspecs\features\testcase_targets.prf E:\qt\5.7\mingw53_32\mkspecs\features\exceptions.prf E:\qt\5.7\mingw53_32\mkspecs\features\yacc.prf E:\qt\5.7\mingw53_32\mkspecs\features\lex.prf ..\AttackUniversity\AttackUniversity.pro ..\AttackUniversity\archivos.qrc ..\AttackUniversity\archivos2.qrc E:\qt\5.7\mingw53_32\lib\qtmain.prl E:\qt\5.7\mingw53_32\lib\Qt5Multimedia.prl E:\qt\5.7\mingw53_32\lib\Qt5Widgets.prl E:\qt\5.7\mingw53_32\lib\Qt5Gui.prl E:\qt\5.7\mingw53_32\lib\Qt5Network.prl E:\qt\5.7\mingw53_32\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) AttackUniversity.zip $(SOURCES) $(DIST) ..\AttackUniversity\AttackUniversity.pro E:\qt\5.7\mingw53_32\mkspecs\features\spec_pre.prf E:\qt\5.7\mingw53_32\mkspecs\qdevice.pri E:\qt\5.7\mingw53_32\mkspecs\features\device_config.prf E:\qt\5.7\mingw53_32\mkspecs\common\angle.conf E:\qt\5.7\mingw53_32\mkspecs\qconfig.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3drender.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axbase.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axserver.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_charts.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_charts_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_clucene_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_core.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_core_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_datavisualization.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_datavisualization_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_dbus.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designer.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gui.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_help.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_help_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_location.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_location_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_network.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_network_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_nfc.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_opengl.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_platformsupport_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_positioning.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qml.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quick.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_script.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_script_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scxml.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sensors.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialport.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sql.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_svg.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_testlib.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uitools.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_websockets.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_widgets.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_winextras.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xml.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri E:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri E:\qt\5.7\mingw53_32\mkspecs\features\qt_functions.prf E:\qt\5.7\mingw53_32\mkspecs\features\qt_config.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\qt_config.prf E:\qt\5.7\mingw53_32\mkspecs\win32-g++\qmake.conf E:\qt\5.7\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash E:\qt\5.7\mingw53_32\mkspecs\features\exclusive_builds.prf E:\qt\5.7\mingw53_32\mkspecs\features\toolchain.prf E:\qt\5.7\mingw53_32\mkspecs\features\default_pre.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\default_pre.prf E:\qt\5.7\mingw53_32\mkspecs\features\resolve_config.prf E:\qt\5.7\mingw53_32\mkspecs\features\exclusive_builds_post.prf E:\qt\5.7\mingw53_32\mkspecs\features\default_post.prf E:\qt\5.7\mingw53_32\mkspecs\features\build_pass.prf E:\qt\5.7\mingw53_32\mkspecs\features\qml_debug.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\rtti.prf E:\qt\5.7\mingw53_32\mkspecs\features\precompile_header.prf E:\qt\5.7\mingw53_32\mkspecs\features\warn_on.prf E:\qt\5.7\mingw53_32\mkspecs\features\qt.prf E:\qt\5.7\mingw53_32\mkspecs\features\resources.prf E:\qt\5.7\mingw53_32\mkspecs\features\moc.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\opengl.prf E:\qt\5.7\mingw53_32\mkspecs\features\uic.prf E:\qt\5.7\mingw53_32\mkspecs\features\file_copies.prf E:\qt\5.7\mingw53_32\mkspecs\features\win32\windows.prf E:\qt\5.7\mingw53_32\mkspecs\features\testcase_targets.prf E:\qt\5.7\mingw53_32\mkspecs\features\exceptions.prf E:\qt\5.7\mingw53_32\mkspecs\features\yacc.prf E:\qt\5.7\mingw53_32\mkspecs\features\lex.prf ..\AttackUniversity\AttackUniversity.pro ..\AttackUniversity\archivos.qrc ..\AttackUniversity\archivos2.qrc E:\qt\5.7\mingw53_32\lib\qtmain.prl E:\qt\5.7\mingw53_32\lib\Qt5Multimedia.prl E:\qt\5.7\mingw53_32\lib\Qt5Widgets.prl E:\qt\5.7\mingw53_32\lib\Qt5Gui.prl E:\qt\5.7\mingw53_32\lib\Qt5SerialPort.prl E:\qt\5.7\mingw53_32\lib\Qt5Network.prl E:\qt\5.7\mingw53_32\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.o release\multijugador2.o release\nivel2.o release\personaje.o release\nivel1.o release\menu.o release\bala.o release\soldado.o release\arabe.o release\boss1.o release\obstaculos.o release\ganar.o release\multijugador1.o release\qrc_archivos.o release\qrc_archivos2.o release\moc_multijugador2.o release\moc_nivel2.o release\moc_nivel1.o release\moc_menu.o release\moc_ganar.o release\moc_multijugador1.o
@@ -163,47 +163,92 @@ release/qrc_archivos.cpp: ../AttackUniversity/archivos.qrc \
 		../AttackUniversity/musica/esperaloqueseviene.mp3 \
 		../AttackUniversity/musica/musicaFondo.mp3 \
 		../AttackUniversity/musica/Completardoshoras.mp3 \
+		../AttackUniversity/imagenes/sdr3.png \
+		../AttackUniversity/imagenes/diz1.png \
 		../AttackUniversity/imagenes/bulletAr.png \
-		../AttackUniversity/imagenes/gameOver.png \
-		../AttackUniversity/imagenes/cooltext335629482081336.png \
-		../AttackUniversity/imagenes/valla1.png \
-		../AttackUniversity/imagenes/condensador.png \
-		../AttackUniversity/imagenes/youwin.png \
-		../AttackUniversity/imagenes/barril.png \
-		../AttackUniversity/imagenes/jugadorAtrasIzquierdo.png \
-		../AttackUniversity/imagenes/bolaFuego.png \
-		../AttackUniversity/imagenes/jugadorParadoIzquierda.png \
-		../AttackUniversity/imagenes/mesa.png \
-		../AttackUniversity/imagenes/bulletDr.png \
-		../AttackUniversity/imagenes/piso1.png \
-		../AttackUniversity/imagenes/jugadorAdelantePieIzquierdo.png \
-		../AttackUniversity/imagenes/jugadorAdelanteQuieto.png \
-		../AttackUniversity/imagenes/jugadorAdelantePieDerecho.png \
-		../AttackUniversity/imagenes/Led.png \
-		../AttackUniversity/imagenes/dr1Sol.png \
-		../AttackUniversity/imagenes/jugadorIzquierda2.png \
-		../AttackUniversity/imagenes/personaje1.png \
-		../AttackUniversity/imagenes/balaBoss1.png \
 		../AttackUniversity/imagenes/cooltext335629468732690.png \
-		../AttackUniversity/imagenes/jugadorIzquierda1.png \
-		../AttackUniversity/imagenes/Nivel2Fondo.png \
-		../AttackUniversity/imagenes/bullet.png \
-		../AttackUniversity/imagenes/bulletAb.png \
-		../AttackUniversity/imagenes/fr1Sol.png \
-		../AttackUniversity/imagenes/arabeExplosion.png \
+		../AttackUniversity/imagenes/arabeFr3.png \
 		../AttackUniversity/imagenes/MULTIJUGADOR.png \
-		../AttackUniversity/imagenes/FondoMenu.png \
-		../AttackUniversity/imagenes/bk1Sol.png \
-		../AttackUniversity/imagenes/vida.png \
+		../AttackUniversity/imagenes/araDr1.png \
+		../AttackUniversity/imagenes/gameOver.png \
+		../AttackUniversity/imagenes/youwin.png \
+		../AttackUniversity/imagenes/ddr3.png \
+		../AttackUniversity/imagenes/valla1.png \
+		../AttackUniversity/imagenes/caja.png \
+		../AttackUniversity/imagenes/araIz3.png \
 		../AttackUniversity/imagenes/Bobina.png \
-		../AttackUniversity/imagenes/jugadorAtrasQuieto.png \
-		../AttackUniversity/imagenes/jugadorDerecha2.png \
-		../AttackUniversity/imagenes/jugadorParadoDerecha.png \
+		../AttackUniversity/imagenes/arabeEs2.png \
+		../AttackUniversity/imagenes/barril.png \
+		../AttackUniversity/imagenes/dr2.png \
+		../AttackUniversity/imagenes/bk1Sol.png \
+		../AttackUniversity/imagenes/sdr2.png \
+		../AttackUniversity/imagenes/arabeFr2.png \
+		../AttackUniversity/imagenes/ddr2.png \
+		../AttackUniversity/imagenes/fr1Sol.png \
+		../AttackUniversity/imagenes/araIz2.png \
+		../AttackUniversity/imagenes/arabeEs1.png \
+		../AttackUniversity/imagenes/es3.png \
+		../AttackUniversity/imagenes/jugadorAdelanteQuieto.png \
+		../AttackUniversity/imagenes/jugadorAdelantePieIzquierdo.png \
+		../AttackUniversity/imagenes/ses3.png \
+		../AttackUniversity/imagenes/afr3.png \
+		../AttackUniversity/imagenes/dr1.png \
+		../AttackUniversity/imagenes/Nivel2Fondo.png \
+		../AttackUniversity/imagenes/condensador.png \
+		../AttackUniversity/imagenes/bulletDr.png \
+		../AttackUniversity/imagenes/sdr1.png \
 		../AttackUniversity/imagenes/agujero.png \
-		../AttackUniversity/imagenes/jugadorDerecha1.png \
-		../AttackUniversity/imagenes/izq1Sol.png \
+		../AttackUniversity/imagenes/vida.png \
+		../AttackUniversity/imagenes/balaBoss1.png \
+		../AttackUniversity/imagenes/iz3.png \
+		../AttackUniversity/imagenes/arabeFr1.png \
+		../AttackUniversity/imagenes/fr3.png \
+		../AttackUniversity/imagenes/ddr1.png \
+		../AttackUniversity/imagenes/siz3.png \
+		../AttackUniversity/imagenes/dr1Sol.png \
+		../AttackUniversity/imagenes/sfr3.png \
+		../AttackUniversity/imagenes/araIz1.png \
+		../AttackUniversity/imagenes/jugadorIzquierda2.png \
+		../AttackUniversity/imagenes/arabeExplosion.png \
+		../AttackUniversity/imagenes/bulletAb.png \
+		../AttackUniversity/imagenes/diz3.png \
 		../AttackUniversity/imagenes/jugadorAtrasDerecho.png \
-		../AttackUniversity/imagenes/caja.png
+		../AttackUniversity/imagenes/Led.png \
+		../AttackUniversity/imagenes/es2.png \
+		../AttackUniversity/imagenes/jugadorParadoDerecha.png \
+		../AttackUniversity/imagenes/araDr3.png \
+		../AttackUniversity/imagenes/izq1Sol.png \
+		../AttackUniversity/imagenes/ses2.png \
+		../AttackUniversity/imagenes/bullet.png \
+		../AttackUniversity/imagenes/afr2.png \
+		../AttackUniversity/imagenes/jugadorAtrasIzquierdo.png \
+		../AttackUniversity/imagenes/FondoMenu.png \
+		../AttackUniversity/imagenes/iz2.png \
+		../AttackUniversity/imagenes/cooltext335629482081336.png \
+		../AttackUniversity/imagenes/fr2.png \
+		../AttackUniversity/imagenes/siz2.png \
+		../AttackUniversity/imagenes/jugadorDerecha2.png \
+		../AttackUniversity/imagenes/jugadorParadoIzquierda.png \
+		../AttackUniversity/imagenes/sfr2.png \
+		../AttackUniversity/imagenes/piso1.png \
+		../AttackUniversity/imagenes/mesa.png \
+		../AttackUniversity/imagenes/jugadorIzquierda1.png \
+		../AttackUniversity/imagenes/diz2.png \
+		../AttackUniversity/imagenes/personaje1.png \
+		../AttackUniversity/imagenes/jugadorAtrasQuieto.png \
+		../AttackUniversity/imagenes/es1.png \
+		../AttackUniversity/imagenes/araDr2.png \
+		../AttackUniversity/imagenes/ses1.png \
+		../AttackUniversity/imagenes/afr1.png \
+		../AttackUniversity/imagenes/bolaFuego.png \
+		../AttackUniversity/imagenes/jugadorAdelantePieDerecho.png \
+		../AttackUniversity/imagenes/arabeEs3.png \
+		../AttackUniversity/imagenes/iz1.png \
+		../AttackUniversity/imagenes/fr1.png \
+		../AttackUniversity/imagenes/siz1.png \
+		../AttackUniversity/imagenes/jugadorDerecha1.png \
+		../AttackUniversity/imagenes/sfr1.png \
+		../AttackUniversity/imagenes/dr3.png
 	E:\qt\5.7\mingw53_32\bin\rcc.exe -name archivos ..\AttackUniversity\archivos.qrc -o release\qrc_archivos.cpp
 
 release/qrc_archivos2.cpp: ../AttackUniversity/archivos2.qrc \
@@ -351,7 +396,7 @@ release/moc_multijugador2.cpp: E:/qt/5.7/mingw53_32/include/QtWidgets/QDialog \
 		E:/qt/5.7/mingw53_32/include/QtCore/QFile \
 		../AttackUniversity/multijugador2.h \
 		E:/qt/5.7/mingw53_32/bin/moc.exe
-	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\multijugador2.h -o release\moc_multijugador2.cpp
+	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtSerialPort -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\multijugador2.h -o release\moc_multijugador2.cpp
 
 release/moc_nivel2.cpp: E:/qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		E:/qt/5.7/mingw53_32/include/QtGui/qevent.h \
@@ -491,7 +536,7 @@ release/moc_nivel2.cpp: E:/qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qdialog.h \
 		../AttackUniversity/nivel2.h \
 		E:/qt/5.7/mingw53_32/bin/moc.exe
-	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\nivel2.h -o release\moc_nivel2.cpp
+	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtSerialPort -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\nivel2.h -o release\moc_nivel2.cpp
 
 release/moc_nivel1.cpp: E:/qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		E:/qt/5.7/mingw53_32/include/QtGui/qevent.h \
@@ -627,9 +672,14 @@ release/moc_nivel1.cpp: E:/qt/5.7/mingw53_32/include/QtGui/QKeyEvent \
 		E:/qt/5.7/mingw53_32/include/QtMultimedia/qaudio.h \
 		E:/qt/5.7/mingw53_32/include/QtNetwork/qnetworkconfiguration.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QFile \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		../AttackUniversity/nivel1.h \
 		E:/qt/5.7/mingw53_32/bin/moc.exe
-	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\nivel1.h -o release\moc_nivel1.cpp
+	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtSerialPort -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\nivel1.h -o release\moc_nivel1.cpp
 
 release/moc_menu.cpp: E:/qt/5.7/mingw53_32/include/QtMultimedia/QMediaPlayer \
 		E:/qt/5.7/mingw53_32/include/QtMultimedia/qmediaplayer.h \
@@ -771,10 +821,16 @@ release/moc_menu.cpp: E:/qt/5.7/mingw53_32/include/QtMultimedia/QMediaPlayer \
 		E:/qt/5.7/mingw53_32/include/QtCore/QDebug \
 		../AttackUniversity/boss1.h \
 		../AttackUniversity/obstaculos.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		../AttackUniversity/multijugador1.h \
+		../AttackUniversity/nivel2.h \
 		../AttackUniversity/menu.h \
 		E:/qt/5.7/mingw53_32/bin/moc.exe
-	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\menu.h -o release\moc_menu.cpp
+	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtSerialPort -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\menu.h -o release\moc_menu.cpp
 
 release/moc_ganar.cpp: E:/qt/5.7/mingw53_32/include/QtWidgets/QDialog \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qdialog.h \
@@ -913,11 +969,17 @@ release/moc_ganar.cpp: E:/qt/5.7/mingw53_32/include/QtWidgets/QDialog \
 		E:/qt/5.7/mingw53_32/include/QtMultimedia/qaudio.h \
 		E:/qt/5.7/mingw53_32/include/QtNetwork/qnetworkconfiguration.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QFile \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
+		../AttackUniversity/nivel2.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QMessageBox \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qmessagebox.h \
 		../AttackUniversity/ganar.h \
 		E:/qt/5.7/mingw53_32/bin/moc.exe
-	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\ganar.h -o release\moc_ganar.cpp
+	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtSerialPort -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\ganar.h -o release\moc_ganar.cpp
 
 release/moc_multijugador1.cpp: E:/qt/5.7/mingw53_32/include/QtWidgets/QDialog \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qdialog.h \
@@ -1057,7 +1119,7 @@ release/moc_multijugador1.cpp: E:/qt/5.7/mingw53_32/include/QtWidgets/QDialog \
 		E:/qt/5.7/mingw53_32/include/QtCore/QFile \
 		../AttackUniversity/multijugador1.h \
 		E:/qt/5.7/mingw53_32/bin/moc.exe
-	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\multijugador1.h -o release\moc_multijugador1.cpp
+	E:\qt\5.7\mingw53_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IE:/qt/5.7/mingw53_32/mkspecs/win32-g++ -IC:/Users/PC/Documents/Juego-info-2-Attack-University-/AttackUniversity -IE:/qt/5.7/mingw53_32/include -IE:/qt/5.7/mingw53_32/include/QtMultimedia -IE:/qt/5.7/mingw53_32/include/QtWidgets -IE:/qt/5.7/mingw53_32/include/QtGui -IE:/qt/5.7/mingw53_32/include/QtANGLE -IE:/qt/5.7/mingw53_32/include/QtSerialPort -IE:/qt/5.7/mingw53_32/include/QtNetwork -IE:/qt/5.7/mingw53_32/include/QtCore -I. -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ..\AttackUniversity\multijugador1.h -o release\moc_multijugador1.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1240,6 +1302,11 @@ release/main.o: ../AttackUniversity/main.cpp ../AttackUniversity/MainWindow.h \
 		E:/qt/5.7/mingw53_32/include/QtMultimedia/qaudio.h \
 		E:/qt/5.7/mingw53_32/include/QtNetwork/qnetworkconfiguration.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QFile \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QApplication \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qapplication.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -1439,6 +1506,12 @@ release/multijugador2.o: ../AttackUniversity/multijugador2.cpp ../AttackUniversi
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../AttackUniversity/ganar.h \
 		../AttackUniversity/nivel1.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
+		../AttackUniversity/nivel2.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QMessageBox \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\multijugador2.o ..\AttackUniversity\multijugador2.cpp
@@ -1626,10 +1699,13 @@ release/nivel2.o: ../AttackUniversity/nivel2.cpp ../AttackUniversity/nivel2.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QPushButton \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qpushbutton.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractbutton.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QSplitter \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/qsplitter.h \
 		../AttackUniversity/ganar.h \
 		../AttackUniversity/nivel1.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QMessageBox \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\nivel2.o ..\AttackUniversity\nivel2.cpp
@@ -1856,6 +1932,11 @@ release/nivel1.o: ../AttackUniversity/nivel1.cpp ../AttackUniversity/nivel1.h \
 		E:/qt/5.7/mingw53_32/include/QtMultimedia/qaudio.h \
 		E:/qt/5.7/mingw53_32/include/QtNetwork/qnetworkconfiguration.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QFile \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		ui_nivel1.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QAction \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qaction.h \
@@ -1907,6 +1988,7 @@ release/nivel1.o: ../AttackUniversity/nivel1.cpp ../AttackUniversity/nivel1.h \
 		../AttackUniversity/ganar.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QDialog \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qdialog.h \
+		../AttackUniversity/nivel2.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QMessageBox \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\nivel1.o ..\AttackUniversity\nivel1.cpp
@@ -2052,7 +2134,13 @@ release/menu.o: ../AttackUniversity/menu.cpp ../AttackUniversity/menu.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QDebug \
 		../AttackUniversity/boss1.h \
 		../AttackUniversity/obstaculos.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		../AttackUniversity/multijugador1.h \
+		../AttackUniversity/nivel2.h \
 		ui_menu.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QAction \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qaction.h \
@@ -2446,7 +2534,9 @@ release/boss1.o: ../AttackUniversity/boss1.cpp ../AttackUniversity/boss1.h \
 		E:/qt/5.7/mingw53_32/include/QtGui/qtransform.h \
 		E:/qt/5.7/mingw53_32/include/QtGui/QPixmap \
 		../AttackUniversity/bala.h \
-		E:/qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem
+		E:/qt/5.7/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
+		../AttackUniversity/arabe.h \
+		../AttackUniversity/soldado.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\boss1.o ..\AttackUniversity\boss1.cpp
 
 release/obstaculos.o: ../AttackUniversity/obstaculos.cpp ../AttackUniversity/obstaculos.h \
@@ -2676,6 +2766,12 @@ release/ganar.o: ../AttackUniversity/ganar.cpp ../AttackUniversity/ganar.h \
 		E:/qt/5.7/mingw53_32/include/QtMultimedia/qaudio.h \
 		E:/qt/5.7/mingw53_32/include/QtNetwork/qnetworkconfiguration.h \
 		E:/qt/5.7/mingw53_32/include/QtCore/QFile \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
+		../AttackUniversity/nivel2.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QMessageBox \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qmessagebox.h \
 		ui_ganar.h \
@@ -2903,6 +2999,12 @@ release/multijugador1.o: ../AttackUniversity/multijugador1.cpp ../AttackUniversi
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../AttackUniversity/ganar.h \
 		../AttackUniversity/nivel1.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPort \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialport.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		E:/qt/5.7/mingw53_32/include/QtSerialPort/qserialportinfo.h \
+		../AttackUniversity/nivel2.h \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/QMessageBox \
 		E:/qt/5.7/mingw53_32/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\multijugador1.o ..\AttackUniversity\multijugador1.cpp

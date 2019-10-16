@@ -947,6 +947,10 @@ void nivel2::nuevaPartida()
         timerMoverBoss->stop();
         tiempo->start(20);
 
+        timer_control=new QTimer;
+        control= new QSerialPort(this);
+        connect(timer_control,SIGNAL(timeout()),this,SLOT(Joy()));
+
         //-------------------foco-------------------
         scene->setSceneRect(0,jugador->getPosy()-515,800,600);
         generarObstaculos();
@@ -1070,6 +1074,10 @@ void nivel2::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int V
         timerMoverBoss->stop();
         tiempo->start(20);
 
+        timer_control=new QTimer;
+        control= new QSerialPort(this);
+        connect(timer_control,SIGNAL(timeout()),this,SLOT(Joy()));
+
         //-------------------foco-------------------
         generarObstaculos();
         dialogosSebastian=new QMediaPlayer;
@@ -1189,6 +1197,177 @@ void nivel2::colisionConMesasETC()
         }
     }
 
+}
+
+void nivel2::keyW()
+{
+    dire = 'W';
+
+    jugador->animacionArriba();
+    if(!jugador->collidesWithItem(arrib1) && !jugador->collidesWithItem(arrib2)
+            && !jugador->collidesWithItem(arrib3) && !jugador->collidesWithItem(arrib1Copia) && !jugador->collidesWithItem(arrib2Copia))
+    {
+        if ( pausa_==true)
+        {
+            return;
+        }
+        if( colision==false)
+        {
+            if(sala == 1 || (sala ==2 && jugador->getPosy()<-1285) || (sala ==3 && jugador->getPosy()<-2480))
+            {
+                //para bloquear la camara en el ultimo nivel
+                jugador->moverArriba(0.04);
+            }
+            else
+            {
+                jugador->moverArriba(0.04);
+                scene->setSceneRect(0,jugador->getPosy()-515,800,600);
+            }
+        }
+        else
+        {
+
+            return;
+        }
+
+
+    }
+
+
+    return;
+}
+
+void nivel2::keyS()
+{
+    dire = 'S';
+    jugador->animacionAbajo();
+    if(!jugador->collidesWithItem(abaj2) && !jugador->collidesWithItem(abaj1) && !jugador->collidesWithItem(abaj3)
+            && !jugador->collidesWithItem(abaj2Copia))
+    {
+        if ( pausa_==true)
+        {
+            return;
+        }
+        if( colision==false)
+        {
+//                if((jugador->getPosy()<=-1266 && jugador->getPosy()<= -2482 && jugador->getPosy()>=-2978))
+            if(sala == 1 || (sala ==2 && jugador->getPosy()<-1300)|| (sala ==3 && jugador->getPosy()<-2480))
+            {
+                jugador->moverAbajo(0.04);
+            }
+            else
+            {
+                jugador->moverAbajo(0.04);
+                scene->setSceneRect(0,jugador->getPosy()-515,800,600);
+            }
+        }
+        else
+        {
+
+            return;
+        }
+
+
+    }
+    return;
+}
+
+void nivel2::keyA()
+{
+    dire = 'A';
+    jugador->animacionIzquierda();
+    if(!jugador->collidesWithItem(izq1) && !jugador->collidesWithItem(puenteIzq1) && !jugador->collidesWithItem(puenteIzq2))
+    {
+        if (pausa_==true)
+        {
+            return;
+        }
+        else
+        {
+            if( colision==false)
+            {
+                jugador->moverIzquierda(0.04);
+            }
+            else
+            {
+
+                return;
+            }
+        }
+
+
+    }
+    return;
+}
+
+void nivel2::keyD()
+{
+    dire = 'D';
+    jugador->animacionDerecha();
+    if(!jugador->collidesWithItem(drch1) && !jugador->collidesWithItem(puenteDrch1) && !jugador->collidesWithItem(puenteDrch2))
+    {
+        if( pausa_==true)
+        {
+            return;
+        }
+        if( colision==false)
+        {
+            jugador->moverDerecha(0.04);
+        }
+        else
+        {
+
+            return;
+        }
+    }
+    return;
+}
+
+void nivel2::keySpace()
+{
+    if ( pausa_ == true)
+    {
+        return;
+    }
+    else if ( delayDisparar >= 10)
+    {
+        //-------------------creacion de balas-------------------
+        if( dire == 'D')
+        {
+            efectos->setMedia(QUrl("qrc:/musica/disparar1.mp3"));
+            efectos->play();
+            balasJugador.append(new bala(jugador->getPosx()+28,jugador->getPosy()+27,20,20,dire));
+            scene->addItem(balasJugador.last());
+            delayDisparar=0;
+        }
+        else if ( dire == 'A')
+        {
+            efectos->setMedia(QUrl("qrc:/musica/disparar1.mp3"));
+            efectos->play();
+            balasJugador.append(new bala(jugador->getPosx(),jugador->getPosy()+27,20,20,dire));
+            scene->addItem(balasJugador.last());
+            delayDisparar=0;
+        }
+        else if( dire == 'W')
+        {
+            efectos->setMedia(QUrl("qrc:/musica/disparar1.mp3"));
+            efectos->play();
+            balasJugador.append(new bala(jugador->getPosx()+28,jugador->getPosy()+0,20,20,dire));
+            scene->addItem(balasJugador.last());
+            delayDisparar=0;
+        }
+        else if( dire == 'S')
+        {
+            efectos->setMedia(QUrl("qrc:/musica/disparar1.mp3"));
+            efectos->play();
+            balasJugador.append(new bala(jugador->getPosx()+10,jugador->getPosy()+27,20,20,dire));
+            scene->addItem(balasJugador.last());
+            delayDisparar=0;
+        }
+
+
+    }
+    return;
 }
 
 void nivel2::moverSoldado()
@@ -1918,7 +2097,31 @@ void nivel2::MoverYColisionBolasDeFuego()
 
 void nivel2::on_ARDUINO_clicked()
 {
+    control->setPortName("COM10");
+    //qDebug () << "se conectó el arduino";
+        timer_control->start(1);
+        if(control->open(QIODevice::ReadWrite)){
+            //Ahora el puerto seria está abierto
+            if(!control->setBaudRate(QSerialPort::Baud9600)) //Configurar la tasa de baudios
+                qDebug()<<control->errorString();
 
+            if(!control->setDataBits(QSerialPort::Data8))
+                qDebug()<<control->errorString();
+
+            if(!control->setParity(QSerialPort::NoParity))
+                qDebug()<<control->errorString();
+
+            if(!control->setStopBits(QSerialPort::OneStop))
+                qDebug()<<control->errorString();
+
+            if(!control->setFlowControl(QSerialPort::NoFlowControl))
+                qDebug()<<control->errorString();
+
+        }
+        else{
+            qDebug()<<"Serial COM10 not opened. Error: "<<control->errorString();
+            delete ui;
+        }
 }
 
 void nivel2::on_GUARDAPARTIDA_clicked()
@@ -2042,4 +2245,42 @@ void nivel2::on_SALIR_clicked()
 void nivel2::on_pushButton_clicked()
 {
     close();
+}
+
+void nivel2::Joy()
+{
+    char data;
+           if(control->isReadable())
+           {
+                control->read(&data,1);
+                switch (data)
+                {
+                case 'S':
+
+                    keyS();
+                    break;
+                case 'W' :
+                    keyW();
+                    break;
+                case ' ':
+                    keySpace();
+
+                    break;
+                case 'A':
+                    keyA();
+
+                    break;
+                case 'D':
+                    {
+                        keyD();
+                    }
+                    break;
+                default:
+                    break;
+                }
+                if(data!='\0'){qDebug()<<"Response: "<<data;}
+            }
+           else{
+                qDebug()<<"Time out";
+          }
 }

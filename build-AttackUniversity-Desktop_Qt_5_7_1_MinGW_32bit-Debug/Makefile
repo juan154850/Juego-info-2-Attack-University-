@@ -214,6 +214,7 @@ Makefile: ../AttackUniversity/AttackUniversity.pro E:/qt/5.7/mingw53_32/mkspecs/
 		E:/qt/5.7/mingw53_32/lib/Qt5Multimedia.prl \
 		E:/qt/5.7/mingw53_32/lib/Qt5Widgets.prl \
 		E:/qt/5.7/mingw53_32/lib/Qt5Gui.prl \
+		E:/qt/5.7/mingw53_32/lib/Qt5SerialPort.prl \
 		E:/qt/5.7/mingw53_32/lib/Qt5Network.prl \
 		E:/qt/5.7/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile ..\AttackUniversity\AttackUniversity.pro
@@ -372,6 +373,7 @@ E:/qt/5.7/mingw53_32/lib/qtmaind.prl:
 E:/qt/5.7/mingw53_32/lib/Qt5Multimedia.prl:
 E:/qt/5.7/mingw53_32/lib/Qt5Widgets.prl:
 E:/qt/5.7/mingw53_32/lib/Qt5Gui.prl:
+E:/qt/5.7/mingw53_32/lib/Qt5SerialPort.prl:
 E:/qt/5.7/mingw53_32/lib/Qt5Network.prl:
 E:/qt/5.7/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
