@@ -1395,7 +1395,7 @@ void nivel1::nuevaPartida()
 
         //-------------------player-------------------
 
-        jugador = new personaje(320,-81,50,55,100,100);
+        jugador = new personaje(381,-81,50,55,100,100);
         scene->addItem(jugador);
         scene->setFocusItem(jugador);
 
@@ -1637,7 +1637,6 @@ void nivel1::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int V
         jugador->setVida(VidaJugador);
 
 }
-
 
 void nivel1::colisionBalasConMesasETC()
 {
