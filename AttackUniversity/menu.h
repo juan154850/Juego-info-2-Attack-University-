@@ -10,6 +10,7 @@
 #include <string.h>
 #include <fstream>
 #include <multijugador1.h>
+#include <nivel2.h>
 using namespace std;
 namespace Ui {
 class menu;
@@ -47,6 +48,7 @@ private:
     string clave;
     QMediaPlayer *music;//musica de fondo
     bool cargar=false;
+    QString nivel;
 };
 
 #endif // MENU_H

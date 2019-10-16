@@ -579,7 +579,7 @@ void multijugador1::ColisionBalasBoss()
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,1);
                 ui->~multijugador1();
                 close();
                 gano->show();
@@ -851,7 +851,7 @@ void multijugador1::CBJCB()
                     timerGBB->stop();
                     pausa();
                     Ganar * gano;
-                    gano = new Ganar(uss,pass,true);
+                    gano = new Ganar(uss,pass,true,2);
                     ui->~multijugador1();
                     close();
                     gano->show();
@@ -899,7 +899,7 @@ void multijugador1::colisionesJugador()
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,1);
                 ui->~multijugador1();
                 close();
                 gano->show();
@@ -914,7 +914,7 @@ void multijugador1::colisionesJugador()
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,1);
                 ui->~multijugador1();
                 close();
                 gano->show();
@@ -1116,7 +1116,7 @@ void multijugador1::CBSCM(bala *LaBalaDelSoldado)
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,1);
                 ui->~multijugador1();
                 close();
                 gano->show();
@@ -1132,7 +1132,7 @@ void multijugador1::CBSCM(bala *LaBalaDelSoldado)
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,1);
                 ui->~multijugador1();
                 close();
                 gano->show();
@@ -1745,7 +1745,7 @@ void multijugador1::MoverYColisionBolasDeFuego()
                 {
                     pausa();
                     Ganar * gano;
-                    gano = new Ganar(uss,pass,false);
+                    gano = new Ganar(uss,pass,false,1);
                     ui->~multijugador1();
                     close();
                     gano->show();
@@ -1759,7 +1759,7 @@ void multijugador1::MoverYColisionBolasDeFuego()
                 {
                     pausa();
                     Ganar * gano;
-                    gano = new Ganar(uss,pass,false);
+                    gano = new Ganar(uss,pass,false,1);
                     ui->~multijugador1();
                     close();
                     gano->show();

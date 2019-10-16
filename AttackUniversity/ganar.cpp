@@ -1,11 +1,12 @@
 #include "ganar.h"
 #include "ui_ganar.h"
 
-Ganar::Ganar(QString fileName,QString PassName,bool ganar_perder,QWidget *parent) :
+Ganar::Ganar(QString fileName,QString PassName,bool ganar_perder,int level,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Ganar)
 {
     ui->setupUi(this);    
+    elNivel = level;
     uss = fileName;
     pass = PassName;
     scene = new QGraphicsScene;
@@ -43,13 +44,27 @@ void Ganar::on_salir_del_juego_clicked()
 
 void Ganar::on_volver_a_jugar_clicked()
 {
-    nivel1 *jugar;
-    jugar = new nivel1(uss,pass,false);
-    close();
-    jugar->show();
+    if ( elNivel ==1)
+    {
+        nivel1 *jugar;
+        jugar = new nivel1(uss,pass,false,1);
+        close();
+        jugar->show();
+    }
+    else if ( elNivel ==2)
+    {
+        nivel2 *jugar;
+        jugar = new nivel2(uss,pass,false,2);
+        close();
+        jugar->show();
+    }
+
 }
 
 void Ganar::on_siguiente_nivel_clicked()
 {
-    QMessageBox::information(this,"information","nivel en proceso");
+    nivel2 *jugar;
+    jugar = new nivel2(uss,pass,false,2);
+    close();
+    jugar->show();
 }

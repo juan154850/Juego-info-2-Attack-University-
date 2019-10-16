@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QGraphicsScene>
 #include <nivel1.h>
+#include <nivel2.h>
 #include <QMessageBox>
 namespace Ui {
 class Ganar;
@@ -14,7 +15,7 @@ class Ganar : public QDialog
     Q_OBJECT
 
 public:
-    explicit Ganar(QString fileName,QString PassName,bool ganar_perder, QWidget *parent = nullptr);
+    explicit Ganar(QString fileName,QString PassName,bool ganar_perder,int level, QWidget *parent = nullptr);
     ~Ganar();
 
 private slots:
@@ -29,6 +30,7 @@ private:
     QGraphicsScene * scene;
     QString uss;
     QString pass;
+    int elNivel;
 
 };
 

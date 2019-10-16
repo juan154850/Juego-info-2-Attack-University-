@@ -1,9 +1,9 @@
 #include "arabe.h"
 
-arabe::arabe() : personaje (0,0,0,0,100,100)
+arabe::arabe() : personaje (0,0,55,60,100,100)
 {
 
-    setPixmap(QPixmap(":/imagenes/personaje1.png")); // se le asigna la imagen al add
+    setPixmap(QPixmap(":/imagenes/araIz1.png").scaled(45,50));
     setPos(posx,posy);
 }
 

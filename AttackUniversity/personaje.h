@@ -48,6 +48,8 @@ public:
     void animacionIzquierdaP2();
     void animacionDerechaP2();
 
+
+
 private:
     int animacion=0;
     double posx=0;
@@ -56,7 +58,7 @@ private:
     float high=0;
     double vx=0;
     double vy=0;    
-    int vida=50000000;
+    int vida=200;
     int damage = 5000;
     char dire;
     int animacionP2=0;

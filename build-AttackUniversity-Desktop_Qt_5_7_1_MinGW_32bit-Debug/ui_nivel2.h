@@ -20,7 +20,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSplitter>
 
 QT_BEGIN_NAMESPACE
 
@@ -32,12 +31,11 @@ public:
     QLabel *label_2;
     QProgressBar *vidaJugador;
     QProgressBar *vida_boss;
-    QSplitter *splitter;
-    QPushButton *GUARDAPARTIDA;
+    QLCDNumber *lcdNumber_3;
     QPushButton *ARDUINO;
     QPushButton *SALIR;
+    QPushButton *GUARDAPARTIDA;
     QPushButton *pushButton;
-    QLCDNumber *lcdNumber_3;
 
     void setupUi(QDialog *nivel2)
     {
@@ -46,7 +44,7 @@ public:
         nivel2->resize(800, 600);
         graphicsView = new QGraphicsView(nivel2);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        graphicsView->setGeometry(QRect(0, 0, 256, 192));
+        graphicsView->setGeometry(QRect(10, 10, 256, 192));
         label = new QLabel(nivel2);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(10, 0, 47, 13));
@@ -55,7 +53,7 @@ public:
         label_2->setGeometry(QRect(1400, 100, 47, 13));
         vidaJugador = new QProgressBar(nivel2);
         vidaJugador->setObjectName(QStringLiteral("vidaJugador"));
-        vidaJugador->setGeometry(QRect(10, 20, 171, 31));
+        vidaJugador->setGeometry(QRect(10, 10, 171, 31));
         vidaJugador->setStyleSheet(QLatin1String("font: 20pt \"MS Shell Dlg 2\";\n"
 "color: rgb(170, 0, 0);"));
         vidaJugador->setMaximum(100);
@@ -67,25 +65,21 @@ public:
 "color: rgb(170, 0, 0);"));
         vida_boss->setMaximum(500);
         vida_boss->setValue(500);
-        splitter = new QSplitter(nivel2);
-        splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setGeometry(QRect(990, 360, 151, 111));
-        splitter->setOrientation(Qt::Vertical);
-        GUARDAPARTIDA = new QPushButton(splitter);
-        GUARDAPARTIDA->setObjectName(QStringLiteral("GUARDAPARTIDA"));
-        splitter->addWidget(GUARDAPARTIDA);
-        ARDUINO = new QPushButton(splitter);
-        ARDUINO->setObjectName(QStringLiteral("ARDUINO"));
-        splitter->addWidget(ARDUINO);
-        SALIR = new QPushButton(splitter);
-        SALIR->setObjectName(QStringLiteral("SALIR"));
-        splitter->addWidget(SALIR);
-        pushButton = new QPushButton(splitter);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        splitter->addWidget(pushButton);
         lcdNumber_3 = new QLCDNumber(nivel2);
         lcdNumber_3->setObjectName(QStringLiteral("lcdNumber_3"));
         lcdNumber_3->setGeometry(QRect(1250, 90, 64, 23));
+        ARDUINO = new QPushButton(nivel2);
+        ARDUINO->setObjectName(QStringLiteral("ARDUINO"));
+        ARDUINO->setGeometry(QRect(250, 312, 151, 24));
+        SALIR = new QPushButton(nivel2);
+        SALIR->setObjectName(QStringLiteral("SALIR"));
+        SALIR->setGeometry(QRect(250, 341, 151, 24));
+        GUARDAPARTIDA = new QPushButton(nivel2);
+        GUARDAPARTIDA->setObjectName(QStringLiteral("GUARDAPARTIDA"));
+        GUARDAPARTIDA->setGeometry(QRect(250, 283, 151, 24));
+        pushButton = new QPushButton(nivel2);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(250, 370, 151, 24));
 
         retranslateUi(nivel2);
 
@@ -99,9 +93,9 @@ public:
         label_2->setText(QApplication::translate("nivel2", "BOSS", Q_NULLPTR));
         vidaJugador->setFormat(QApplication::translate("nivel2", "%p", Q_NULLPTR));
         vida_boss->setFormat(QApplication::translate("nivel2", "%p", Q_NULLPTR));
-        GUARDAPARTIDA->setText(QApplication::translate("nivel2", "GUARDAR PARTIDA", Q_NULLPTR));
         ARDUINO->setText(QApplication::translate("nivel2", "CONECTAR ARDUINO", Q_NULLPTR));
         SALIR->setText(QApplication::translate("nivel2", "SALIR", Q_NULLPTR));
+        GUARDAPARTIDA->setText(QApplication::translate("nivel2", "GUARDAR PARTIDA", Q_NULLPTR));
         pushButton->setText(QApplication::translate("nivel2", "SALIR DEL JUEGO", Q_NULLPTR));
     } // retranslateUi
 

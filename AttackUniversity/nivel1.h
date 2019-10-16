@@ -32,7 +32,7 @@ class nivel1 : public QWidget
     Q_OBJECT
 
 public:
-    explicit nivel1(QString fileName,QString PassName, bool cargar,QWidget *parent = nullptr);
+    explicit nivel1(QString fileName,QString PassName, bool cargar,int nivel,QWidget *parent = nullptr);
 
     ~nivel1();
     void keyPressEvent(QKeyEvent *ev);//YA
@@ -195,6 +195,7 @@ private:
     QString pass;
     int delayDisparar=10;    
     bool colision=false;
+    int level=1;
 
 
 };

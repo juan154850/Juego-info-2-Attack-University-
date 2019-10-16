@@ -2,6 +2,7 @@
 #define BOSS1_H
 #include <personaje.h>
 #include <bala.h>
+#include <arabe.h>
 class boss1 : public personaje
 {
 public:
@@ -13,6 +14,7 @@ public:
     void setDelayDisparo(int value);
     void dispararEnSol(QList<bala*>balas);
     void lluviaNotas(QList<bala*>balas);
+    //void sacarBichitos(QList <arabe*>balas, personaje *jugador);
     void generarBalasEnSol(void);
 
     int getNumBalas() const;

@@ -63,6 +63,13 @@ void menu::on_iniciar_2_clicked()
         clave = read.readLine();
         if( clave == ui->pass->text())
         {
+            read.readLine();
+            read.readLine();
+            read.readLine();
+            read.readLine();
+            read.readLine();
+            nivel = read.readLine();
+            qDebug()<< nivel;
             ui->uss->setVisible(false);
             ui->pass->setVisible(false);
             ui->multijugador->setVisible(true);
@@ -123,17 +130,28 @@ void menu::on_registro_2_clicked()
 void menu::on_nuevaPartida_clicked()
 {
     nivel1 *juego;
-    juego = new nivel1(uss,pass,false);
+    juego = new nivel1(uss,pass,false, 1);
     juego->show();
     close();
 }
 
 void menu::on_cargarPartida_clicked()
 {
-    nivel1 *juego;
-    juego = new nivel1(uss,pass,true);
-    juego->show();
-    close();
+    if( nivel == "1" )
+    {
+        nivel1 *juego;
+        juego = new nivel1(uss,pass,true, 1);
+        juego->show();
+        close();
+    }
+    else if ( nivel =="2")
+    {
+        nivel2 *juego;
+        juego = new nivel2(uss,pass,true, 2);
+        juego->show();
+        close();
+    }
+
 }
 
 void menu::on_multijugador_clicked()

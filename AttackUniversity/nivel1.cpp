@@ -1,13 +1,15 @@
 #include "nivel1.h"
 #include "ui_nivel1.h"
 #include <ganar.h>
-nivel1::nivel1(QString fileName,QString PassName,bool cargar,QWidget *parent) :
+nivel1::nivel1(QString fileName,QString PassName,bool cargar,
+               int nivel,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::nivel1)
 {
     ui->setupUi(this);
     uss= fileName;    
     pass = PassName;
+    level = nivel;
     if ( cargar == false)
     {
         qDebug()<<"nueva partida";
@@ -440,7 +442,7 @@ void nivel1::ColisionBalasBoss()
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,1);
                 ui->~nivel1();
                 close();
                 gano->show();
@@ -716,7 +718,7 @@ void nivel1::CBJCB()
                     timerGBB->stop();                    
                     pausa();
                     Ganar * gano;
-                    gano = new Ganar(uss,pass,true);
+                    gano = new Ganar(uss,pass,true,2);
                     ui->~nivel1();
                     close();
                     gano->show();
@@ -751,7 +753,7 @@ void nivel1::colisionesJugador()
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,1);
                 ui->~nivel1();
                 close();
                 gano->show();
@@ -959,7 +961,7 @@ void nivel1::CBSCM(bala *LaBalaDelSoldado)
 //            qDebug()<<"perdio papi";
             pausa();
             Ganar * gano;
-            gano = new Ganar(uss,pass,false);
+            gano = new Ganar(uss,pass,false,1);
             ui->~nivel1();
             close();
             gano->show();
@@ -1355,7 +1357,7 @@ void nivel1::cargarPartida()
         QTextStream in(&file);
         in.readLine();
         in.readLine();
-        int px, py, oleada,sala,vidaJugador;
+        int px, py, oleada,sala,vidaJugador, leve;
         in >>px;
         in.readLine();
         in >>py;
@@ -1365,6 +1367,8 @@ void nivel1::cargarPartida()
         in >>sala;
         in.readLine();
         in>>vidaJugador;
+        in.readLine();
+        in>>leve;
         nuevaPartida(px,py,oleada,sala,vidaJugador);
     }
 }
@@ -1678,7 +1682,7 @@ void nivel1::MoverYColisionBolasDeFuego()
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,1);
                 ui->~nivel1();
                 close();
                 gano->show();
@@ -1864,9 +1868,11 @@ void nivel1::on_GUARDAPARTIDA_clicked()
             out<<numOleada<<endl;
             out<<sala<<endl;
             out<<jugador->getVida()<<endl;
+            out<<level<<endl;
             qDebug() << " estas en la sala "<< sala;
             qDebug() << " estas en la oleada" <<numOleada;
             qDebug() << " tienes " <<jugador->getVida()<< " vida";
+            qDebug() << " estas en el nivel  " <<level;
             cuenta.close();
         }
         else
@@ -1879,9 +1885,11 @@ void nivel1::on_GUARDAPARTIDA_clicked()
             out<<numOleada<<endl;
             out<<sala<<endl;
             out<<jugador->getVida()<<endl;
+            out<<level<<endl;
             qDebug() << " estas en la sala "<< sala;
             qDebug() << " estas en la oleada" <<numOleada;
             qDebug() << " tienes " <<jugador->getVida()<< " vida";
+            qDebug() << " estas en el nivel  " <<level;
             cuenta.close();
         }
 

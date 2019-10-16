@@ -9,9 +9,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //Ganar w (false);
-    //nivel1 w("123","123",false);
-//    menu w;
-    nivel2 w("123","123",false);
+    //nivel1 w("123","123",false,1);
+    menu w;
+    //nivel2 w("123","123",false,2);
     //wmultijugador1 w;
     w.show();
 

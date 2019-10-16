@@ -99,6 +99,34 @@ void boss1::lluviaNotas(QList<bala *> balas)
     }
 }
 
+//void boss1::sacarBichitos(QList<arabe *> balas, personaje *jugador)
+//{
+//    for ( int i = 0 ; i < balas.size() ; i++)
+//    {
+//        if ( jugador->getPosx() < balas.at(i)->getPosx())
+//        {
+//            balas.at(i)->animarIzquierda();
+//            balas.at(i)->moverIzquierda(0.04);
+//        }
+//        else if (  jugador->getPosx() > balas.at(i)->getPosx())
+//        {
+//            balas.at(i)->animarDerecha();
+//            balas.at(i)->moverDerecha(0.04);
+//        }
+//        else if (  jugador->getPosy() > balas.at(i)->getPosx())
+//        {
+//            balas.at(i)->animarAbajo();
+//            balas.at(i)->moverAbajo(0.04);
+//        }
+//        else if (  jugador->getPosy() < balas.at(i)->getPosx())
+//        {
+//            balas.at(i)->animarArriba();
+//            balas.at(i)->moverArriba(0.04);
+//        }
+//        balas.at(i)->moverIzquierda(0.04);
+//    }
+//}
+
 void boss1::generarBalasEnSol()
 {
 }

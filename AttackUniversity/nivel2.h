@@ -33,7 +33,7 @@ class nivel2 : public QDialog
     Q_OBJECT
 
 public:
-    explicit nivel2(QString fileName,QString PassName,bool cargar,QWidget *parent = nullptr);
+    explicit nivel2(QString fileName,QString PassName,bool cargar,int nivel,QWidget *parent = nullptr);
     ~nivel2();
     void keyPressEvent(QKeyEvent *ev);
     void generarBordes(void);
@@ -51,7 +51,7 @@ public:
     void colisionConMesasETC();
 
 public slots:
-    void moverSoldado(void);//YA
+    void moverSoldado(void);//
     void moverArabe(void);
     void Puertas(void);
     void colisionArabe(void);
@@ -117,6 +117,7 @@ private:
     QList<bala*>balasJugador;
     QList<soldado*>soldados;
     QList<arabe*>arabes;
+    //QList<arabe*>bichosSebastian;
     QList<bala*>L_balasBoss;
     QList<QGraphicsLineItem*> obs;
     QList<obstaculos*> mesas;
@@ -190,14 +191,15 @@ private:
     QMediaPlayer *dialogosSebastian;
     QMediaPlayer *musica;
     QMediaPlayer *efectos;
-    int numOleada=4;
-    int sala=2;
+    int numOleada=0;
+    int sala=1;
     bool salaCompleta=false;
     bool pausa_ = false;
     QString uss;
     QString pass;
     int delayDisparar=10;
     bool colision=false;
+    int level=2;
 
 };
 

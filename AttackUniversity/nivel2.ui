@@ -16,8 +16,8 @@
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>10</x>
+     <y>10</y>
      <width>256</width>
      <height>192</height>
     </rect>
@@ -53,7 +53,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>20</y>
+     <y>10</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -95,39 +95,6 @@ color: rgb(170, 0, 0);</string>
     <string>%p</string>
    </property>
   </widget>
-  <widget class="QSplitter" name="splitter">
-   <property name="geometry">
-    <rect>
-     <x>990</x>
-     <y>360</y>
-     <width>151</width>
-     <height>111</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-   <widget class="QPushButton" name="GUARDAPARTIDA">
-    <property name="text">
-     <string>GUARDAR PARTIDA</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ARDUINO">
-    <property name="text">
-     <string>CONECTAR ARDUINO</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="SALIR">
-    <property name="text">
-     <string>SALIR</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="text">
-     <string>SALIR DEL JUEGO</string>
-    </property>
-   </widget>
-  </widget>
   <widget class="QLCDNumber" name="lcdNumber_3">
    <property name="geometry">
     <rect>
@@ -136,6 +103,58 @@ color: rgb(170, 0, 0);</string>
      <width>64</width>
      <height>23</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ARDUINO">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>312</y>
+     <width>151</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CONECTAR ARDUINO</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="SALIR">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>341</y>
+     <width>151</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SALIR</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="GUARDAPARTIDA">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>283</y>
+     <width>151</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GUARDAR PARTIDA</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>370</y>
+     <width>151</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SALIR DEL JUEGO</string>
    </property>
   </widget>
  </widget>

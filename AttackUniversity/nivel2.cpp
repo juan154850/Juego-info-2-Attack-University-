@@ -2,13 +2,14 @@
 #include "ui_nivel2.h"
 #include <ganar.h>
 
-nivel2::nivel2(QString fileName,QString PassName,bool cargar,QWidget *parent) :
+nivel2::nivel2(QString fileName,QString PassName,bool cargar,int nivel,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::nivel2)
 {
     ui->setupUi(this);
     uss= fileName;
     pass = PassName;
+    level = nivel;
     if ( cargar == false)
     {
         qDebug()<<"nueva partida";
@@ -225,12 +226,12 @@ void nivel2::generarBordes()
     scene->addItem(abaj1);
     obs.push_back(abaj1);
     abaj2=(new QGraphicsLineItem(350,0,0,0));
-    abaj2->setPen(QPen(Qt::yellow));
+    abaj2->setPen(QPen(Qt::transparent));
     abaj2->setPos(0,-1236);
     scene->addItem(abaj2);
     obs.push_back(abaj2);
     abaj2Copia=(new QGraphicsLineItem(350,0,0,0));
-    abaj2Copia->setPen(QPen(Qt::yellow));
+    abaj2Copia->setPen(QPen(Qt::transparent));
     abaj2Copia->setPos(480,-1236);
     scene->addItem(abaj2Copia);
     obs.push_back(abaj2Copia);
@@ -240,22 +241,22 @@ void nivel2::generarBordes()
     scene->addItem(abaj3);
     obs.push_back(abaj3);
     arrib1=(new QGraphicsLineItem(350,0,0,0));
-    arrib1->setPen(QPen(Qt::red));
+    arrib1->setPen(QPen(Qt::transparent));
     arrib1->setPos(0,-580);
     scene->addItem(arrib1);
     obs.push_back(arrib1);
     arrib1Copia=(new QGraphicsLineItem(350,0,0,0));
-    arrib1Copia->setPen(QPen(Qt::red));
+    arrib1Copia->setPen(QPen(Qt::transparent));
     arrib1Copia->setPos(480,-580);
     scene->addItem(arrib1Copia);
     obs.push_back(arrib1Copia);
     arrib2=(new QGraphicsLineItem(350,0,0,0));
-    arrib2->setPen(QPen(Qt::yellow));
+    arrib2->setPen(QPen(Qt::transparent));
     arrib2->setPos(0,-1768);
     scene->addItem(arrib2);
     obs.push_back(arrib2);
     arrib2Copia=(new QGraphicsLineItem(350,0,0,0));
-    arrib2Copia->setPen(QPen(Qt::yellow));
+    arrib2Copia->setPen(QPen(Qt::transparent));
     arrib2Copia->setPos(480,-1768);
     scene->addItem(arrib2Copia);
     obs.push_back(arrib2Copia);
@@ -265,40 +266,40 @@ void nivel2::generarBordes()
     scene->addItem(arrib3);
     obs.push_back(arrib3);
     puenteIzq1=(new QGraphicsLineItem(0,600,0,0));
-    puenteIzq1->setPen(QPen(Qt::yellow));
+    puenteIzq1->setPen(QPen(Qt::transparent));
     puenteIzq1->setPos(350,-1210);
     scene->addItem(puenteIzq1);
     obs.push_back(puenteIzq1);
     puenteDrch1=(new QGraphicsLineItem(0,600,0,0));
-    puenteDrch1->setPen(QPen(Qt::yellow));
+    puenteDrch1->setPen(QPen(Qt::transparent));
     puenteDrch1->setPos(465,-1210);
     scene->addItem(puenteDrch1);
     obs.push_back(puenteDrch1);
     puenteIzq2=(new QGraphicsLineItem(0,600,0,0));
-    puenteIzq2->setPen(QPen(Qt::yellow));
+    puenteIzq2->setPen(QPen(Qt::transparent));
     puenteIzq2->setPos(350,-2405);
     scene->addItem(puenteIzq2);
     obs.push_back(puenteIzq2);
     puenteDrch2=(new QGraphicsLineItem(0,600,0,0));
-    puenteDrch2->setPen(QPen(Qt::yellow));
+    puenteDrch2->setPen(QPen(Qt::transparent));
     puenteDrch2->setPos(465,-2405);
     scene->addItem(puenteDrch2);
     obs.push_back(puenteDrch2);
     puertaBoss = new QGraphicsLineItem(120,0,0,0);
-    puertaBoss->setPen(QPen(Qt::yellow));
+    puertaBoss->setPen(QPen(Qt::transparent));
     puertaBoss->setPos(332,-2400);
     obs.append(puertaBoss);
     scene->addItem(puertaBoss);
     puertaSala1 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala1->setPen(QPen(Qt::yellow));
+    puertaSala1->setPen(QPen(Qt::transparent));
     puertaSala1->setPos(342,-590);
     scene->addItem(puertaSala1);
     puertaSala2 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala2->setPen(QPen(Qt::yellow));
+    puertaSala2->setPen(QPen(Qt::transparent));
     puertaSala2->setPos(339,-1210);
     scene->addItem(puertaSala2);
     puertaSala3 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala3->setPen(QPen(Qt::yellow));
+    puertaSala3->setPen(QPen(Qt::transparent));
     puertaSala3->setPos(350,-1800);
     scene->addItem(puertaSala3);
     obs.append(puertaSala1);
@@ -476,7 +477,7 @@ void nivel2::CBSCM(bala *LaBalaDelSoldado)
         {
             pausa();
             Ganar * gano;
-            gano = new Ganar(uss,pass,false);
+            gano = new Ganar(uss,pass,false,2);
             ui->~nivel2();
             close();
             gano->show();
@@ -558,10 +559,10 @@ void nivel2::generarObstaculos()
     bolaDeFuego1 = new obstaculos(578,-482,30,30);
     bolaDeFuego1->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
     scene->addItem(bolaDeFuego1);
-    bolaDeFuego2 = new obstaculos(700,-868,30,30);
+    bolaDeFuego2 = new obstaculos(384,-868,30,30);
     bolaDeFuego2->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
     scene->addItem(bolaDeFuego2);
-    bolaDeFuego3 = new obstaculos(700,-1176,30,30);
+    bolaDeFuego3 = new obstaculos(384,-1176,30,30);
     bolaDeFuego3->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
     scene->addItem(bolaDeFuego3);
     bolaDeFuego4 = new obstaculos(384,-1465,30,30);
@@ -570,7 +571,7 @@ void nivel2::generarObstaculos()
     bolaDeFuego5 = new obstaculos(152,-1657,30,30);
     bolaDeFuego5->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
     scene->addItem(bolaDeFuego5);
-    bolaDeFuego6 = new obstaculos(700,-2197,30,30);
+    bolaDeFuego6 = new obstaculos(384,-2197,30,30);
     bolaDeFuego6->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
     scene->addItem(bolaDeFuego6);
     bolasDeFuego.push_back(bolaDeFuego1);
@@ -829,7 +830,7 @@ void nivel2::cargarPartida()
         QTextStream in(&file);
         in.readLine();
         in.readLine();
-        int px, py, oleada,sala,vidaJugador;
+        int px, py, oleada,sala,vidaJugador, leve;
         in >>px;
         in.readLine();
         in >>py;
@@ -839,6 +840,8 @@ void nivel2::cargarPartida()
         in >>sala;
         in.readLine();
         in>>vidaJugador;
+        in.readLine();
+        in>>leve;
         nuevaPartida(px,py,oleada,sala,vidaJugador);
     }
 }
@@ -869,7 +872,7 @@ void nivel2::nuevaPartida()
 
         //-------------------player-------------------
 
-        jugador = new personaje(384,-1313,50,55,100,100);
+        jugador = new personaje(384,-81,50,55,100,100);
         scene->addItem(jugador);
         scene->setFocusItem(jugador);
 
@@ -1103,6 +1106,7 @@ void nivel2::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int V
             scene->setSceneRect(0,jugador->getPosy()-515,800,600);
         }
         jugador->setVida(VidaJugador);
+        ui->pushButton->setVisible(false);
 }
 
 void nivel2::colisionConMesasETC()
@@ -1187,34 +1191,92 @@ void nivel2::colisionConMesasETC()
 
 }
 
-void nivel2::moverSoldado()//FALTA ORGANIZAR DETALLES DE MOVIMIENTO
+void nivel2::moverSoldado()
 {
-   QList<soldado*>::iterator ms;
+    QList<soldado*>::iterator ms;
+    for ( int i = 0 ; i < obs.size(); i++)
+    {
+        for ( int j = 0 ; j < soldados.size(); j++)
+        {
+            if ( soldados.at(j)->collidesWithItem(obs.at(i)))
+            {
+                mover_Soldado->start(100);
+                switch (soldados.at(j)->getDir())
+                {
+                case('W'):
+                {
+                    soldados.at(j)->AnimarAbajo();
+                    soldados.at(j)->moverAb(0.04);
+                    soldados.at(j)->setDir('W');
 
-   for ( ms = soldados.begin(); ms != soldados.end(); ms++)
-   {
-       int aleatorio = 1+rand()%4;
-       if(aleatorio==1)
-       {
-           ms.i->t()->moverAr(0.02);
-       }
-       else if(aleatorio==2)
-       {
-            ms.i->t()->moverAb(0.02);
-       }
-       else if(aleatorio==3)
-       {
-           ms.i->t()->moverDr(0.02);
-       }
-       else if(aleatorio==4)
-       {
-           ms.i->t()->moverIz(0.02);
-       }
-       ColisionArabesYSoldados(ms.i->t());
-       balas.append(new bala(ms.i->t()->pos().x(),ms.i->t()->pos().y()+30,20,20,ms.i->t()->getDir()));
-       balas.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
-       scene->addItem(balas.last()); //con estas dos lineas creamos una bala.
-   }
+
+                    break;
+                }
+                case('A'):
+                {
+                    soldados.at(j)->AnimarDerecha();
+                    soldados.at(j)->moverDr(0.04);
+                    soldados.at(j)->setDir('A');
+                    break;
+                }
+                case('S'):
+                {
+                    soldados.at(j)->AnimarArriba();
+                    soldados.at(j)->moverAr(0.04);
+                    soldados.at(j)->setDir('S');
+                    break;
+                }
+                case('D'):
+                {
+                    soldados.at(j)->AnimarIzquierda();;
+                    soldados.at(j)->moverIz(0.04);
+                    soldados.at(j)->setDir('D');
+
+                    break;
+                }
+                }
+                return;
+            }
+            else
+            {
+                mover_Soldado->start(1000);
+            }
+        }
+    }
+    for ( ms = soldados.begin(); ms != soldados.end(); ms++)
+    {
+        int aleatorio = 1+rand()%4;
+        if(aleatorio==1)
+        {
+            ms.i->t()->AnimarArriba();
+            ms.i->t()->moverAr(0.04);
+
+        }
+        else if(aleatorio==2)
+        {
+            ms.i->t()->AnimarAbajo();
+             ms.i->t()->moverAb(0.04);
+
+
+        }
+        else if(aleatorio==3)
+        {
+                       ms.i->t()->AnimarDerecha();
+            ms.i->t()->moverDr(0.04);
+
+
+        }
+        else if(aleatorio==4)
+        {
+            ms.i->t()->AnimarIzquierda();
+            ms.i->t()->moverIz(0.04);
+
+        }
+        ColisionArabesYSoldados(ms.i->t());
+        balas.append(new bala(ms.i->t()->pos().x(),ms.i->t()->pos().y()+30,20,20,ms.i->t()->getDir()));
+        balas.last()->setPixmap(QPixmap(":/imagenes/balaBoss1.png").scaled(30,30));
+        scene->addItem(balas.last()); //con estas dos lineas creamos una bala.
+    }
 }
 
 void nivel2::moverArabe()
@@ -1226,24 +1288,28 @@ void nivel2::moverArabe()
         if (ma.i->t()->pos().x()<jugador->pos().x() && (ma.i->t()->getExplotar() == false))
         {
             ma.i->t()->moverDerecha(0.02);
+            ma.i->t()->animarDerecha();
         }
         if (ma.i->t()->pos().x()>jugador->pos().x() && (ma.i->t()->getExplotar() == false) )
         {
              ma.i->t()->moverIzquierda(0.02);
+             ma.i->t()->animarIzquierda();
         }
         if ( ma.i->t()->pos().y()<jugador->pos().y() && (ma.i->t()->getExplotar() == false))
         {
             ma.i->t()->moverAbajo(0.01);
+            ma.i->t()->animarAbajo();
         }
          if (ma.i->t()->pos().y()>jugador->pos().y() && (ma.i->t()->getExplotar() == false))
          {
              ma.i->t()->moverArriba(0.01);
+             ma.i->t()->animarArriba();
          }
     }
 
 }
 
-void nivel2::Puertas()//FALTA
+void nivel2::Puertas()
 {
     if ( jugador->collidesWithItem(puertaSala2))
     {
@@ -1328,7 +1394,7 @@ void nivel2::dispararSoldado()
 
 }
 
-void nivel2::dispararBoss()//REPLANTEAR COMO DISPARA
+void nivel2::dispararBoss()
 {
     if( poder ==4)
     {
@@ -1338,10 +1404,14 @@ void nivel2::dispararBoss()//REPLANTEAR COMO DISPARA
     {
         sebastian->lluviaNotas(L_balasBoss);
     }
+//    else if ( poder == 6 )
+//    {
+//        sebastian->sacarBichitos(bichosSebastian,jugador);
+//    }
 
 }
 
-void nivel2::ColisionBalasBoss()//REESTRUCTURAR
+void nivel2::ColisionBalasBoss()
 {
     for ( int i = 0 ; i< L_balasBoss.size() ; i++)
     {
@@ -1372,7 +1442,7 @@ void nivel2::ColisionBalasBoss()//REESTRUCTURAR
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,2);
                 ui->~nivel2();
                 close();
                 gano->show();
@@ -1386,7 +1456,11 @@ void nivel2::ColisionBalasBoss()//REESTRUCTURAR
                  || L_balasBoss.at(i)->collidesWithItem(abaj3)
                  || L_balasBoss.at(i)->collidesWithItem(izq1)
                  || L_balasBoss.at(i)->collidesWithItem(drch1)
-                 || L_balasBoss.at(i)->collidesWithItem(puertaBoss))
+                 || L_balasBoss.at(i)->collidesWithItem(puertaBoss)
+                 || L_balasBoss.at(i)->collidesWithItem(abaj2Copia)
+                 || L_balasBoss.at(i)->collidesWithItem(arrib1Copia)
+                 || L_balasBoss.at(i)->collidesWithItem(arrib2Copia)
+                 )
         {
             scene->removeItem(L_balasBoss.at(i));
             L_balasBoss.removeOne(L_balasBoss.at(i));
@@ -1404,6 +1478,55 @@ void nivel2::ColisionBalasBoss()//REESTRUCTURAR
         }
 
     }
+//    for ( int i =0; i<bichosSebastian.size();i++)
+//    {
+//        if( bichosSebastian.at(i)->collidesWithItem(jugador))
+//        {
+//            efectos->setMedia(QUrl("qrc:/musica/golpeAugusto.mp3"));
+//            efectos->play();
+//            scene->removeItem(bichosSebastian.at(i));
+//            bichosSebastian.removeOne(bichosSebastian.at(i));
+//            jugador->setVida(jugador->getVida()-5);
+//            ui->vidaJugador->setValue(jugador->getVida());
+//            if ( jugador->getVida() <=0 )
+//            {
+//                pausa();
+//                Ganar * gano;
+//                gano = new Ganar(uss,pass,false);
+//                ui->~nivel2();
+//                close();
+//                gano->show();
+//            }
+//            else
+//            {
+//            }
+
+//        }
+//        else if( bichosSebastian.at(i)->collidesWithItem(arrib3)
+//                 || bichosSebastian.at(i)->collidesWithItem(abaj3)
+//                 || bichosSebastian.at(i)->collidesWithItem(izq1)
+//                 || bichosSebastian.at(i)->collidesWithItem(drch1)
+//                 || bichosSebastian.at(i)->collidesWithItem(puertaBoss)
+//                 || bichosSebastian.at(i)->collidesWithItem(abaj2Copia)
+//                 || bichosSebastian.at(i)->collidesWithItem(arrib1Copia)
+//                 || bichosSebastian.at(i)->collidesWithItem(arrib2Copia)
+//                 )
+//        {
+//            scene->removeItem(bichosSebastian.at(i));
+//            bichosSebastian.removeOne(bichosSebastian.at(i));
+//        }
+//        else if (bichosSebastian.at(i)->getPosx()<-10 || bichosSebastian.at(i)->getPosx()>810)
+//        {
+//            scene->removeItem(bichosSebastian.at(i));
+//            bichosSebastian.removeOne(bichosSebastian.at(i));
+//        }
+//        else if ( bichosSebastian.at(i)->collidesWithItem(mesa1) ||  bichosSebastian.at(i)->collidesWithItem(mesa2)
+//                  ||  bichosSebastian.at(i)->collidesWithItem(mesa3) ||  bichosSebastian.at(i)->collidesWithItem(mesa4))
+//        {
+//            scene->removeItem(bichosSebastian.at(i));
+//            bichosSebastian.removeOne(bichosSebastian.at(i));
+//        }
+//    }
     if(L_balasBoss.size()==0)
     {
         if(!timerGBB->isActive())
@@ -1411,6 +1534,13 @@ void nivel2::ColisionBalasBoss()//REESTRUCTURAR
             timerGBB->start(10);
         }
     }
+//    else if(bichosSebastian.size()==0)
+//    {
+//        if(!timerGBB->isActive())
+//        {
+//            timerGBB->start(10);
+//        }
+//    }
 }
 
 void nivel2::generarBalasBoss()//REESTRUCTURAR
@@ -1525,6 +1655,26 @@ void nivel2::generarBalasBoss()//REESTRUCTURAR
             L_balasBoss.at(cinco)->setSumarVida(true);
             poder= 5;
         }
+//        else if (poder == 3 )
+//        {
+//            poder = 6;
+//            bichosSebastian.push_back(new arabe);
+//            bichosSebastian.last()->setPosx(sebastian->getPosx());
+//            bichosSebastian.last()->setPosy(sebastian->getPosy());
+//            bichosSebastian.last()->setVida(12);
+//            scene->addItem(bichosSebastian.last());
+//            bichosSebastian.push_back(new arabe);
+//            bichosSebastian.last()->setPosx(sebastian->getPosx());
+//            bichosSebastian.last()->setPosy(sebastian->getPosy());
+//            bichosSebastian.last()->setVida(12);
+//            scene->addItem(bichosSebastian.last());
+//            bichosSebastian.push_back(new arabe);
+//            bichosSebastian.last()->setPosx(sebastian->getPosx());
+//            bichosSebastian.last()->setPosy(sebastian->getPosy());
+//            bichosSebastian.last()->setVida(12);
+//            scene->addItem(bichosSebastian.last());
+
+//        }
         if ( !balasB->isActive() )
         {
             balasB->start(10);
@@ -1532,7 +1682,7 @@ void nivel2::generarBalasBoss()//REESTRUCTURAR
     }
 }
 
-void nivel2::moverBoss()//REESTRUCTURAR
+void nivel2::moverBoss()
 {
     if  ((margenError>= 8  || margenError <=-8))
     {
@@ -1540,16 +1690,19 @@ void nivel2::moverBoss()//REESTRUCTURAR
         if ( (margenError<0))
         {
             sebastian->moverDerecha(0.04);
+            sebastian->animarDerecha();
         }
         else if ( margenError > 0 )
         {
             sebastian->moverIzquierda(0.04);
+            sebastian->animarIzquierda();
         }
 
     }
     else
     {
         sebastian->setMoviendome(false);
+        sebastian->animarQuieto();
     }
     if( contador==200)
     {
@@ -1594,7 +1747,7 @@ void nivel2::CBJCB()
                     timerGBB->stop();
                     pausa();
                     Ganar * gano;
-                    gano = new Ganar(uss,pass,true);
+                    gano = new Ganar(uss,pass,true,2);
                     ui->~nivel2();
                     close();
                     gano->show();
@@ -1629,7 +1782,7 @@ void nivel2::colisionesJugador()
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,2);
                 ui->~nivel2();
                 close();
                 gano->show();
@@ -1638,20 +1791,14 @@ void nivel2::colisionesJugador()
     }
 }
 
-void nivel2::dialogos()//CAMBIAR LOS AUDIOS
+void nivel2::dialogos()
 {
     if (agujeroNegro->getAgujero()==false)
     {
-        int numero  = 1 + rand()%2;
-        if ( numero ==1)
+        int numero  = 1 + rand()%10;
+        if ( numero ==5)
         {
-            dialogosSebastian->setMedia(QUrl("qrc:/musica/Completardoshoras.mp3"));
-            dialogosSebastian->setVolume(100);
-            dialogosSebastian->play();
-        }
-        else
-        {
-            dialogosSebastian->setMedia(QUrl("qrc:/musica/llegaranecdota.mp3"));
+            dialogosSebastian->setMedia(QUrl("qrc:/musica/esperaloqueseviene.mp3"));
             dialogosSebastian->setVolume(100);
             dialogosSebastian->play();
         }
@@ -1661,19 +1808,19 @@ void nivel2::dialogos()//CAMBIAR LOS AUDIOS
         int numero = 1+rand()%3;
         if (  numero ==1)
         {
-            dialogosSebastian->setMedia(QUrl("qrc:/musica/Completardoshoras.mp3"));
+            dialogosSebastian->setMedia(QUrl("qrc:/musica/cariñonomepidas.mp3"));
             dialogosSebastian->setVolume(100);
             dialogosSebastian->play();
         }
         else if ( numero ==2)
         {
-            dialogosSebastian->setMedia(QUrl("qrc:/musica/noseacochini.mp3"));
+            dialogosSebastian->setMedia(QUrl("qrc:/musica/esperaloqueseviene.mp3"));
             dialogosSebastian->setVolume(100);
             dialogosSebastian->play();
         }
         else if( numero ==3)
         {
-            dialogosSebastian->setMedia(QUrl("qrc:/musica/vencerme cuestióncarpintería.mp3"));
+            dialogosSebastian->setMedia(QUrl("qrc:/musica/plazamercado.mp3"));
             dialogosSebastian->setVolume(100);
             dialogosSebastian->play();
         }
@@ -1689,7 +1836,7 @@ void nivel2::oleadas()
         generarSoldados();
         generarArabe();
          balas_soldado->start(20);
-         mover_Soldado->start(3000);
+         mover_Soldado->start(1000);
          timerColisionesJugador->start(20);
          numOleada++;
     }
@@ -1698,7 +1845,7 @@ void nivel2::oleadas()
         generarSoldados();
         generarArabe();
         balas_soldado->start(20);
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
         timerColisionesJugador->start(20);
         numOleada++;
     }
@@ -1707,7 +1854,7 @@ void nivel2::oleadas()
         generarSoldados();
         generarArabe();
         balas_soldado->start(20);
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
         timerColisionesJugador->start(20);
         numOleada=3;
         if ( sala ==2 )
@@ -1759,7 +1906,7 @@ void nivel2::MoverYColisionBolasDeFuego()
             {
                 pausa();
                 Ganar * gano;
-                gano = new Ganar(uss,pass,false);
+                gano = new Ganar(uss,pass,false,2);
                 ui->~nivel2();
                 close();
                 gano->show();
@@ -1784,11 +1931,12 @@ void nivel2::on_GUARDAPARTIDA_clicked()
             QTextStream out(&cuenta);
             out<<uss<<endl;
             out<<pass<<endl;
-            out<<680<<endl;
+            out<<380<<endl;
             out<<-2360<<endl;
             out<<numOleada<<endl;
             out<<sala<<endl;
             out<<jugador->getVida()<<endl;
+            out<<level<<endl;
             qDebug() << " estas en la sala "<< sala;
             qDebug() << " estas en la oleada" <<numOleada;
             qDebug() << " tienes " <<jugador->getVida()<< " vida";
@@ -1804,6 +1952,7 @@ void nivel2::on_GUARDAPARTIDA_clicked()
             out<<numOleada<<endl;
             out<<sala<<endl;
             out<<jugador->getVida()<<endl;
+            out<<level<<endl;
             qDebug() << " estas en la sala "<< sala;
             qDebug() << " estas en la oleada" <<numOleada;
             qDebug() << " tienes " <<jugador->getVida()<< " vida";
@@ -1822,7 +1971,7 @@ void nivel2::on_SALIR_clicked()
     }
     if ( !mover_Soldado->isActive())
     {
-        mover_Soldado->start(3000);
+        mover_Soldado->start(1000);
     }
     if( !mover_arabe->isActive())
     {
