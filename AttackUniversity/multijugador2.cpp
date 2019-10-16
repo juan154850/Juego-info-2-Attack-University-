@@ -1527,7 +1527,7 @@ void multijugador2::nuevaPartida()
     //-------------------zona de eventos-------------------
 
         scene = new QGraphicsScene();
-        scene->setBackgroundBrush(QBrush(QImage(":/imagenes/piso1.png")));
+        scene->setBackgroundBrush(QBrush(QImage(":/imagenes/Nivel2Fondo.png")));
         scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
 
 

@@ -26,8 +26,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>100</y>
+     <x>10</x>
+     <y>0</y>
      <width>47</width>
      <height>13</height>
     </rect>
@@ -52,8 +52,8 @@
   <widget class="QProgressBar" name="vidaJugador">
    <property name="geometry">
     <rect>
-     <x>750</x>
-     <y>90</y>
+     <x>10</x>
+     <y>20</y>
      <width>171</width>
      <height>31</height>
     </rect>

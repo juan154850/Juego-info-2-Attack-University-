@@ -138,19 +138,19 @@ private:
     QGraphicsLineItem *puertaSala3;
 
     //mesas POR CAMBIAR
-    obstaculos *mesa1;
+    obstaculos *mesa1; //mesas son los condensadores
     obstaculos *mesa2;
     obstaculos *mesa3;
     obstaculos *mesa4;
-    obstaculos *barril1;
+    obstaculos *barril1; //barriles son las bobinas
     obstaculos *barril2;
     obstaculos *barril3;
     obstaculos *barril4;
-    obstaculos *trincho1;
+    obstaculos *trincho1; //trinchos son los leds
     obstaculos *trincho2;
     obstaculos *trincho3;
     obstaculos *trincho4;
-    obstaculos *caja1;
+    obstaculos *caja1; //puede ser cualquiera
     obstaculos *caja2;
     //agujero negro
     obstaculos *agujeroNegro;

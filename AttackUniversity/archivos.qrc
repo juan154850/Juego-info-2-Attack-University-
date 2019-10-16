@@ -66,5 +66,9 @@
         <file>musica/cogerVida.mp3</file>
         <file>musica/musicaFondo.mp3</file>
         <file>musica/golpeAugusto.mp3</file>
+        <file>imagenes/Nivel2Fondo.png</file>
+        <file>imagenes/Bobina.png</file>
+        <file>imagenes/condensador.png</file>
+        <file>imagenes/Led.png</file>
     </qresource>
 </RCC>

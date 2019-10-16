@@ -46,13 +46,13 @@ public:
         graphicsView->setGeometry(QRect(0, 0, 256, 192));
         label = new QLabel(nivel2);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(770, 100, 47, 13));
+        label->setGeometry(QRect(10, 0, 47, 13));
         label_2 = new QLabel(nivel2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(1400, 100, 47, 13));
         vidaJugador = new QProgressBar(nivel2);
         vidaJugador->setObjectName(QString::fromUtf8("vidaJugador"));
-        vidaJugador->setGeometry(QRect(750, 90, 171, 31));
+        vidaJugador->setGeometry(QRect(10, 20, 171, 31));
         vidaJugador->setStyleSheet(QString::fromUtf8("font: 20pt \"MS Shell Dlg 2\";\n"
 "color: rgb(170, 0, 0);"));
         vidaJugador->setMaximum(100);

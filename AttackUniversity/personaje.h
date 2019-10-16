@@ -50,8 +50,8 @@ private:
     float high=0;
     double vx=0;
     double vy=0;    
-    int vida=100;
-    int damage = 5;
+    int vida=50000000;
+    int damage = 5000;
     char dire;
 
 

@@ -206,8 +206,79 @@ void nivel2::keyPressEvent(QKeyEvent *ev)
     }
 }
 
-void nivel2::generarBordes()
+void nivel2::generarBordes()//FALTA
 {
+    izq1 =new QGraphicsLineItem(0,3000,0,0);
+    izq1->setPos(40,-3000);
+    izq1->setPen(QPen(Qt::transparent));
+    scene->addItem(izq1);
+    obs.push_back(izq1);
+    drch1=(new QGraphicsLineItem(0,3000,0,0));
+    drch1->setPen(QPen(Qt::transparent));
+    drch1->setPos(760,-3000);
+    scene->addItem(drch1);
+    obs.push_back(drch1);
+    abaj1=(new QGraphicsLineItem(800,0,0,0));
+    abaj1->setPen(QPen(Qt::transparent));
+    abaj1->setPos(0,-20);
+    scene->addItem(abaj1);
+    obs.push_back(abaj1);
+    abaj2=(new QGraphicsLineItem(650,0,0,0));
+    abaj2->setPen(QPen(Qt::transparent));
+    abaj2->setPos(0,-1236);
+    scene->addItem(abaj2);
+    obs.push_back(abaj2);
+    abaj3=(new QGraphicsLineItem(650,0,0,0));
+    abaj3->setPen(QPen(Qt::transparent));
+    abaj3->setPos(0,-2420);
+    scene->addItem(abaj3);
+    obs.push_back(abaj3);
+    arrib1=(new QGraphicsLineItem(650,0,0,0));
+    arrib1->setPen(QPen(Qt::transparent));
+    arrib1->setPos(0,-580);
+    scene->addItem(arrib1);
+    obs.push_back(arrib1);
+    arrib2=(new QGraphicsLineItem(650,0,0,0));
+    arrib2->setPen(QPen(Qt::transparent));
+    arrib2->setPos(0,-1768);
+    scene->addItem(arrib2);
+    obs.push_back(arrib2);
+    arrib3=(new QGraphicsLineItem(800,0,0,0));
+    arrib3->setPen(QPen(Qt::transparent));
+    arrib3->setPos(0,-2968);
+    scene->addItem(arrib3);
+    obs.push_back(arrib3);
+    puenteIzq1=(new QGraphicsLineItem(0,634,0,0));
+    puenteIzq1->setPen(QPen(Qt::transparent));
+    puenteIzq1->setPos(632,-1215);
+    scene->addItem(puenteIzq1);
+    obs.push_back(puenteIzq1);
+    puenteIzq2=(new QGraphicsLineItem(0,634,0,0));
+    puenteIzq2->setPen(QPen(Qt::transparent));
+    puenteIzq2->setPos(632,-2415);
+    scene->addItem(puenteIzq2);
+    obs.push_back(puenteIzq2);
+    puertaBoss = new QGraphicsLineItem(120,0,0,0);
+    puertaBoss->setPen(QPen(Qt::red));
+    puertaBoss->setPos(650,-2400);
+    obs.append(puertaBoss);
+    scene->addItem(puertaBoss);
+    puertaSala1 = new QGraphicsLineItem(120,0,0,0);
+    puertaSala1->setPen(QPen(Qt::red));
+    puertaSala1->setPos(635,-597);
+    scene->addItem(puertaSala1);
+    puertaSala2 = new QGraphicsLineItem(120,0,0,0);
+    puertaSala2->setPen(QPen(Qt::red));
+    puertaSala2->setPos(645,-1209);
+    scene->addItem(puertaSala2);
+    puertaSala3 = new QGraphicsLineItem(120,0,0,0);
+    puertaSala3->setPen(QPen(Qt::red));
+    puertaSala3->setPos(645,-1797);
+    scene->addItem(puertaSala3);
+    obs.append(puertaSala1);
+    obs.append(puertaSala2);
+    obs.append(puertaSala3);
+
 
 }
 
@@ -401,6 +472,83 @@ void nivel2::ColisionArabesYSoldados(soldado *solda)
 
 void nivel2::generarObstaculos()//FALTA
 {
+    //esta funcion genera todos los obstaculos del primer nivel
+    mesa1=(new obstaculos( 226,-2512,30,30));
+    mesas.push_back(mesa1);
+    scene->addItem(mesa1);
+    mesa2=(new obstaculos( 118,-2744,30,30));
+    mesas.push_back(mesa2);
+    scene->addItem(mesa2);
+    mesa3=(new obstaculos( 344,-2696,30,30));
+    mesas.push_back(mesa3);
+    scene->addItem(mesa3);
+    mesa4=(new obstaculos( 650,-2796,30,30));
+    mesas.push_back(mesa4);
+    scene->addItem(mesa4);
+    barril1=(new obstaculos( 105,-253,60,60));
+    mesas.push_back(barril1);
+    barril1->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
+    scene->addItem(barril1);
+    barril2=(new obstaculos( 375,-178,60,60));
+    mesas.push_back(barril2);
+    barril2->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
+    scene->addItem(barril2);
+    barril3=(new obstaculos( 603,-160,60,60));
+    mesas.push_back(barril3);
+    barril3->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
+    scene->addItem(barril3);
+    barril4=(new obstaculos( 363,-394,60,60));
+    mesas.push_back(barril4);
+    barril4->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
+    scene->addItem(barril4);
+    trincho1=(new obstaculos( 530,-434,30,30));
+    mesas.push_back(trincho1);
+    trincho1->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
+    scene->addItem(trincho1);
+    trincho2=(new obstaculos( 195,-1374,30,30));
+    mesas.push_back(trincho2);
+    trincho2->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
+    scene->addItem(trincho2);
+    trincho3=(new obstaculos( 527,-1506,30,30));
+    mesas.push_back(trincho3);
+    trincho3->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
+    scene->addItem(trincho3);
+    trincho4=(new obstaculos( 343,-1690,30,30));
+    mesas.push_back(trincho4);
+    trincho4->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
+    scene->addItem(trincho4);
+    caja1=(new obstaculos( 125,-434,60,60));
+    mesas.push_back(caja1);
+    caja1->setPixmap(QPixmap(":/imagenes/caja.png").scaled(60,60));
+    scene->addItem(caja1);
+    caja2=(new obstaculos( 405,-1300,60,60));
+    mesas.push_back(caja2);
+    caja2->setPixmap(QPixmap(":/imagenes/Led.png").scaled(60,60));
+    scene->addItem(caja2);
+    bolaDeFuego1 = new obstaculos(578,-482,30,30);
+    bolaDeFuego1->setPixmap(QPixmap(":/imagenes/Led.png").scaled(50,50));
+    scene->addItem(bolaDeFuego1);
+    bolaDeFuego2 = new obstaculos(700,-868,30,30);
+    bolaDeFuego2->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego2);
+    bolaDeFuego3 = new obstaculos(700,-1176,30,30);
+    bolaDeFuego3->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego3);
+    bolaDeFuego4 = new obstaculos(384,-1465,30,30);
+    bolaDeFuego4->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego4);
+    bolaDeFuego5 = new obstaculos(152,-1657,30,30);
+    bolaDeFuego5->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego5);
+    bolaDeFuego6 = new obstaculos(700,-2197,30,30);
+    bolaDeFuego6->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
+    scene->addItem(bolaDeFuego6);
+    bolasDeFuego.push_back(bolaDeFuego1);
+    bolasDeFuego.push_back(bolaDeFuego2);
+    bolasDeFuego.push_back(bolaDeFuego3);
+    bolasDeFuego.push_back(bolaDeFuego4);
+    bolasDeFuego.push_back(bolaDeFuego5);
+    bolasDeFuego.push_back(bolaDeFuego6);
 
 }
 
@@ -646,7 +794,7 @@ void nivel2::nuevaPartida() //Cambiar dialogos
     //-------------------zona de eventos-------------------
 
         scene = new QGraphicsScene();
-        scene->setBackgroundBrush(QBrush(QImage(":/imagenes/piso1.png")));
+        scene->setBackgroundBrush(QBrush(QImage(":/imagenes/Nivel2Fondo.png")));
         scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
 
 
@@ -769,7 +917,7 @@ void nivel2::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int V
     //-------------------zona de eventos-------------------
 
         scene = new QGraphicsScene();
-        scene->setBackgroundBrush(QBrush(QImage(":/imagenes/piso1.png")));
+        scene->setBackgroundBrush(QBrush(QImage(":/imagenes/Nivel2Fondo.png")));
         scene->setSceneRect(0,0,800,600); //definimos el 0,0 de la escena
 
 
@@ -1041,7 +1189,7 @@ void nivel2::moverArabe()
 
 }
 
-void nivel2::Puertas()
+void nivel2::Puertas()//FALTA
 {
     if ( jugador->collidesWithItem(puertaSala2))
     {
@@ -1098,6 +1246,7 @@ void nivel2::moverBalasJugador()
     {
         delayDisparar++;
     }
+    qDebug()<<jugador->getPosx()<<"  "<<jugador->getPosy();
 }
 
 void nivel2::dispararSoldado()
