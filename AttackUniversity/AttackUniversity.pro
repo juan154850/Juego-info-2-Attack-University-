@@ -27,6 +27,8 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
+    multijugador2.cpp \
+    nivel2.cpp \
     personaje.cpp \
     nivel1.cpp \
     menu.cpp \
@@ -39,6 +41,8 @@ SOURCES += \
     multijugador1.cpp
 
 HEADERS += \
+    multijugador2.h \
+    nivel2.h \
     personaje.h \
     nivel1.h \
     menu.h \
@@ -51,10 +55,12 @@ HEADERS += \
     multijugador1.h
 
 FORMS += \
+    multijugador2.ui \
     nivel1.ui \
     menu.ui \
     ganar.ui \
-    multijugador1.ui
+    multijugador1.ui \
+    nivel2.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

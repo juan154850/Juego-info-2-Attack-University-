@@ -35,12 +35,12 @@ public:
     explicit nivel1(QString fileName,QString PassName, bool cargar,QWidget *parent = nullptr);
 
     ~nivel1();
-    void keyPressEvent(QKeyEvent *ev);
-    void generarBordes(void);
-    void generarSoldados(void);
-    void CBJCS(bala *LaBala);
-    void CBSCM(bala *LaBalaDelSoldado);
-    void ColisionArabesYSoldados(soldado *solda);    
+    void keyPressEvent(QKeyEvent *ev);//YA
+    void generarBordes(void);//YA
+    void generarSoldados(void);//YA
+    void CBJCS(bala *LaBala);//YA
+    void CBSCM(bala *LaBalaDelSoldado);//YA
+    void ColisionArabesYSoldados(soldado *solda);   //YA
     void generarObstaculos(void);    
     void jefeFinal();
     void generarArabe(void);
