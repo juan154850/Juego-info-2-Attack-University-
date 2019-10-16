@@ -126,12 +126,17 @@ private:
     QGraphicsLineItem *drch1;
     QGraphicsLineItem *abaj1;
     QGraphicsLineItem *abaj2;
+    QGraphicsLineItem *abaj2Copia;
     QGraphicsLineItem *abaj3;
     QGraphicsLineItem *arrib1;
+    QGraphicsLineItem *arrib1Copia;
     QGraphicsLineItem *arrib2;
+    QGraphicsLineItem *arrib2Copia;
     QGraphicsLineItem *arrib3;
     QGraphicsLineItem *puenteIzq1;
+    QGraphicsLineItem *puenteDrch1;
     QGraphicsLineItem *puenteIzq2;
+    QGraphicsLineItem *puenteDrch2;
     QGraphicsLineItem *puertaBoss;
     QGraphicsLineItem *puertaSala1;
     QGraphicsLineItem *puertaSala2;
@@ -152,6 +157,12 @@ private:
     obstaculos *trincho4;
     obstaculos *caja1; //puede ser cualquiera
     obstaculos *caja2;
+    obstaculos *obj1;
+    obstaculos *obj2;
+    obstaculos *obj3;
+    obstaculos *obj4;
+    obstaculos *obj5;
+    obstaculos *obj6;
     //agujero negro
     obstaculos *agujeroNegro;
     //bolas de fuego con movimiento circular
@@ -161,6 +172,8 @@ private:
     obstaculos *bolaDeFuego4;
     obstaculos *bolaDeFuego5;
     obstaculos *bolaDeFuego6;
+
+
 
     //otros
     char dire='W'; //controla la direccio en la que van las balas.
@@ -177,8 +190,8 @@ private:
     QMediaPlayer *dialogosSebastian;
     QMediaPlayer *musica;
     QMediaPlayer *efectos;
-    int numOleada=0;
-    int sala=1;
+    int numOleada=4;
+    int sala=2;
     bool salaCompleta=false;
     bool pausa_ = false;
     QString uss;

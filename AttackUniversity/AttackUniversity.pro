@@ -71,4 +71,5 @@ DISTFILES += \
     imagenes/agujero.png
 
 RESOURCES += \
-    archivos.qrc
+    archivos.qrc \
+    archivos2.qrc

@@ -38,7 +38,7 @@ void nivel2::keyPressEvent(QKeyEvent *ev)
 
         jugador->animacionArriba();
         if(!jugador->collidesWithItem(arrib1) && !jugador->collidesWithItem(arrib2)
-                && !jugador->collidesWithItem(arrib3))
+                && !jugador->collidesWithItem(arrib3) && !jugador->collidesWithItem(arrib1Copia) && !jugador->collidesWithItem(arrib2Copia))
         {
             if ( pausa_==true)
             {
@@ -46,7 +46,7 @@ void nivel2::keyPressEvent(QKeyEvent *ev)
             }
             if( colision==false)
             {
-                if(sala == 1 || (sala ==2 && jugador->getPosy()<-1300) || (sala ==3 && jugador->getPosy()<-2480))
+                if(sala == 1 || (sala ==2 && jugador->getPosy()<-1285) || (sala ==3 && jugador->getPosy()<-2480))
                 {
                     //para bloquear la camara en el ultimo nivel
                     jugador->moverArriba(0.04);
@@ -73,7 +73,8 @@ void nivel2::keyPressEvent(QKeyEvent *ev)
     {
         dire = 'S';
         jugador->animacionAbajo();
-        if(!jugador->collidesWithItem(abaj2) && !jugador->collidesWithItem(abaj1) && !jugador->collidesWithItem(abaj3))
+        if(!jugador->collidesWithItem(abaj2) && !jugador->collidesWithItem(abaj1) && !jugador->collidesWithItem(abaj3)
+                && !jugador->collidesWithItem(abaj2Copia))
         {
             if ( pausa_==true)
             {
@@ -106,7 +107,7 @@ void nivel2::keyPressEvent(QKeyEvent *ev)
     {
         dire = 'D';
         jugador->animacionDerecha();
-        if(!jugador->collidesWithItem(drch1))
+        if(!jugador->collidesWithItem(drch1) && !jugador->collidesWithItem(puenteDrch1) && !jugador->collidesWithItem(puenteDrch2))
         {
             if( pausa_==true)
             {
@@ -206,74 +207,99 @@ void nivel2::keyPressEvent(QKeyEvent *ev)
     }
 }
 
-void nivel2::generarBordes()//FALTA
+void nivel2::generarBordes()
 {
     izq1 =new QGraphicsLineItem(0,3000,0,0);
-    izq1->setPos(40,-3000);
+    izq1->setPos(30,-3000);
     izq1->setPen(QPen(Qt::transparent));
     scene->addItem(izq1);
     obs.push_back(izq1);
     drch1=(new QGraphicsLineItem(0,3000,0,0));
     drch1->setPen(QPen(Qt::transparent));
-    drch1->setPos(760,-3000);
+    drch1->setPos(770,-3000);
     scene->addItem(drch1);
     obs.push_back(drch1);
     abaj1=(new QGraphicsLineItem(800,0,0,0));
     abaj1->setPen(QPen(Qt::transparent));
-    abaj1->setPos(0,-20);
+    abaj1->setPos(0,-30);
     scene->addItem(abaj1);
     obs.push_back(abaj1);
-    abaj2=(new QGraphicsLineItem(650,0,0,0));
-    abaj2->setPen(QPen(Qt::transparent));
+    abaj2=(new QGraphicsLineItem(350,0,0,0));
+    abaj2->setPen(QPen(Qt::yellow));
     abaj2->setPos(0,-1236);
     scene->addItem(abaj2);
     obs.push_back(abaj2);
+    abaj2Copia=(new QGraphicsLineItem(350,0,0,0));
+    abaj2Copia->setPen(QPen(Qt::yellow));
+    abaj2Copia->setPos(480,-1236);
+    scene->addItem(abaj2Copia);
+    obs.push_back(abaj2Copia);
     abaj3=(new QGraphicsLineItem(650,0,0,0));
     abaj3->setPen(QPen(Qt::transparent));
     abaj3->setPos(0,-2420);
     scene->addItem(abaj3);
     obs.push_back(abaj3);
-    arrib1=(new QGraphicsLineItem(650,0,0,0));
-    arrib1->setPen(QPen(Qt::transparent));
+    arrib1=(new QGraphicsLineItem(350,0,0,0));
+    arrib1->setPen(QPen(Qt::red));
     arrib1->setPos(0,-580);
     scene->addItem(arrib1);
     obs.push_back(arrib1);
-    arrib2=(new QGraphicsLineItem(650,0,0,0));
-    arrib2->setPen(QPen(Qt::transparent));
+    arrib1Copia=(new QGraphicsLineItem(350,0,0,0));
+    arrib1Copia->setPen(QPen(Qt::red));
+    arrib1Copia->setPos(480,-580);
+    scene->addItem(arrib1Copia);
+    obs.push_back(arrib1Copia);
+    arrib2=(new QGraphicsLineItem(350,0,0,0));
+    arrib2->setPen(QPen(Qt::yellow));
     arrib2->setPos(0,-1768);
     scene->addItem(arrib2);
     obs.push_back(arrib2);
+    arrib2Copia=(new QGraphicsLineItem(350,0,0,0));
+    arrib2Copia->setPen(QPen(Qt::yellow));
+    arrib2Copia->setPos(480,-1768);
+    scene->addItem(arrib2Copia);
+    obs.push_back(arrib2Copia);
     arrib3=(new QGraphicsLineItem(800,0,0,0));
     arrib3->setPen(QPen(Qt::transparent));
     arrib3->setPos(0,-2968);
     scene->addItem(arrib3);
     obs.push_back(arrib3);
-    puenteIzq1=(new QGraphicsLineItem(0,634,0,0));
-    puenteIzq1->setPen(QPen(Qt::transparent));
-    puenteIzq1->setPos(632,-1215);
+    puenteIzq1=(new QGraphicsLineItem(0,600,0,0));
+    puenteIzq1->setPen(QPen(Qt::yellow));
+    puenteIzq1->setPos(350,-1210);
     scene->addItem(puenteIzq1);
     obs.push_back(puenteIzq1);
-    puenteIzq2=(new QGraphicsLineItem(0,634,0,0));
-    puenteIzq2->setPen(QPen(Qt::transparent));
-    puenteIzq2->setPos(632,-2415);
+    puenteDrch1=(new QGraphicsLineItem(0,600,0,0));
+    puenteDrch1->setPen(QPen(Qt::yellow));
+    puenteDrch1->setPos(465,-1210);
+    scene->addItem(puenteDrch1);
+    obs.push_back(puenteDrch1);
+    puenteIzq2=(new QGraphicsLineItem(0,600,0,0));
+    puenteIzq2->setPen(QPen(Qt::yellow));
+    puenteIzq2->setPos(350,-2405);
     scene->addItem(puenteIzq2);
     obs.push_back(puenteIzq2);
+    puenteDrch2=(new QGraphicsLineItem(0,600,0,0));
+    puenteDrch2->setPen(QPen(Qt::yellow));
+    puenteDrch2->setPos(465,-2405);
+    scene->addItem(puenteDrch2);
+    obs.push_back(puenteDrch2);
     puertaBoss = new QGraphicsLineItem(120,0,0,0);
-    puertaBoss->setPen(QPen(Qt::red));
-    puertaBoss->setPos(650,-2400);
+    puertaBoss->setPen(QPen(Qt::yellow));
+    puertaBoss->setPos(332,-2400);
     obs.append(puertaBoss);
     scene->addItem(puertaBoss);
     puertaSala1 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala1->setPen(QPen(Qt::red));
-    puertaSala1->setPos(635,-597);
+    puertaSala1->setPen(QPen(Qt::yellow));
+    puertaSala1->setPos(342,-590);
     scene->addItem(puertaSala1);
     puertaSala2 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala2->setPen(QPen(Qt::red));
-    puertaSala2->setPos(645,-1209);
+    puertaSala2->setPen(QPen(Qt::yellow));
+    puertaSala2->setPos(339,-1210);
     scene->addItem(puertaSala2);
     puertaSala3 = new QGraphicsLineItem(120,0,0,0);
-    puertaSala3->setPen(QPen(Qt::red));
-    puertaSala3->setPos(645,-1797);
+    puertaSala3->setPen(QPen(Qt::yellow));
+    puertaSala3->setPos(350,-1800);
     scene->addItem(puertaSala3);
     obs.append(puertaSala1);
     obs.append(puertaSala2);
@@ -282,7 +308,7 @@ void nivel2::generarBordes()//FALTA
 
 }
 
-void nivel2::generarSoldados() //FALTA
+void nivel2::generarSoldados()
 {
     if (  sala == 1 && numOleada==0 )
     {
@@ -470,63 +496,67 @@ void nivel2::ColisionArabesYSoldados(soldado *solda)
     }
 }
 
-void nivel2::generarObstaculos()//FALTA
+void nivel2::generarObstaculos()
 {
     //esta funcion genera todos los obstaculos del primer nivel
     mesa1=(new obstaculos( 226,-2512,30,30));
+    mesa1->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
     mesas.push_back(mesa1);
     scene->addItem(mesa1);
     mesa2=(new obstaculos( 118,-2744,30,30));
+    mesa2->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
     mesas.push_back(mesa2);
     scene->addItem(mesa2);
-    mesa3=(new obstaculos( 344,-2696,30,30));
+    mesa3=(new obstaculos( 450,-2540,30,30));
+    mesa3->setPixmap(QPixmap(":/imagenes/Led.png").scaled(60,60));
     mesas.push_back(mesa3);
     scene->addItem(mesa3);
     mesa4=(new obstaculos( 650,-2796,30,30));
+    mesa4->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
     mesas.push_back(mesa4);
     scene->addItem(mesa4);
-    barril1=(new obstaculos( 105,-253,60,60));
+    barril1=(new obstaculos( 95,-191,60,60));
     mesas.push_back(barril1);
     barril1->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
     scene->addItem(barril1);
-    barril2=(new obstaculos( 375,-178,60,60));
+    barril2=(new obstaculos( 571,-179,60,60));
     mesas.push_back(barril2);
     barril2->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
     scene->addItem(barril2);
-    barril3=(new obstaculos( 603,-160,60,60));
+    barril3=(new obstaculos( 571,-359,60,60));
     mesas.push_back(barril3);
     barril3->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
     scene->addItem(barril3);
-    barril4=(new obstaculos( 363,-394,60,60));
+    barril4=(new obstaculos( 691,-275,60,60));
     mesas.push_back(barril4);
     barril4->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(60,60));
     scene->addItem(barril4);
-    trincho1=(new obstaculos( 530,-434,30,30));
+    trincho1=(new obstaculos( 335,-367,30,30));
     mesas.push_back(trincho1);
     trincho1->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
     scene->addItem(trincho1);
-    trincho2=(new obstaculos( 195,-1374,30,30));
+    trincho2=(new obstaculos( 99,-523,30,30));
     mesas.push_back(trincho2);
     trincho2->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
     scene->addItem(trincho2);
-    trincho3=(new obstaculos( 527,-1506,30,30));
+    trincho3=(new obstaculos( 571,-535,30,30));
     mesas.push_back(trincho3);
     trincho3->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
     scene->addItem(trincho3);
-    trincho4=(new obstaculos( 343,-1690,30,30));
+    trincho4=(new obstaculos( 451,-447,30,30));
     mesas.push_back(trincho4);
     trincho4->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(70,70));
     scene->addItem(trincho4);
-    caja1=(new obstaculos( 125,-434,60,60));
+    caja1=(new obstaculos( 687,-1476,60,60));
     mesas.push_back(caja1);
-    caja1->setPixmap(QPixmap(":/imagenes/caja.png").scaled(60,60));
+    caja1->setPixmap(QPixmap(":/imagenes/Led.png").scaled(60,60));
     scene->addItem(caja1);
-    caja2=(new obstaculos( 405,-1300,60,60));
+    caja2=(new obstaculos( 571,-1388,60,60));
     mesas.push_back(caja2);
     caja2->setPixmap(QPixmap(":/imagenes/Led.png").scaled(60,60));
     scene->addItem(caja2);
     bolaDeFuego1 = new obstaculos(578,-482,30,30);
-    bolaDeFuego1->setPixmap(QPixmap(":/imagenes/Led.png").scaled(50,50));
+    bolaDeFuego1->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
     scene->addItem(bolaDeFuego1);
     bolaDeFuego2 = new obstaculos(700,-868,30,30);
     bolaDeFuego2->setPixmap(QPixmap(":/imagenes/bolaFuego.png").scaled(50,50));
@@ -549,6 +579,30 @@ void nivel2::generarObstaculos()//FALTA
     bolasDeFuego.push_back(bolaDeFuego4);
     bolasDeFuego.push_back(bolaDeFuego5);
     bolasDeFuego.push_back(bolaDeFuego6);
+    obj1 = new obstaculos(459,-1300,30,30);
+    obj1->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(50,50));
+    scene->addItem(obj1);
+    obj2 = new obstaculos(224,-1472,30,30);
+    obj2->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(50,50));
+    scene->addItem(obj2);
+    obj3 = new obstaculos(100,-1384,30,30);
+    obj3->setPixmap(QPixmap(":/imagenes/condensador.png").scaled(50,50));
+    scene->addItem(obj3);
+    obj4 = new obstaculos(340,-1560,30,30);
+    obj4->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(50,50));
+    scene->addItem(obj4);
+    obj5 = new obstaculos(104,-1728,30,30);
+    obj5->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(50,50));
+    scene->addItem(obj5);
+    obj6 = new obstaculos(457,-1652,30,30);
+    obj6->setPixmap(QPixmap(":/imagenes/Bobina.png").scaled(50,50));
+    scene->addItem(obj6);
+    mesas.push_back(obj1);
+    mesas.push_back(obj2);
+    mesas.push_back(obj3);
+    mesas.push_back(obj4);
+    mesas.push_back(obj5);
+    mesas.push_back(obj6);
 
 }
 
@@ -601,7 +655,7 @@ void nivel2::jefeFinal()
 
 }
 
-void nivel2::generarArabe()//FALTA CAMBIAR LAS NUEVAS POSICIONES DE ARABES
+void nivel2::generarArabe()
 {
     if ( sala==1 && numOleada ==0)
     {
@@ -610,7 +664,7 @@ void nivel2::generarArabe()//FALTA CAMBIAR LAS NUEVAS POSICIONES DE ARABES
         arabes.last()->setPosy(-372);
         scene->addItem(arabes.last());
         arabes.append(new arabe());
-        arabes.last()->setPosx(393);
+        arabes.last()->setPosx(740);
         arabes.last()->setPosy(-372);
         scene->addItem(arabes.last());
     }
@@ -643,19 +697,19 @@ void nivel2::generarArabe()//FALTA CAMBIAR LAS NUEVAS POSICIONES DE ARABES
         arabes.last()->setPosy(-1537);
         scene->addItem(arabes.last());
         arabes.append(new arabe());
-        arabes.last()->setPosx(393);
-        arabes.last()->setPosy(-372);
+        arabes.last()->setPosx(476);
+        arabes.last()->setPosy(-1700);
         scene->addItem(arabes.last());
     }
     else if ( sala == 2 && numOleada ==1)
     {
         arabes.append(new arabe());
-        arabes.last()->setPosx(390);
+        arabes.last()->setPosx(56);
         arabes.last()->setPosy(-1765);
         scene->addItem(arabes.last());
         arabes.append(new arabe());
         arabes.last()->setPosx(393);
-        arabes.last()->setPosy(-372);
+        arabes.last()->setPosy(-1463);
         scene->addItem(arabes.last());
     }
     else if ( sala == 2 && numOleada==2)
@@ -665,8 +719,8 @@ void nivel2::generarArabe()//FALTA CAMBIAR LAS NUEVAS POSICIONES DE ARABES
         arabes.last()->setPosy(-1505);
         scene->addItem(arabes.last());
         arabes.append(new arabe());
-        arabes.last()->setPosx(393);
-        arabes.last()->setPosy(-372);
+        arabes.last()->setPosx(480);
+        arabes.last()->setPosy(-1603);
         scene->addItem(arabes.last());
     }
 
@@ -789,7 +843,7 @@ void nivel2::cargarPartida()
     }
 }
 
-void nivel2::nuevaPartida() //Cambiar dialogos
+void nivel2::nuevaPartida()
 {
     //-------------------zona de eventos-------------------
 
@@ -815,7 +869,7 @@ void nivel2::nuevaPartida() //Cambiar dialogos
 
         //-------------------player-------------------
 
-        jugador = new personaje(320,-81,50,55,100,100);
+        jugador = new personaje(384,-1313,50,55,100,100);
         scene->addItem(jugador);
         scene->setFocusItem(jugador);
 
@@ -894,15 +948,15 @@ void nivel2::nuevaPartida() //Cambiar dialogos
         scene->setSceneRect(0,jugador->getPosy()-515,800,600);
         generarObstaculos();
         dialogosSebastian=new QMediaPlayer;
-        dialogosSebastian->setMedia(QUrl("qrc:/musica/llegaranecdota.mp3"));
+        dialogosSebastian->setMedia(QUrl("qrc:/musica/cariñonomepidas.mp3"));
         dialogosSebastian->setVolume(100);
         dialogosSebastian->play();
         musica=new QMediaPlayer;
         musica->setMedia(QUrl("qrc:/musica/musicaFondo.mp3"));
-        musica->setVolume(50 );
+        musica->setVolume(30 );
         musica->play();
         efectos=new QMediaPlayer;
-        efectos->setVolume(100);
+        efectos->setVolume(50);
         ui->ARDUINO->setVisible(false);
         ui->GUARDAPARTIDA->setVisible(false);
         ui->SALIR->setVisible(false);
@@ -912,7 +966,7 @@ void nivel2::nuevaPartida() //Cambiar dialogos
 
 }
 
-void nivel2::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int VidaJugador)//FALTA CAMBIARLE DIALOGOS
+void nivel2::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int VidaJugador)
 {
     //-------------------zona de eventos-------------------
 
@@ -1016,15 +1070,15 @@ void nivel2::nuevaPartida(int posx, int posy, int numOleada_, int numSala, int V
         //-------------------foco-------------------
         generarObstaculos();
         dialogosSebastian=new QMediaPlayer;
-        dialogosSebastian->setMedia(QUrl("qrc:/musica/llegaranecdota.mp3"));
+        dialogosSebastian->setMedia(QUrl("qrc:/musica/cariñonomepidas.mp3"));
         dialogosSebastian->setVolume(100);
         dialogosSebastian->play();
         musica=new QMediaPlayer;
         musica->setMedia(QUrl("qrc:/musica/musicaFondo.mp3"));
-        musica->setVolume(50 );
+        musica->setVolume(30 );
         musica->play();
         efectos=new QMediaPlayer;
-        efectos->setVolume(100);
+        efectos->setVolume(50);
         ui->ARDUINO->setVisible(false);
         ui->GUARDAPARTIDA->setVisible(false);
         ui->SALIR->setVisible(false);
@@ -1714,9 +1768,6 @@ void nivel2::MoverYColisionBolasDeFuego()
         bolasDeFuego.at(i)->movimientoCircular();
     }
 }
-
-
-
 
 void nivel2::on_ARDUINO_clicked()
 {

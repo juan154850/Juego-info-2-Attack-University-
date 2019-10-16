@@ -1332,7 +1332,7 @@ void nivel1::nuevaPartida()
 
         //-------------------player-------------------
 
-        jugador = new personaje(320,-81,50,55,100,100);
+        jugador = new personaje(381,-81,50,55,100,100);
         scene->addItem(jugador);
         scene->setFocusItem(jugador);
 
