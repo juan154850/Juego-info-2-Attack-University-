@@ -45,10 +45,12 @@ public:
     void jefeFinal();
     void generarArabe(void);
     void pausa();
+    void cargarPartida();
     void nuevaPartida();
+    void nuevaPartida(int posx, int posy, int numOleada_, int numSala, int VidaJugador);
     void colisionConMesasETC();
 public slots:
-    void moverSoldado(void);
+    void moverSoldado(void);//
     void moverArabe(void);
     void Puertas(void);
     void colisionArabe(void);
@@ -64,17 +66,13 @@ public slots:
     void oleadas(void);
     void colisionBalasConMesasETC();
     void MoverYColisionBolasDeFuego();
-
 private slots:
     void on_SALIR_clicked();
     void on_pushButton_clicked();
-
-
-
 private:
     Ui::multijugador2 *ui;
+    //jugador
     personaje *jugador;
-    personaje *jugador2;
     //Boss
     boss1 *sebastian;
     //escena
@@ -97,45 +95,58 @@ private:
     QTimer *puertas;
     QTimer *timerColisionDeMesas;
     QTimer *Timer_MoverYColisionBolasDeFuego;
+    QTimer *timer_control;
     //listas
     QList<bala*>balas; //balas del soldado
     QList<bala*>balasJugador;
     QList<soldado*>soldados;
     QList<arabe*>arabes;
+    //QList<arabe*>bichosSebastian;
     QList<bala*>L_balasBoss;
     QList<QGraphicsLineItem*> obs;
     QList<obstaculos*> mesas;
     QList<obstaculos*>bolasDeFuego;
-    //muros
+    //muros POR CAMBIAR
     QGraphicsLineItem *izq1;
     QGraphicsLineItem *drch1;
     QGraphicsLineItem *abaj1;
     QGraphicsLineItem *abaj2;
+    QGraphicsLineItem *abaj2Copia;
     QGraphicsLineItem *abaj3;
     QGraphicsLineItem *arrib1;
+    QGraphicsLineItem *arrib1Copia;
     QGraphicsLineItem *arrib2;
+    QGraphicsLineItem *arrib2Copia;
     QGraphicsLineItem *arrib3;
     QGraphicsLineItem *puenteIzq1;
+    QGraphicsLineItem *puenteDrch1;
     QGraphicsLineItem *puenteIzq2;
+    QGraphicsLineItem *puenteDrch2;
     QGraphicsLineItem *puertaBoss;
     QGraphicsLineItem *puertaSala1;
     QGraphicsLineItem *puertaSala2;
     QGraphicsLineItem *puertaSala3;
-    //mesas
-    obstaculos *mesa1;
+    //mesas POR CAMBIAR
+    obstaculos *mesa1; //mesas son los condensadores
     obstaculos *mesa2;
     obstaculos *mesa3;
     obstaculos *mesa4;
-    obstaculos *barril1;
+    obstaculos *barril1; //barriles son las bobinas
     obstaculos *barril2;
     obstaculos *barril3;
     obstaculos *barril4;
-    obstaculos *trincho1;
+    obstaculos *trincho1; //trinchos son los leds
     obstaculos *trincho2;
     obstaculos *trincho3;
     obstaculos *trincho4;
-    obstaculos *caja1;
+    obstaculos *caja1; //puede ser cualquiera
     obstaculos *caja2;
+    obstaculos *obj1;
+    obstaculos *obj2;
+    obstaculos *obj3;
+    obstaculos *obj4;
+    obstaculos *obj5;
+    obstaculos *obj6;
     //agujero negro
     obstaculos *agujeroNegro;
     //bolas de fuego con movimiento circular
@@ -147,7 +158,6 @@ private:
     obstaculos *bolaDeFuego6;
     //otros
     char dire='W'; //controla la direccio en la que van las balas.
-    char direP2='W';
     double distancia; //calcula la distancia que hay entre un bicho y el personaje
     int adds=0; //tiene el valor de la cantidad de adds que hay por sala
     int addsAra=0; // cantidad de arabes por sala
@@ -157,7 +167,6 @@ private:
     int contador=0;
     int margenError=0;
     int mermarVida=99;
-    int mermarVidaP2=99;
     int poder=1;
     QMediaPlayer *dialogosSebastian;
     QMediaPlayer *musica;
@@ -169,9 +178,7 @@ private:
     QString uss;
     QString pass;
     int delayDisparar=10;
-    int delayDispararP2=10;
     bool colision=false;
-    bool colisionP2=false;
-
+    int level=2;
 };
 #endif // MULTIJUGADOR2_H
