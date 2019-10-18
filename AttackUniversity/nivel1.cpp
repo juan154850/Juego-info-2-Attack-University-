@@ -2050,6 +2050,7 @@ void nivel1::on_ARDUINO_clicked()
             qDebug()<<"Serial COM10 not opened. Error: "<<control->errorString();
             delete ui;
         }
+        QMessageBox::information(this,"ATTACK UNIVERSITY","Arduino conectado con éxito");
 }
 
 void nivel1::on_GUARDAPARTIDA_clicked()
@@ -2093,6 +2094,7 @@ void nivel1::on_GUARDAPARTIDA_clicked()
         }
 
     }
+    QMessageBox::information(this,"ATTACK UNIVERSITY","Partida Guardada");
 }
 
 void nivel1::on_pushButton_clicked()

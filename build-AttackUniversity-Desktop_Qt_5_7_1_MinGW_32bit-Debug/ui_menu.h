@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -32,6 +33,7 @@ public:
     QPushButton *cargarPartida;
     QPushButton *multijugador;
     QPushButton *nuevaPartida;
+    QGraphicsView *graphicsView;
 
     void setupUi(QDialog *menu)
     {
@@ -42,26 +44,29 @@ public:
         iniciar = new QPushButton(menu);
         iniciar->setObjectName(QStringLiteral("iniciar"));
         iniciar->setGeometry(QRect(110, 220, 151, 61));
-        iniciar->setStyleSheet(QStringLiteral("border-image: url(:/imagenes/cooltext335629482081336.png);"));
+        iniciar->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/INICIAR SESION.png);"));
         registro = new QPushButton(menu);
         registro->setObjectName(QStringLiteral("registro"));
         registro->setGeometry(QRect(260, 220, 151, 61));
-        registro->setStyleSheet(QStringLiteral("border-image: url(:/imagenes/cooltext335629468732690.png);"));
+        registro->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/NUEVA CUENTA.png);"));
         uss = new QLineEdit(menu);
         uss->setObjectName(QStringLiteral("uss"));
         uss->setGeometry(QRect(130, 140, 113, 20));
+        uss->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/lineText.png);"));
         pass = new QLineEdit(menu);
         pass->setObjectName(QStringLiteral("pass"));
         pass->setGeometry(QRect(280, 140, 113, 20));
+        pass->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/lineText.png);"));
         pass->setEchoMode(QLineEdit::Password);
         iniciar_2 = new QPushButton(menu);
         iniciar_2->setObjectName(QStringLiteral("iniciar_2"));
         iniciar_2->setGeometry(QRect(190, 220, 151, 61));
-        iniciar_2->setStyleSheet(QStringLiteral("border-image: url(:/imagenes/cooltext335629482081336.png);"));
+        iniciar_2->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/INICIAR JUEGO.png);"));
         registro_2 = new QPushButton(menu);
         registro_2->setObjectName(QStringLiteral("registro_2"));
         registro_2->setGeometry(QRect(180, 210, 151, 61));
-        registro_2->setStyleSheet(QStringLiteral("border-image: url(:/imagenes/cooltext335629468732690.png);"));
+        registro_2->setStyleSheet(QLatin1String("\n"
+"border-image: url(:/imagenes2/CREAR.png);"));
         cargarPartida = new QPushButton(menu);
         cargarPartida->setObjectName(QStringLiteral("cargarPartida"));
         cargarPartida->setGeometry(QRect(160, 10, 161, 91));
@@ -74,6 +79,19 @@ public:
         nuevaPartida->setObjectName(QStringLiteral("nuevaPartida"));
         nuevaPartida->setGeometry(QRect(140, 80, 221, 91));
         nuevaPartida->setStyleSheet(QStringLiteral("border-image: url(:/imagenes/NUEVA PARTIDA.png);"));
+        graphicsView = new QGraphicsView(menu);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        graphicsView->setGeometry(QRect(0, 0, 100, 100));
+        graphicsView->raise();
+        iniciar->raise();
+        registro->raise();
+        uss->raise();
+        pass->raise();
+        iniciar_2->raise();
+        registro_2->raise();
+        cargarPartida->raise();
+        multijugador->raise();
+        nuevaPartida->raise();
 
         retranslateUi(menu);
 
@@ -83,6 +101,9 @@ public:
     void retranslateUi(QDialog *menu)
     {
         menu->setWindowTitle(QApplication::translate("menu", "Dialog", Q_NULLPTR));
+#ifndef QT_NO_WHATSTHIS
+        menu->setWhatsThis(QApplication::translate("menu", "<html><head/><body><p><br/></p></body></html>", Q_NULLPTR));
+#endif // QT_NO_WHATSTHIS
         iniciar->setText(QString());
         registro->setText(QString());
         iniciar_2->setText(QString());

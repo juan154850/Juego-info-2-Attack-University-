@@ -58,8 +58,8 @@ private:
     float high=0;
     double vx=0;
     double vy=0;    
-    int vida=100;
-    int damage = 6;
+    int vida=150;
+    int damage = 8;
     char dire;
     int animacionP2=0;
 

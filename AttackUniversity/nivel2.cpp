@@ -39,7 +39,8 @@ void nivel2::keyPressEvent(QKeyEvent *ev)
 
         jugador->animacionArriba();
         if(!jugador->collidesWithItem(arrib1) && !jugador->collidesWithItem(arrib2)
-                && !jugador->collidesWithItem(arrib3) && !jugador->collidesWithItem(arrib1Copia) && !jugador->collidesWithItem(arrib2Copia))
+                && !jugador->collidesWithItem(arrib3) && !jugador->collidesWithItem(arrib1Copia)
+                && !jugador->collidesWithItem(arrib2Copia))
         {
             if ( pausa_==true)
             {
@@ -2122,6 +2123,7 @@ void nivel2::on_ARDUINO_clicked()
             qDebug()<<"Serial COM10 not opened. Error: "<<control->errorString();
             delete ui;
         }
+        QMessageBox::information(this,"ATTACK UNIVERSITY","Arduino Conectado Con Éxito");
 }
 
 void nivel2::on_GUARDAPARTIDA_clicked()
@@ -2161,6 +2163,7 @@ void nivel2::on_GUARDAPARTIDA_clicked()
             qDebug() << " tienes " <<jugador->getVida()<< " vida";
             cuenta.close();
         }
+        QMessageBox::information(this,"ATTACK UNIVERSITY","Partida Guardada");
 
     }
 }

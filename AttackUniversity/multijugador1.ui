@@ -42,6 +42,12 @@ color: rgb(170, 0, 0);</string>
    <property name="value">
     <number>100</number>
    </property>
+   <property name="textVisible">
+    <bool>false</bool>
+   </property>
+   <property name="textDirection">
+    <enum>QProgressBar::TopToBottom</enum>
+   </property>
    <property name="format">
     <string>%p</string>
    </property>
@@ -64,6 +70,9 @@ color: rgb(170, 0, 0);</string>
    </property>
    <property name="value">
     <number>100</number>
+   </property>
+   <property name="textVisible">
+    <bool>false</bool>
    </property>
    <property name="format">
     <string>%p</string>
@@ -88,35 +97,89 @@ color: rgb(170, 0, 0);</string>
    <property name="value">
     <number>100</number>
    </property>
+   <property name="textVisible">
+    <bool>false</bool>
+   </property>
    <property name="format">
     <string>%p</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="SALIR">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>440</y>
-     <width>151</width>
-     <height>24</height>
+     <x>30</x>
+     <y>10</y>
+     <width>71</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>SALIR</string>
+    <string>JUGADOR 1</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>469</y>
-     <width>151</width>
-     <height>24</height>
+     <x>320</x>
+     <y>10</y>
+     <width>81</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>SALIR DEL JUEGO</string>
+    <string>JUGADOR 2</string>
    </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>10</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>JEFE NIVEL FINAL</string>
+   </property>
+  </widget>
+  <widget class="QSplitter" name="splitter">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>200</y>
+     <width>171</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <property name="opaqueResize">
+    <bool>false</bool>
+   </property>
+   <property name="handleWidth">
+    <number>0</number>
+   </property>
+   <property name="childrenCollapsible">
+    <bool>false</bool>
+   </property>
+   <widget class="QPushButton" name="SALIR">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/imagenes2/SALIR.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/imagenes2/SALIR DEL JUEGO.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

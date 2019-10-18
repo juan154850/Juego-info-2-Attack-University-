@@ -6,6 +6,14 @@ menu::menu(QWidget *parent) :
     ui(new Ui::menu)
 {    
     ui->setupUi(this);    
+    QGraphicsScene *scene;
+    scene = new QGraphicsScene();
+    scene->setBackgroundBrush(QBrush(QImage(":/imagenes2/fondoMenu.png")));
+    scene->setSceneRect(0,0,500,280); //definimos el 0,0 de la escena
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->setFixedSize(500,280);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->cargarPartida->setVisible(false);
     ui->nuevaPartida->setVisible(false);
     ui->multijugador->setVisible(false);

@@ -52,11 +52,13 @@ public:
         graphicsView->setStyleSheet(QStringLiteral(""));
         vidaJugador = new QProgressBar(nivel1);
         vidaJugador->setObjectName(QStringLiteral("vidaJugador"));
+        vidaJugador->setEnabled(true);
         vidaJugador->setGeometry(QRect(0, 0, 171, 31));
         vidaJugador->setStyleSheet(QLatin1String("font: 20pt \"MS Shell Dlg 2\";\n"
 "color: rgb(170, 0, 0);"));
         vidaJugador->setMaximum(100);
         vidaJugador->setValue(100);
+        vidaJugador->setTextVisible(false);
         lcdNumber_3 = new QLCDNumber(nivel1);
         lcdNumber_3->setObjectName(QStringLiteral("lcdNumber_3"));
         lcdNumber_3->setGeometry(QRect(500, 0, 64, 23));
@@ -67,6 +69,7 @@ public:
 "color: rgb(170, 0, 0);"));
         vida_boss->setMaximum(500);
         vida_boss->setValue(500);
+        vida_boss->setTextVisible(false);
         label = new QLabel(nivel1);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 10, 47, 13));
@@ -75,19 +78,26 @@ public:
         label_2->setGeometry(QRect(650, 10, 47, 13));
         splitter = new QSplitter(nivel1);
         splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setGeometry(QRect(240, 270, 151, 111));
+        splitter->setGeometry(QRect(300, 150, 211, 211));
         splitter->setOrientation(Qt::Vertical);
+        splitter->setOpaqueResize(false);
+        splitter->setHandleWidth(0);
+        splitter->setChildrenCollapsible(false);
         GUARDAPARTIDA = new QPushButton(splitter);
         GUARDAPARTIDA->setObjectName(QStringLiteral("GUARDAPARTIDA"));
+        GUARDAPARTIDA->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/GUARDAR.png);"));
         splitter->addWidget(GUARDAPARTIDA);
         ARDUINO = new QPushButton(splitter);
         ARDUINO->setObjectName(QStringLiteral("ARDUINO"));
+        ARDUINO->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/ARDUINO.png);"));
         splitter->addWidget(ARDUINO);
         SALIR = new QPushButton(splitter);
         SALIR->setObjectName(QStringLiteral("SALIR"));
+        SALIR->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/SALIR.png);"));
         splitter->addWidget(SALIR);
         pushButton = new QPushButton(splitter);
         pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/SALIR DEL JUEGO.png);"));
         splitter->addWidget(pushButton);
 
         retranslateUi(nivel1);
@@ -100,12 +110,12 @@ public:
         nivel1->setWindowTitle(QApplication::translate("nivel1", "ATTACK UNIVERSITY", Q_NULLPTR));
         vidaJugador->setFormat(QApplication::translate("nivel1", "%p", Q_NULLPTR));
         vida_boss->setFormat(QApplication::translate("nivel1", "%p", Q_NULLPTR));
-        label->setText(QApplication::translate("nivel1", "PLAYER", Q_NULLPTR));
-        label_2->setText(QApplication::translate("nivel1", "BOSS", Q_NULLPTR));
-        GUARDAPARTIDA->setText(QApplication::translate("nivel1", "GUARDAR PARTIDA", Q_NULLPTR));
-        ARDUINO->setText(QApplication::translate("nivel1", "CONECTAR ARDUINO", Q_NULLPTR));
-        SALIR->setText(QApplication::translate("nivel1", "SALIR", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("nivel1", "SALIR DEL JUEGO", Q_NULLPTR));
+        label->setText(QApplication::translate("nivel1", "VIDA", Q_NULLPTR));
+        label_2->setText(QApplication::translate("nivel1", "VIDA BOSS", Q_NULLPTR));
+        GUARDAPARTIDA->setText(QString());
+        ARDUINO->setText(QString());
+        SALIR->setText(QString());
+        pushButton->setText(QString());
     } // retranslateUi
 
 };

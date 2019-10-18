@@ -42,16 +42,24 @@ public:
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setGeometry(QRect(130, 540, 331, 51));
         splitter->setOrientation(Qt::Horizontal);
+        splitter->setOpaqueResize(false);
+        splitter->setHandleWidth(0);
+        splitter->setChildrenCollapsible(false);
         volver_a_jugar = new QPushButton(splitter);
         volver_a_jugar->setObjectName(QStringLiteral("volver_a_jugar"));
+        volver_a_jugar->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/VOLVER A JUGAR.png);"));
         splitter->addWidget(volver_a_jugar);
         siguiente_nivel = new QPushButton(splitter);
         siguiente_nivel->setObjectName(QStringLiteral("siguiente_nivel"));
-        siguiente_nivel->setStyleSheet(QStringLiteral("image: url(:/imagenes/cooltext335629468732690.png);"));
+        siguiente_nivel->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/NEXT LVL.png);"));
         splitter->addWidget(siguiente_nivel);
         salir_del_juego = new QPushButton(splitter);
         salir_del_juego->setObjectName(QStringLiteral("salir_del_juego"));
-        salir_del_juego->setStyleSheet(QStringLiteral(""));
+        salir_del_juego->setEnabled(true);
+        QFont font;
+        font.setKerning(true);
+        salir_del_juego->setFont(font);
+        salir_del_juego->setStyleSheet(QStringLiteral("border-image: url(:/imagenes2/SALIR DEL JUEGO.png);"));
         splitter->addWidget(salir_del_juego);
 
         retranslateUi(Ganar);
@@ -62,9 +70,9 @@ public:
     void retranslateUi(QDialog *Ganar)
     {
         Ganar->setWindowTitle(QApplication::translate("Ganar", "Dialog", Q_NULLPTR));
-        volver_a_jugar->setText(QApplication::translate("Ganar", "VOLVER A JUGAR", Q_NULLPTR));
-        siguiente_nivel->setText(QApplication::translate("Ganar", "SIGUIENTE NIVEL", Q_NULLPTR));
-        salir_del_juego->setText(QApplication::translate("Ganar", "SALIR DEL JUEGO", Q_NULLPTR));
+        volver_a_jugar->setText(QString());
+        siguiente_nivel->setText(QString());
+        salir_del_juego->setText(QString());
     } // retranslateUi
 
 };

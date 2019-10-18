@@ -35,25 +35,45 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
+   <property name="opaqueResize">
+    <bool>false</bool>
+   </property>
+   <property name="handleWidth">
+    <number>0</number>
+   </property>
+   <property name="childrenCollapsible">
+    <bool>false</bool>
+   </property>
    <widget class="QPushButton" name="volver_a_jugar">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/imagenes2/VOLVER A JUGAR.png);</string>
+    </property>
     <property name="text">
-     <string>VOLVER A JUGAR</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="siguiente_nivel">
     <property name="styleSheet">
-     <string notr="true">image: url(:/imagenes/cooltext335629468732690.png);</string>
+     <string notr="true">border-image: url(:/imagenes2/NEXT LVL.png);</string>
     </property>
     <property name="text">
-     <string>SIGUIENTE NIVEL</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="salir_del_juego">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="font">
+     <font>
+      <kerning>true</kerning>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">border-image: url(:/imagenes2/SALIR DEL JUEGO.png);</string>
     </property>
     <property name="text">
-     <string>SALIR DEL JUEGO</string>
+     <string/>
     </property>
    </widget>
   </widget>

@@ -1,2 +1,26 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>imagenes2/dr1s.png</file>
+        <file>imagenes2/dr2s.png</file>
+        <file>imagenes2/dr3s.png</file>
+        <file>imagenes2/fr1s.png</file>
+        <file>imagenes2/fr2s.png</file>
+        <file>imagenes2/fr3s.png</file>
+        <file>imagenes2/iz1s.png</file>
+        <file>imagenes2/iz2s.png</file>
+        <file>imagenes2/iz3s.png</file>
+        <file>imagenes2/ARDUINO.png</file>
+        <file>imagenes2/CREAR.png</file>
+        <file>imagenes2/GUARDAR.png</file>
+        <file>imagenes2/INICIAR JUEGO.png</file>
+        <file>imagenes2/INICIAR SESION.png</file>
+        <file>imagenes2/NUEVA CUENTA.png</file>
+        <file>imagenes2/SALIR DEL JUEGO.png</file>
+        <file>imagenes2/SALIR.png</file>
+        <file>imagenes2/fondoMenu.png</file>
+        <file>imagenes2/lineText.png</file>
+        <file>imagenes2/NEXT LVL.png</file>
+        <file>imagenes2/VOLVER A JUGAR.png</file>
+        <file>imagenes2/LOGOJUEGO.png</file>
+    </qresource>
+</RCC>

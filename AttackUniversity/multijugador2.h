@@ -24,6 +24,7 @@
 #include <QString>
 #include <QFile>
 #include <fstream>
+#include <QMessageBox>
 namespace Ui {
 class multijugador2;
 }
@@ -44,10 +45,8 @@ public:
     void generarObstaculos(void);
     void jefeFinal();
     void generarArabe(void);
-    void pausa();
-    void cargarPartida();
-    void nuevaPartida();
-    void nuevaPartida(int posx, int posy, int numOleada_, int numSala, int VidaJugador);
+    void pausa();    
+    void nuevaPartida();    
     void colisionConMesasETC();
 public slots:
     void moverSoldado(void);//
@@ -73,6 +72,7 @@ private:
     Ui::multijugador2 *ui;
     //jugador
     personaje *jugador;
+    personaje *jugador2;
     //Boss
     boss1 *sebastian;
     //escena
@@ -94,8 +94,7 @@ private:
     QTimer *oleada;
     QTimer *puertas;
     QTimer *timerColisionDeMesas;
-    QTimer *Timer_MoverYColisionBolasDeFuego;
-    QTimer *timer_control;
+    QTimer *Timer_MoverYColisionBolasDeFuego;    
     //listas
     QList<bala*>balas; //balas del soldado
     QList<bala*>balasJugador;
@@ -158,6 +157,7 @@ private:
     obstaculos *bolaDeFuego6;
     //otros
     char dire='W'; //controla la direccio en la que van las balas.
+    char direP2='W';
     double distancia; //calcula la distancia que hay entre un bicho y el personaje
     int adds=0; //tiene el valor de la cantidad de adds que hay por sala
     int addsAra=0; // cantidad de arabes por sala
@@ -167,18 +167,21 @@ private:
     int contador=0;
     int margenError=0;
     int mermarVida=99;
+    int mermarVidaP2=99;
     int poder=1;
     QMediaPlayer *dialogosSebastian;
     QMediaPlayer *musica;
     QMediaPlayer *efectos;
-    int numOleada=0;
+    int numOleada=2;
     int sala=1;
     bool salaCompleta=false;
     bool pausa_ = false;
     QString uss;
     QString pass;
     int delayDisparar=10;
+    int delayDispararP2=10;
     bool colision=false;
+    bool colisionP2=false;
     int level=2;
 };
 #endif // MULTIJUGADOR2_H

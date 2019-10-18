@@ -39,6 +39,9 @@
    </property>
   </widget>
   <widget class="QProgressBar" name="vidaJugador">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -56,6 +59,9 @@ color: rgb(170, 0, 0);</string>
    </property>
    <property name="value">
     <number>100</number>
+   </property>
+   <property name="textVisible">
+    <bool>false</bool>
    </property>
    <property name="format">
     <string>%p</string>
@@ -90,6 +96,9 @@ color: rgb(170, 0, 0);</string>
    <property name="value">
     <number>500</number>
    </property>
+   <property name="textVisible">
+    <bool>false</bool>
+   </property>
    <property name="format">
     <string>%p</string>
    </property>
@@ -104,7 +113,7 @@ color: rgb(170, 0, 0);</string>
     </rect>
    </property>
    <property name="text">
-    <string>PLAYER</string>
+    <string>VIDA</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -117,39 +126,60 @@ color: rgb(170, 0, 0);</string>
     </rect>
    </property>
    <property name="text">
-    <string>BOSS</string>
+    <string>VIDA BOSS</string>
    </property>
   </widget>
   <widget class="QSplitter" name="splitter">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>270</y>
-     <width>151</width>
-     <height>111</height>
+     <x>300</x>
+     <y>150</y>
+     <width>211</width>
+     <height>211</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>
+   <property name="opaqueResize">
+    <bool>false</bool>
+   </property>
+   <property name="handleWidth">
+    <number>0</number>
+   </property>
+   <property name="childrenCollapsible">
+    <bool>false</bool>
+   </property>
    <widget class="QPushButton" name="GUARDAPARTIDA">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/imagenes2/GUARDAR.png);</string>
+    </property>
     <property name="text">
-     <string>GUARDAR PARTIDA</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="ARDUINO">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/imagenes2/ARDUINO.png);</string>
+    </property>
     <property name="text">
-     <string>CONECTAR ARDUINO</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="SALIR">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/imagenes2/SALIR.png);</string>
+    </property>
     <property name="text">
-     <string>SALIR</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/imagenes2/SALIR DEL JUEGO.png);</string>
+    </property>
     <property name="text">
-     <string>SALIR DEL JUEGO</string>
+     <string/>
     </property>
    </widget>
   </widget>

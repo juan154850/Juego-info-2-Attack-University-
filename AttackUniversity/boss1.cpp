@@ -246,3 +246,47 @@ void boss1::animarQuieto()
     }
     animacion++;
 }
+
+void boss1::animarIzquierdaSEBAS()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes2/iz1s.png").scaled(100,100));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes2/iz2s.png").scaled(100,100));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes2/iz3s.png").scaled(100,100));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes2/iz1s.png").scaled(100,100));
+      animacion=0;
+    }
+    animacion++;
+}
+
+void boss1::animarDerechaSEBAS()
+{
+    if (animacion<= 4)
+    {
+        setPixmap(QPixmap(":/imagenes2/dr1s.png").scaled(100,100));
+    }
+    if (animacion>4 && animacion <=8)
+    {
+        setPixmap(QPixmap(":/imagenes2/dr2s.png").scaled(100,100));
+    }
+    if (animacion>8 && animacion <=12)
+    {
+        setPixmap(QPixmap(":/imagenes2/dr3s.png").scaled(100,100));
+    }
+    if( animacion >= 13)
+    {
+      setPixmap(QPixmap(":/imagenes2/dr1s.png").scaled(100,100));
+      animacion=0;
+    }
+    animacion++;
+}

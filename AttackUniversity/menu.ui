@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="whatsThis">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -26,7 +29,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/imagenes/cooltext335629482081336.png);</string>
+    <string notr="true">border-image: url(:/imagenes2/INICIAR SESION.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -42,7 +45,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/imagenes/cooltext335629468732690.png);</string>
+    <string notr="true">border-image: url(:/imagenes2/NUEVA CUENTA.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -57,6 +60,9 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/imagenes2/lineText.png);</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="pass">
    <property name="geometry">
@@ -66,6 +72,9 @@
      <width>113</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/imagenes2/lineText.png);</string>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
@@ -81,7 +90,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/imagenes/cooltext335629482081336.png);</string>
+    <string notr="true">border-image: url(:/imagenes2/INICIAR JUEGO.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -97,7 +106,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/imagenes/cooltext335629468732690.png);</string>
+    <string notr="true">
+border-image: url(:/imagenes2/CREAR.png);</string>
    </property>
    <property name="text">
     <string/>
@@ -151,6 +161,26 @@
     <string/>
    </property>
   </widget>
+  <widget class="QGraphicsView" name="graphicsView">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>100</width>
+     <height>100</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>graphicsView</zorder>
+  <zorder>iniciar</zorder>
+  <zorder>registro</zorder>
+  <zorder>uss</zorder>
+  <zorder>pass</zorder>
+  <zorder>iniciar_2</zorder>
+  <zorder>registro_2</zorder>
+  <zorder>cargarPartida</zorder>
+  <zorder>multijugador</zorder>
+  <zorder>nuevaPartida</zorder>
  </widget>
  <resources/>
  <connections/>

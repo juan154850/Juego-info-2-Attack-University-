@@ -36,6 +36,8 @@ public:
     void animarIzquierda();
     void animarDerecha();
     void animarQuieto();
+    void animarIzquierdaSEBAS();
+    void animarDerechaSEBAS();
 
 private:
     QList<bala*>misBalas;
